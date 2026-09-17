@@ -7,5 +7,7 @@ respective authors and upstream owners. Confirm authorship, third-party attribut
 and licensing before a public release.
 
 `SOURCE_MANIFEST.json` records the original local or handoff provenance and file hashes.
-This repository contains no medical image datasets, trained weights, manuscripts,
-or per-patient result tables.
+The repository and its private Release now also preserve the user's manuscripts,
+figures, per-patient result tables, medical imaging materials, and trained weights,
+following the user's explicit request. This archival upload does not grant a
+public redistribution license for those materials.

@@ -1,0 +1,40 @@
+{
+  "experiment_id": "input_ct_coarse_seed123",
+  "claim_tested": "Multi-seed BridgeRefine-L1 (seed 123).",
+  "status": "completed_with_warning",
+  "source_machine": "RTX 5060 Laptop GPU 8 GB",
+  "gpu_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "seed": 123,
+  "dataset_root": "data_slices",
+  "split_file": "checkpoints/selfrdb/patient_split.json",
+  "split_sha256": "21a7b82ece44d1de7de673e85153e24c1e4d225de1116af26b8bde3a91619f50",
+  "train_patients": 144,
+  "val_patients": 18,
+  "test_patients": 18,
+  "train_slices": 27309,
+  "val_slices": 3473,
+  "test_slices": 3415,
+  "input_definition": "CT + frozen SelfRDB coarse MRI",
+  "image_size": [
+    128,
+    128
+  ],
+  "batch_size": 16,
+  "epochs": 20,
+  "optimizer": "Adam",
+  "learning_rate": 0.0002,
+  "loss": "L1",
+  "bridge_checkpoint": "checkpoints/selfrdb/selfrdb_best.pt",
+  "bridge_checkpoint_sha256": "bb2a1dbf0fd5f6c8fa6dfaded91b79f54fd17f570da1d1ce4c73202b2ba81978",
+  "sampling_steps": 10,
+  "sampling_recursions": 2,
+  "code_revision": "not a git repository; source archive hash required",
+  "metric_script": "compute_unified_10x2_metrics.py",
+  "created_at": "2026-08-26T18:00:00+08:00",
+  "result_files": {
+    "patient_metrics": "metrics_patient.csv",
+    "slice_metrics": "metrics_slice.csv",
+    "summary": "summary.json",
+    "checkpoint": "checkpoints/best.pt"
+  }
+}

@@ -37,3 +37,8 @@ outputs/
 patient_split.json
 metrics*.csv
 *predictions*
+
+# Curated review copies are intentionally versioned; large files are in Releases.
+!materials/
+!materials/**
+.materials-cache/

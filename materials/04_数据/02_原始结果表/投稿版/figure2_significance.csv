@@ -1,0 +1,5 @@
+comparison,raw_p,holm_p
+BridgeRefine vs SelfRDB,3.814697265625e-06,1.52587890625e-05
+BridgeRefine vs SynDiff,3.814697265625e-06,1.52587890625e-05
+BridgeRefine vs MG-CycleGAN,7.62939453125e-06,1.52587890625e-05
+BridgeRefine vs BridgeGAN,3.814697265625e-06,1.52587890625e-05

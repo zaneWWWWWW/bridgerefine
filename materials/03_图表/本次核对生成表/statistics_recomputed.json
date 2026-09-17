@@ -1,0 +1,101 @@
+{
+  "n_patients": 18,
+  "n_slices": 3415,
+  "mean_delta": 0.008894444444444446,
+  "median_delta": 0.0088,
+  "improved_patients": 17,
+  "bootstrap_ci95": [
+    0.005827499999999999,
+    0.012227916666666665
+  ],
+  "bootstrap": "NumPy default_rng(42), 10000 percentile resamples",
+  "wilcoxon": "two-sided, rounded paired differences, scipy method=auto",
+  "comparisons": [
+    {
+      "comparison": "BridgeRefine-L1 vs SelfRDB",
+      "raw_p": 7.62939453125e-06,
+      "mean_delta_ssim": 0.23285,
+      "holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs SynDiff",
+      "raw_p": 7.62939453125e-06,
+      "mean_delta_ssim": 0.07105555555555557,
+      "holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs MG-CycleGAN",
+      "raw_p": 1.52587890625e-05,
+      "mean_delta_ssim": 0.030149999999999996,
+      "holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs BridgeGAN",
+      "raw_p": 7.62939453125e-06,
+      "mean_delta_ssim": 0.013744444444444445,
+      "holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs coarse-only",
+      "raw_p": 0.00019609335453373022,
+      "mean_delta_ssim": 0.03602222222222222,
+      "holm_p": 0.000213623046875
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs CT-only",
+      "raw_p": 0.0001068115234375,
+      "mean_delta_ssim": 0.008894444444444446,
+      "holm_p": 0.000213623046875
+    }
+  ],
+  "archived_comparison_audit": [
+    {
+      "comparison": "BridgeRefine-L1 vs SelfRDB",
+      "archived_raw_p": 7.62939453125e-06,
+      "recomputed_raw_p": 7.62939453125e-06,
+      "archived_holm_p": 4.57763671875e-05,
+      "recomputed_holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs SynDiff",
+      "archived_raw_p": 7.62939453125e-06,
+      "recomputed_raw_p": 7.62939453125e-06,
+      "archived_holm_p": 3.814697265625e-05,
+      "recomputed_holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs MG-CycleGAN",
+      "archived_raw_p": 1.52587890625e-05,
+      "recomputed_raw_p": 1.52587890625e-05,
+      "archived_holm_p": 4.57763671875e-05,
+      "recomputed_holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs BridgeGAN",
+      "archived_raw_p": 7.62939453125e-06,
+      "recomputed_raw_p": 7.62939453125e-06,
+      "archived_holm_p": 3.0517578125e-05,
+      "recomputed_holm_p": 4.57763671875e-05
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs coarse-only",
+      "archived_raw_p": 0.0001960933545337302,
+      "recomputed_raw_p": 0.00019609335453373022,
+      "archived_holm_p": 0.0001960933545337302,
+      "recomputed_holm_p": 0.000213623046875
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs CT-only",
+      "archived_raw_p": 0.0001068115234375,
+      "recomputed_raw_p": 0.0001068115234375,
+      "archived_holm_p": 0.000213623046875,
+      "recomputed_holm_p": 0.000213623046875
+    }
+  ],
+  "latency_ratio": 113.4958964188361,
+  "caveats": [
+    "Outputs are recomputed from exported, rounded metrics.",
+    "Archived p-values and CI remain preserved in the source directory.",
+    "Differences require source-record review, not silent manuscript replacement."
+  ]
+}

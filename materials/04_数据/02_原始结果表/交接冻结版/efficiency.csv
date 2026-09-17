@@ -1,0 +1,3 @@
+method,ssim,seeds,time_ms,memory_mb
+CT-only,0.8009,3,2.06,39.3
+BridgeRefine,0.8171,3,233.6,134.0

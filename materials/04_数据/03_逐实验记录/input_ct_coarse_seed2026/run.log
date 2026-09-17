@@ -1,0 +1,24 @@
+experiment_id: input_ct_coarse_seed2026
+claim_tested: Multi-seed BridgeRefine-L1 (seed 2026).
+source_machine: RTX 5060 Laptop GPU 8 GB
+gpu_name: NVIDIA GeForce RTX 5060 Laptop GPU
+seed: 2026
+dataset_root: data_slices
+split_file: checkpoints/selfrdb/patient_split.json
+train/val/test patients: 144/18/18
+train/val/test slices: 27309/3473/3415
+image_size: 128x128
+batch_size: 16
+epochs: 20
+optimizer: Adam (lr=2e-4, betas=(0.5,0.999))
+loss: L1
+bridge: frozen SelfRDB, 10 sampling steps, 2 recursions
+
+Observed train/validation loss at reported checkpoints:
+  epoch 5: train=0.1020 val=0.1045
+  epoch 10: train=0.0966 val=0.1005
+  epoch 15: train=0.0934 val=0.1005
+  epoch 20: train=0.0912 val=0.1003
+
+WARNING: full per-epoch training logs were not captured for every epoch.
+status: completed_with_warning

@@ -1,0 +1,1 @@
+"torch.cuda.max_memory_allocated() after model load (additional inference allocation)"

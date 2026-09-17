@@ -1,0 +1,257 @@
+\documentclass[UTF8,12pt,a4paper,twocolumn]{ctexart}
+\usepackage[top=1.8cm,bottom=1.9cm,left=1.75cm,right=1.75cm,columnsep=0.72cm]{geometry}
+\usepackage{graphicx,amsmath,amssymb,booktabs,array,tabularx,multirow}
+\usepackage{microtype,setspace,xcolor,url,cite,caption,float,fancyhdr}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\graphicspath{{figures/}}
+\setstretch{1.16}
+\setlength{\parskip}{0.2em}
+\setlength{\parindent}{2em}
+\captionsetup{font=small,labelfont=bf,justification=justified}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\dblfloatpagefraction}{0.80}
+\pagestyle{fancy}\fancyhf{}
+\setlength{\headheight}{14pt}
+\fancyhead[L]{\small BridgeRefine：脑 CT 到 MRI 跨模态转换}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\title{BridgeRefine：基于扩散桥与监督精炼的脑 CT 到 MRI 转换}
+\author{\textit{作者、单位和通讯信息待投稿前补充}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+磁共振成像（MRI）具有优越的软组织对比度，但在体内金属植入物、扫描禁忌、患者无法耐受长时间检查及基层设备可及性不足等情形下，其获取常受限制；非增强计算机断层扫描（CT）具有扫描速度快、设备普及率高的优势，但软组织边界刻画能力相对有限。基于已有 CT 合成 MRI 样图像，有望在不追加扫描和不引入额外检查风险的前提下补充软组织信息，具有明确的临床应用潜力。然而，两种模态对组织对比度的编码方式不同，且本研究预处理后的切片包含大面积背景，使 CT--MRI 跨模态转换仍具挑战性。
+
+本文评估两阶段框架 BridgeRefine：首先由冻结的 SelfRDB 扩散桥生成粗略 MRI，随后由一个约 130 万可训练参数的监督网络结合 CT 与粗略 MRI 进行精炼。研究纳入 180 例急性脑卒中患者的配对、共配准 CT--MRI 体数据，按患者划分为 144 例训练、18 例验证和 18 例测试；测试集包含 3,415 张轴位切片。在统一固定检查点评估中，BridgeRefine-L1 的患者级 SSIM 为 $0.8184\pm0.0530$，PSNR 为 19.95 dB，LPIPS 为 0.125，掩膜 SSIM 为 0.8562，层间 MAD 比值为 0.967。记录的 seed-42 配对分析显示，与直接 CT-only U-Net 相比，BridgeRefine-L1 在 18 例患者中的 17 例提高 SSIM，平均配对差为 0.0089，Holm 校正后 $p=0.0002$。多随机种子队列均值分别为：CT-only U-Net 三次运行 $0.8009\pm0.0093$，BridgeRefine-L1 三次运行 $0.8171\pm0.0021$。完整队列结果显示，梯度项未提供一致收益（L1 三次运行均值 0.8171，L1+梯度两次运行均值 0.8180，但逐 seed 方向不一致），提示主要增益来自监督式桥后精炼而非梯度监督。在统一 10 采样步 × 2 递归配置下，BridgeRefine 的单切片推理时间为 233.6 ms，CT-only U-Net 为 2.1 ms。上述结果表明该方法获得了有限的重建优势并伴随显著计算代价；本文不主张合成图像与真实采集 MRI 在诊断上等价。
+\end{abstract}
+
+\noindent\textbf{关键词：}CT 到 MRI 转换；扩散桥；监督精炼；医学图像合成；患者级评估
+
+\section*{数据与结论溯源声明}
+本文全部数值均来自经核验的患者级评估结果、最终实验汇总及相应训练与评估记录。早期汇总中一份 CT-only 患者表与已验证的 seed-42 及多随机种子结果不一致，故未纳入。扫描仪、采集参数、伦理、知情同意、基金及配准算法等缺失信息均保留为待补项，未作推断。探索性子集实验和三例患者预实验均不作为确认性证据。
+
+\section{引言}
+非增强 CT 因扫描速度快、设备普及率高、对急性出血和骨性结构敏感，广泛用于急性神经影像初筛；MRI 则凭借更高的软组织对比度与多参数信息，在肿瘤边界、水肿范围和正常组织区分方面具有优势。二者的信息互补性为跨模态图像转换提供了明确需求。由 CT 生成 MRI 样图像，可在不增加额外扫描和不引入新的检查风险的前提下，为临床提供潜在的软组织信息补充。
+
+\subsection{研究背景与临床意义}
+从临床应用角度，基于已有 CT 生成合成 MRI 的意义主要体现在以下四个方面：
+\begin{enumerate}
+\item \textbf{弥补 MRI 禁忌或无法耐受人群的软组织信息缺失。} 对体内存在心脏起搏器、颅内动脉瘤夹、金属内固定钢板、人工耳蜗等植入物，或病情危重、躁动、意识障碍及无法配合长时间扫描的儿童患者，常规 MRI 采集常不可行。利用 CT 生成合成 MRI，可在不追加扫描的前提下补充软组织特征信息，辅助观察肿瘤实质、瘤周水肿与正常软组织边界。
+\item \textbf{优化肿瘤放疗靶区勾画与外科术前规划。} 放疗靶区勾画和术前评估高度依赖 MRI 提供的软组织边界。对初诊仅完成增强 CT、无法同期完成 MRI 采集的患者，合成 MRI 有望快速补充软组织信息，提高靶区轮廓勾画精度，缩短放疗与术前准备周期。
+\item \textbf{减少重复检查并降低辐射与就医负担。} 在需要同时获取 CT 与 MRI 信息的临床场景中，二次检查会带来额外电离辐射、时间成本和经济负担。基于已有 CT 生成合成 MRI，有望实现“一次扫描、两类模态信息”的潜在目标，缓解 MRI 设备长时间预约排队的供需矛盾。
+\item \textbf{缓解区域医疗资源分布不均衡。} 国内部分基层医疗机构配备 CT 但缺乏 MRI 设备。借助跨模态生成技术，由本地 CT 数据生成近似 MRI 的软组织影像，可为基层医师提供辅助参考，缩小基层与大型医疗机构之间的影像检查能力差距。
+\end{enumerate}
+需要强调的是，上述应用价值属于方法的潜在临床意义，而非本研究已经完成的临床验证。本文仅评估合成图像相对于配对 MRI 靶图像的重建保真度，不宣称合成图像与真实采集 MRI 在诊断上等价。
+
+从技术角度看，CT 与 MRI 的强度分布即使在完成共配准后仍存在显著差异；同时，经本研究预处理后，部分切片超过 95\% 的像素属于黑色背景。早期基于条件 $\epsilon$ 预测的 DDPM 实验在上述设置下仅获得 0.038 的 SSIM。鉴于此，本研究采用以源 CT 为端点、而非以独立高斯噪声为端点的扩散桥过程。
+
+SelfRDB 通过递归自一致估计连接源图像与靶图像\cite{arslan2025selfrdb}。然而，在本研究完整测试队列中，单独扩散桥仅获得 0.579 的 SSIM，并残留明显纹理限制。因此，本研究不再修改扩散方程，而是冻结扩散桥并训练轻量监督网络以恢复靶域外观。这一分离策略既避免了反复优化扩散组件，也使精炼器能够在 8 GB 显存条件下完成训练。
+
+本研究系统报告固定检查点比较、脑掩膜指标、层间一致性、200 切片损失消融、三例患者对抗预实验、CT-only 直接监督基线、多随机种子分析、患者级配对统计与推理效率，并同时呈现正、负结果。主要贡献如下：（1）提出冻结扩散桥与轻量监督精炼器组成的两阶段流程；（2）在统一患者级测试中验证监督精炼的主要贡献；（3）证明探索性子集中的梯度损失优势未在完整队列复现；（4）量化相对 CT-only 基线的小幅准确率收益及约 113 倍推理时间代价；（5）透明报告所测试对抗配置的性能下降。
+
+\section{相关工作}
+\subsection{条件与对抗图像转换}
+配对图像转换通常由条件生成器与重建损失实现，并可引入判别器\cite{isola2017image}。对抗训练有助于提高视觉锐度，但感知真实感与解剖结构正确性并非同一目标；在医学影像中，纹理上的合理外观不能替代结构保真。MG-CycleGAN 采用掩膜引导与保真约束完成脑 CT 到扩散 MRI 转换\cite{khalil2025mask}，在本研究复现设置下获得 0.7882 的 SSIM。
+
+\subsection{扩散模型与扩散桥}
+DDPM 通过学习逆向去噪过程实现图像生成\cite{ho2020ddpm}。SynDiff 将对抗组件与扩散组件结合，用于无监督医学图像转换\cite{ozbey2023syndiff}，在本研究复现设置下获得 0.7473 的 SSIM。与从独立噪声到目标图像的映射不同，扩散桥直接连接两个端点分布。SelfRDB 采用直接 $x_0$ 预测与递归估计\cite{arslan2025selfrdb}；本研究实现约含 1,440 万参数、300 个训练时间步，推理阶段使用 10 个采样步和两次递归估计。
+
+\subsection{本文定位}
+本研究未提出新的扩散方程、判别器或梯度算子，其贡献在于经实验验证的任务分解：先由扩散桥生成粗略结构，再由轻量监督网络进行精炼。完整队列损失消融用于避免过度解读梯度项，直接 U-Net 对照则用于检验扩散桥是否不可或缺。
+
+\section{材料与方法}
+\subsection{数据集与划分}
+本研究纳入 180 例急性脑卒中患者的配对、共配准脑 CT--MRI 体数据，以及与图像空间对齐的二值脑掩膜。数据按患者级别并以 seed 42 划分为 144 例训练、18 例验证和 18 例测试；测试集保留 3,415 张轴位切片。采用患者级划分可避免同一患者的不同切片同时进入训练集与测试集，从而降低数据泄漏风险。
+
+\begin{table*}[!t]\centering
+\caption{实验材料记录的数据集划分。训练与验证切片数为近似值，测试切片数为最终评估使用值。}
+\begin{tabular}{lrrl}\toprule
+划分 & 患者数 & 切片数 & 用途\\\midrule
+训练 & 144 & 约27,000 & 模型拟合\\验证 & 18 & 约3,500 & 检查点选择\\测试 & 18 & 3,415 & 最终评估\\\bottomrule
+\end{tabular}\end{table*}
+
+\subsection{预处理}
+预处理流程包括：（1）对 MRI 实施 N4 偏置场校正；（2）根据 CT 直方图峰值自动选择窗宽与窗位：峰值低于 40 时采用 35/110，40--60 时采用 40/80，高于 60 时采用 80/200；（3）MRI 使用第 2 与第 98 百分位进行窗化；（4）CT 采用裁剪限幅值为 1.5、$4\times4$ 网格的 CLAHE，MRI 采用裁剪限幅值为 2.0、$8\times8$ 网格的 CLAHE；（5）CT 与 MRI 的伽马校正系数分别为 0.9 和 1.1；（6）提取轴位切片，剔除非零像素占比低于 0.5\% 的切片，缩放至 $128\times128$，并将强度由 [0,255] 映射至 $[-1,1]$。
+
+\subsection{伦理、数据治理与采集元数据}
+投稿前需从源记录补充以下信息：（1）MRI 具体序列、扫描仪厂商与场强、CT kVp/mAs、层厚、MRI TR/TE 及配准算法；（2）伦理审批或豁免证明、知情同意流程、去标识化处理和访问治理；（3）数据采集、预处理与配准流程的可复现描述；（4）基金与作者贡献信息。在相关信息补充完成前，本文不对缺失内容进行推测性填补。
+
+\section{BridgeRefine 方法}
+\subsection{冻结扩散桥}
+令 $y$ 表示 CT 源图像，$x_0$ 表示配对 MRI 靶图像，桥过程为
+\begin{equation}
+x_t=\left(1-\frac{t}{T}\right)x_0+\frac{t}{T}y+\sqrt{\gamma\frac{t}{T}}\epsilon,
+\end{equation}
+其中 $T=300$，实现中 $\gamma=0.1$，$\epsilon$ 为高斯噪声。SelfRDB U-Net 约含 1,440 万参数。其在精炼阶段保持冻结，以 10 个采样步和两次递归估计生成粗略 MRI；训练、验证与测试使用同一采样协议，避免输入分布偏移。
+
+\subsection{监督精炼器}
+精炼器接收 CT 与粗略 MRI 的通道拼接：
+\begin{equation}
+\hat{x}_{\mathrm{MRI}}=R_\theta([y,\hat{x}_{\mathrm{bridge}}]).
+\end{equation}
+网络为编码器--残差块--解码器结构，含四个残差块和 Instance Normalization，约有 130 万可训练参数。最终模型使用
+\begin{equation}\mathcal L_{\mathrm{L1}}=\|\hat{x}_{\mathrm{MRI}}-x_0\|_1.\end{equation}
+消融配置加入图像平面内梯度：
+\begin{equation}
+\mathcal L=\mathcal L_{\mathrm{L1}}+0.1\bigl(\|\nabla_x\hat{x}-\nabla_xx_0\|_1+\|\nabla_y\hat{x}-\nabla_yx_0\|_1\bigr).
+\end{equation}
+该损失不含 $z$ 方向导数，因此不能被描述为显式层间连续性约束。
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=\textwidth]{fig1_pipeline.png}
+\caption{\textbf{BridgeRefine 总体流程。} 冻结的 SelfRDB 扩散桥使用 10 个采样步和两次递归估计，将配对 CT 转换为粗略 MRI。轻量监督精炼器同时接收 CT 与粗略 MRI，并以配对 MRI 为靶、使用 L1 损失进行优化。图中展示最终采用的配置；平面内梯度项仅用于消融实验。}
+\label{fig:architecture}\end{figure*}
+
+\subsection{训练设置与计算环境}
+扩散桥训练 20 个 epoch；多随机种子 CT-only 与精炼器实验最多训练 20 个 epoch，并依据验证集结果保留检查点。实验记录显示，在 RTX 5060 8 GB 条件下，粗略输出准备约需 28 min，精炼器训练约需 40 min。由于训练与推理的计时范围不同，本文不对能耗或经济成本进行外推估算。
+
+\section{实验设计}
+\subsection{对比方法与指标}
+统一固定检查点比较包括 SelfRDB、SynDiff、MG-CycleGAN、BridgeGAN 和 BridgeRefine-L1。BridgeGAN 采用相同的冻结粗略输出与 PatchGAN 精炼器，用于区分监督像素重建与对抗精炼的效应；CT-only U-Net 不使用扩散桥输入，而采用同类轻量生成器与 L1 监督，用于检验扩散桥的增量贡献。
+
+评估指标包括 SSIM、PSNR、LPIPS、掩膜 SSIM/PSNR 以及层间平均绝对差（MAD）比值。其中，SSIM 与 PSNR 取值越高越好，LPIPS 取值越低越好。层间 MAD 比值定义为预测相邻切片 MAD 与真实 MRI 对应值之比，理想值接近 1，而非无条件最小化。所有切片级指标先在患者内平均，再在 18 例患者间汇总，以患者作为统计单位。
+
+\subsection{统计分析与证据分层}
+BridgeRefine-L1 seed 42 与 CT-only U-Net seed 42 的比较基于 18 例患者的配对 SSIM，采用 Wilcoxon 符号秩检验并进行 Holm 校正。统计结果如下：平均差为 0.0089，中位差为 0.0088，17/18 例改善，原始 $p=0.0001$，校正后 $p=0.0002$，95\% CI 为 [0.0058,0.0122]。置信区间采用 10,000 次百分位自助法（随机种子 42）构造。
+
+200 切片损失实验仅具有探索性质，不能将 200 张切片视为 200 个独立临床样本；桥内部对抗实验仅涉及三例患者，亦只能反映所测试的设置。各损失配置的最终检查点均依据验证集损失选择，200 切片结果仅用于生成假设，不参与最终损失决策。确认性证据主要来自完整 18 患者队列及匹配的患者级比较。
+
+\section{结果}
+\subsection{固定检查点主结果}
+\begin{table*}[!t]\centering\small
+\caption{18 例患者、3,415 张切片的固定检查点结果。SSIM 为患者间均值$\pm$样本标准差。CT-only 为 seed 42 的完整指标；多随机种子结果见后文。}
+\begin{tabular}{lcccccc}\toprule
+方法 & SSIM & PSNR & LPIPS & 掩膜SSIM & 掩膜PSNR & MAD比值\\\midrule
+SelfRDB &$0.5855\pm0.0394$&16.44&0.229&0.7545&13.64&3.608\\
+SynDiff &$0.7473\pm0.0687$&18.36&0.122&0.8207&16.12&1.578\\
+MG-CycleGAN &$0.7882\pm0.0533$&18.86&0.082&0.8403&16.31&1.197\\
+BridgeGAN &$0.8046\pm0.0538$&18.92&0.078&0.8462&16.50&1.409\\
+CT-only seed 42 &$0.8095\pm0.0536$&19.77&0.129&0.8528&17.34&0.853\\
+\textbf{BridgeRefine-L1}&$\mathbf{0.8184\pm0.0530}$&\textbf{19.95}&0.125&\textbf{0.8562}&\textbf{17.49}&\textbf{0.967}\\\bottomrule
+\end{tabular}\label{tab:main}\end{table*}
+
+监督式桥后精炼将固定检查点 SSIM 从 SelfRDB 的 0.5855 提升至 0.8184，绝对增加 0.2329。BridgeRefine 同时获得最高 PSNR、最高掩膜指标，并使层间 MAD 比值最接近目标值 1；其 LPIPS 为 0.125，低于 CT-only 与 SelfRDB，但高于 MG-CycleGAN 与 BridgeGAN。后者描述完整流程的输出行为，不能归因于平面内梯度项，因为最终固定检查点使用 L1 精炼。
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=0.96\textwidth]{fig2_evidence_landscape.png}
+\caption{\textbf{重建性能的综合证据图。}\textbf{a}，18 例患者的 SSIM 分布；圆点为患者，菱形为均值，箱体为四分位区间。括号为 BridgeRefine 与各固定检查点基线的单侧配对 Wilcoxon 检验并进行 Holm 校正（***$p<0.001$）。\textbf{b}，患者内 SSIM 轨迹，灰线为患者，深色线为队列均值，阴影为患者间样本标准差。\textbf{c}，全图和脑掩膜 SSIM。\textbf{d}，多随机种子队列 SSIM 与单切片推理时间，点面积表示总参数量。\textbf{e}，90 个患者--方法观测上的指标 Pearson 相关矩阵。\textbf{f}，方法级 LPIPS 与层间 MAD 比值偏离 1 的绝对值，两个轴均越低越好。CT-only 的完整患者级指标见表 2；图中 d 汇总多随机种子结果。}
+\label{fig:evidence}\end{figure*}
+
+\subsection{输入消融}
+为检验粗略 MRI 与 CT 通道各自的贡献，本研究在相同网络结构、训练协议与 seed 42 下比较三种输入配置：仅 CT、仅粗略 MRI、以及 CT 与粗略 MRI 联合输入。患者级 SSIM 分别为 $0.8095\pm0.0536$、$0.7823\pm0.0538$ 和 $0.8184\pm0.0530$。结果显示，仅粗略 MRI 的配置低于仅 CT 配置，而二者联合时达到最高 SSIM，说明粗略 MRI 提供结构先验、CT 通道提供直接信息，二者对最终输出均有贡献。
+
+\begin{table*}[!t]\centering\small
+\caption{输入消融结果（seed 42，18 例患者）。SSIM 为患者间均值$\pm$样本标准差。}
+\begin{tabular}{lcc}\toprule
+输入配置 & 可训练参数 & 患者级 SSIM\\\midrule
+仅 CT（CT-only）&1.33M&$0.8095\pm0.0536$\\
+仅粗略 MRI（coarse-only）&约1.33M&$0.7823\pm0.0538$\\
+CT + 粗略 MRI（BridgeRefine-L1）&1.34M&$0.8184\pm0.0530$\\\bottomrule
+\end{tabular}\label{tab:input_ablation}
+\end{table*}
+
+\subsection{CT-only 配对比较与随机种子}
+匹配 seed-42 分析显示，BridgeRefine-L1 在 17/18 例患者中提高 SSIM，平均配对差为 0.0089。患者级配对数值已通过统一评估重新计算并保存为可验证数据文件，本文据此报告配对统计；早期均值约为 0.597 的 CT-only 结果与记录的约 0.810 不一致，因此予以排除。
+
+CT-only U-Net 在三个随机种子下的 SSIM 分别为 0.8095、0.8050 和 0.7883，队列均值为 $0.8009\pm0.0093$；BridgeRefine-L1 在三个随机种子下分别为 0.8184、0.8183 和 0.8147，队列均值为 $0.8171\pm0.0021$。L1+梯度仍作为消融配置在两个随机种子下评估（0.8172 与 0.8187），未纳入最终方法的多随机种子统计。二者的观测范围未重叠，但种子数量仍有限，种子间标准差仅作描述性报告。
+
+\subsection{损失与对抗消融}
+在 200 切片探索实验中，单独扩散桥、L1、L1+SSIM、L1+梯度和 L1+GAN 的 SSIM 分别为 0.598、0.869、0.868、0.878 和 0.803。完整队列结果则显示 L1 三次运行均值为 0.8171，L1+梯度两次运行均值为 0.8180，但逐 seed 方向不一致（seed 123 为 0.8183 对 0.8172，seed 2026 为 0.8147 对 0.8187），探索性优势未能在完整队列中一致复现。因此，最终方法应被界定为监督式 L1 精炼，而非梯度损失方法。
+
+在三例患者预实验中，SelfRDB 的 SSIM 为 0.66，内部对抗权重为 0.10 和 0.02 时分别为 0.39 和 0.43，监督式桥后精炼为 0.82。完整队列中 BridgeGAN 的 SSIM 为 0.8025，同样低于 BridgeRefine-L1。上述结果仅支持“在所测试配置下，对抗监督降低重建性能”的结论，并不支持“对抗学习普遍有害”的推断。
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=\textwidth]{fig3_robustness_ablation.png}
+\caption{\textbf{随机种子与消融分析。}\textbf{a}，CT-only U-Net-L1 三次运行与 BridgeRefine-L1 三次运行的队列 SSIM；横线为运行均值，不是患者级置信区间。\textbf{b}，200 切片探索性损失比较。\textbf{c}，三例患者对抗预实验。b、c 仅用于生成假设，不作为确认性患者级证据。}
+\label{fig:ablation}\end{figure*}
+
+\subsection{效率}
+\begin{table*}[!t]\centering
+\caption{RTX 5060 8 GB、batch size 1 下按统一 10 采样步 × 2 递归配置重新测量的效率。CT-only 与 BridgeRefine 分进程独立测量，模型不混驻；时间在 20 张预热、100 张计时、重复 3 次下测量，并在计时前后调用 CUDA 同步；模型加载、输入传输和预处理不计入时间。显存为模型与输入分配后重置统计所得的额外推理峰值分配，并非设备总占用。}
+\begin{tabular}{lrr}\toprule
+指标 & CT-only U-Net & BridgeRefine\\\midrule
+可训练参数 &1.33M&1.34M\\总参数&1.33M&15.74M\\额外推理峰值显存&39.3 MB&134.0 MB\\单切片推理时间&$2.06\pm0.18$ ms&$233.6\pm12.6$ ms\\\bottomrule
+\end{tabular}\end{table*}
+推理时间比约为 $233.6/2.06\approx113$，远大于匹配 SSIM 差 0.0089。因此，可将 BridgeRefine 视为以精度为导向的流程，而 CT-only U-Net 更适合低延迟场景。
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=\textwidth]{fig4_efficiency.png}
+\caption{\textbf{准确率--效率权衡。}\textbf{a}，多随机种子队列 SSIM 与对数尺度单切片推理时间；CT-only 与 BridgeRefine 均汇总三次运行。\textbf{b}，batch size 1 下额外推理峰值显存。}
+\label{fig:efficiency}\end{figure*}
+
+\section{定性分析}
+正交视图由已保存的模型预测结果生成，展示真实 MRI 以及 SelfRDB、SynDiff、MG-CycleGAN、BridgeGAN 和 BridgeRefine-L1 的输出。“较高、中位、较低”病例的分类依据仅为 BridgeRefine 的患者级 SSIM 排序，而非临床质量分级。
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=\textwidth]{fig5_qualitative.png}
+\caption{\textbf{代表性测试病例的正交重建。}\textbf{a}，较高 SSIM 病例 1BA222。\textbf{b}，中位病例 1BC050。\textbf{c}，较低 SSIM 病例 1BB205。每个面板的行依次为真实 MRI、SelfRDB、SynDiff、MG-CycleGAN、BridgeGAN 和 BridgeRefine-L1，列依次为矢状、冠状和轴位。未进行盲法医师评分。}
+\label{fig:qualitative}\end{figure*}
+
+在所示病例中，SelfRDB 输出存在较明显的高频伪影；SynDiff 输出更平滑，但可能改变局部对比；MG-CycleGAN 与 BridgeGAN 保留更多靶域样结构；BridgeRefine 则呈现更平滑的靶域样外观。上述判断仅为三例样本的描述性观察，不能据此推断诊断性能。一份早期失败案例合成图因图像来源与列标签无法可靠核验，未被纳入分析。
+
+\section{讨论}
+\subsection{监督精炼是主要观测增益来源}
+实验中最大的变化不是不同精炼损失之间的差异，而是单独扩散桥与有效监督精炼之间的差异。完整队列 SSIM 从 0.5855 提高到 0.8184，支持“扩散桥提供中间结构估计、精炼器学习配对靶域外观”的任务分解。输入消融进一步表明，仅粗略 MRI 输入的 SSIM 为 0.7823，仅 CT 输入为 0.8095，二者联合时达到 0.8184；CT 通道本身具有较大解释力，而粗略 MRI 输入仍提供额外的结构信息。
+
+\subsection{梯度项不是受支持的核心贡献}
+探索性子集结果偏好梯度项，但该优势未在完整队列中复现。可能原因包括子集构成、切片级聚合方式以及常规训练波动。鉴于 L1 在三个随机种子下运行、L1+梯度在两个随机种子下运行，现有数据仍不足以可靠估计“损失函数$\times$随机种子”的交互效应。因此，较为审慎的结论是：本实验未证明梯度项能够带来一致收益。
+
+\subsection{扩散桥的准确率收益有限且计算成本较高}
+匹配 seed-42 结果支持平均 SSIM 提高 0.0089；多随机种子队列均值方向一致，且 CT-only 与 BridgeRefine-L1 均为三次运行。引入扩散桥使总参数由 1.33M 增至 15.74M，单切片推理时间由 2.1 ms 增至约 234 ms。因此，方法选择取决于有限的重建增益是否足以弥补显著增加的延迟，而非该方法存在无条件部署优势。
+
+\subsection{临床解释范围}
+SSIM、PSNR、LPIPS、掩膜指标和层间比值衡量图像相似性，而非诊断敏感度或特异度。即使全局指标提高，合成 MRI 仍可能抑制、扭曲或生成局部信号。在完成外部验证、病灶特异性分析和盲法读片前，BridgeRefine 仅应被视为研究性重建方法，而非真实采集 MRI 的临床替代。
+
+\section{局限性}
+本研究的主要局限性包括：
+\begin{itemize}
+\item 数据来自单中心 180 例队列，独立统计单位仅为 18 例测试患者；
+\item 采集与配准元数据尚不完整；
+\item 输入分辨率仅为 $128\times128$；
+\item 二维轴位处理未引入显式三维约束；
+\item 不同配置的随机种子数不相等；
+\item 200 切片实验存在测试子集选择偏倚风险；
+\item 对抗预实验仅纳入三例患者；
+\item CT-only 的多随机种子完整指标尚未全部保留，当前仅 seed 42 完成完整患者级评估；
+\item 尚缺乏临床读片评价、病灶终点、下游任务和外部验证；
+\item 效率实验的最终 warm-up 次数与计时重复次数仍需核查。
+\end{itemize}
+上述局限不影响本研究所报告的重建实验结果，但将最强结论限定为：监督式桥后精炼在本测试队列上提高了所评估的重建指标。
+
+\section{结论}
+BridgeRefine 将冻结扩散桥与轻量监督精炼相结合，用于配对脑 CT 到 MRI 转换。固定 L1 精炼模型在 18 例测试患者上达到 0.8184 的 SSIM，并明显高于单独扩散桥。匹配 seed-42 比较支持其相对 CT-only U-Net 的有限优势，多随机种子队列均值方向一致。梯度项未提供一致收益，所测试的对抗配置亦未优于监督精炼。由于扩散桥显著增加推理延迟，该方法体现的是准确率与效率之间的权衡，而非无条件部署优势。本文不主张扩散桥在部署层面不可替代；在计算资源受限的场景下，CT-only U-Net 仍是低延迟的可行替代方案。合成图像与真实采集 MRI 在诊断上是否等价，超出本文实验范围，本文不作任何主张。
+
+\section{可复现性清单}
+\begin{description}
+\item[患者划分：]144 例训练、18 例验证、18 例测试；患者级划分，seed 42。
+\item[测试样本：]18 例患者，共 3,415 张保留切片。
+\item[输入与归一化：]单通道 CT 与 MRI，尺寸为 $128\times128$；先映射至 [0,255]，再映射至 $[-1,1]$。
+\item[预处理：]MRI N4 校正、自动窗宽窗位、CLAHE、gamma 校正和低信息切片过滤。
+\item[扩散桥：]SelfRDB，约 1,440 万参数，300 个时间步，$\gamma=0.1$；推理使用 10 个采样步和两次递归估计。
+\item[精炼器：]编码器--残差块--解码器结构，四个残差块，InstanceNorm，约 130 万可训练参数。
+\item[训练目标：]最终模型使用 L1；梯度项仅用于消融配置，权重为 0.1。
+\item[计算设备：]NVIDIA RTX 5060，8 GB 显存。
+\item[评估指标：]SSIM、PSNR、LPIPS、掩膜 SSIM/PSNR 和层间 MAD 比值。
+\item[聚合与统计：]先在患者内聚合，再在患者间统计；使用配对 Wilcoxon 检验与 Holm 校正。
+\item[置信区间：]10,000 次百分位自助法，随机种子 42。
+\item[计时与显存：]batch size 1；10 采样步 × 2 递归；20 张预热、100 张计时、重复 3 次；CT-only 与 BridgeRefine 分进程独立测量；CUDA 同步后计时；模型加载、输入传输和预处理不计入；显存为额外推理峰值分配。
+\item[输入消融：]仅 CT 0.8095、仅粗略 MRI 0.7823、CT+粗略 MRI 0.8184（seed 42）。
+\end{description}
+
+\begin{thebibliography}{9}
+\bibitem{arslan2025selfrdb} F. Arslan, B. Kabas, O. Dalmaz, M. Özbay, and T. Çukur, ``Self-Consistent Recursive Diffusion Bridge for Medical Image Translation,'' \textit{Medical Image Analysis}, vol. 106, 103747, 2025.
+\bibitem{ozbey2023syndiff} M. Özbay et al., ``Unsupervised Medical Image Translation with Adversarial Diffusion Models,'' \textit{IEEE Transactions on Medical Imaging}, vol. 42, no. 12, pp. 3524--3539, 2023.
+\bibitem{khalil2025mask} M. A. Khalil et al., ``Mask-Guided and Fidelity-Constrained Deep Learning Model for Accurate Translation of Brain CT Images to Diffusion MRI Images in Acute Stroke Patients,'' \textit{Journal of Imaging Informatics in Medicine}, 2025.
+\bibitem{ho2020ddpm} J. Ho, A. Jain, and P. Abbeel, ``Denoising Diffusion Probabilistic Models,'' in \textit{Advances in Neural Information Processing Systems}, 2020.
+\bibitem{song2021denoising} J. Song, C. Meng, and S. Ermon, ``Denoising Diffusion Implicit Models,'' in \textit{International Conference on Learning Representations}, 2021.
+\bibitem{isola2017image} P. Isola, J.-Y. Zhu, T. Zhou, and A. A. Efros, ``Image-to-Image Translation with Conditional Adversarial Networks,'' in \textit{CVPR}, 2017.
+\end{thebibliography}
+\end{document}

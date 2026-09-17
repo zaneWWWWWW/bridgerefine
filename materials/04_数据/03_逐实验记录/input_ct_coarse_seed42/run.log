@@ -1,0 +1,21 @@
+experiment_id: input_ct_coarse_seed42
+claim_tested: Does coarse MRI add information beyond CT-only refinement?
+source_machine: RTX 5060 Laptop GPU 8 GB
+gpu_name: NVIDIA GeForce RTX 5060 Laptop GPU
+seed: 42
+dataset_root: data_slices
+split_file: checkpoints/selfrdb/patient_split.json
+train/val/test patients: 144/18/18
+train/val/test slices: 27309/3473/3415
+image_size: 128x128
+batch_size: 16
+epochs: 20
+optimizer: Adam (lr=2e-4, betas=(0.5,0.999))
+loss: L1
+bridge: frozen SelfRDB, 10 sampling steps, 2 recursions
+
+Observed train/validation loss at reported checkpoints:
+  (existing checkpoint; original training log not re-captured)
+
+WARNING: full per-epoch training logs were not captured for every epoch.
+status: completed_with_warning

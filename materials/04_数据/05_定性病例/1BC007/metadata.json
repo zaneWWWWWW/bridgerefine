@@ -1,0 +1,47 @@
+{
+  "case_id": "1BC007",
+  "case_type": "median_ssim",
+  "split": "test",
+  "selected_slice": 112,
+  "selection_rule": "largest brain-mask area among retained test slices",
+  "axis_order": "axial",
+  "spacing_mm": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "intensity_range": {
+    "ct": [
+      -1.0,
+      1.0
+    ],
+    "mri_real": [
+      -1.0,
+      1.0
+    ],
+    "coarse_mri": [
+      -1.3348933458328247,
+      1.5484262704849243
+    ],
+    "bridgerefine_l1": [
+      -0.9997343420982361,
+      0.9994511008262634
+    ],
+    "ct_only": [
+      -1.0,
+      0.9894148707389832
+    ]
+  },
+  "normalization": "[-1,1] arrays; PNG previews map [-1,1] to [0,255]",
+  "inverse_normalization": "value_uint8 = clip((value+1)*127.5,0,255)",
+  "registration": "preprocessed co-registered CT-MRI volumes as provided; mask aligned to image space",
+  "checkpoint_sha256": {
+    "bridge": "bb2a1dbf0fd5f6c8fa6dfaded91b79f54fd17f570da1d1ce4c73202b2ba81978",
+    "ct_only": "17d466896d0a73de84949b11f559e3b74d89d64edeb7285c2549f6316175007d",
+    "bridgerefine_l1": "ceeea1dd1965bce6ab5233395c5eb5585e17773c423804cb567c31716b31a3eb"
+  },
+  "seed": 42,
+  "sampling_steps": 10,
+  "recursive_estimates": 2,
+  "code_commit": "not a git repository; source archive hash required"
+}

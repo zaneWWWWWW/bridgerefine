@@ -1,0 +1,33 @@
+{
+  "method": "bridgerefine",
+  "sampling_steps": 10,
+  "recursive_estimates": 2,
+  "protocol": {
+    "batch_size": 1,
+    "warmup": 20,
+    "timed": 100,
+    "repeats": 3,
+    "cuda_synchronize": true,
+    "includes_model_load": false,
+    "includes_input_transfer": false,
+    "includes_preprocessing": false,
+    "co_resident_other_model": false,
+    "memory_definition": "max_memory_allocated after model+input allocation; additional inference allocation"
+  },
+  "time_ms": {
+    "primary_block_mean": 233.56063266667056,
+    "primary_block_std": 12.641155994858153,
+    "block_repeat_means": [
+      220.28286700000535,
+      234.9483700000019,
+      245.4506610000044
+    ],
+    "raw_event_mean": 235.8317752111111,
+    "raw_event_std": 11.652422464534304,
+    "raw_event_median": 239.7370225
+  },
+  "memory_mb": {
+    "max_memory_allocated": 134.02624,
+    "max_memory_reserved": 167.77216
+  }
+}

@@ -1,0 +1,764 @@
+Generating Brain MRI with StyleGAN2-ADA: The Effect of the Training Set Size on the Quality of Synthetic Images
+Open access
+Published:
+23 September 2025
+Volume 39
+, pages 2319–2329 (
+2026
+)
+Cite this article
+You have full access to this
+open access
+article
+Download PDF
+Save article
+View saved research
+Journal of Imaging Informatics in Medicine
+Aims and scope
+Submit manuscript
+Generating Brain MRI with StyleGAN2-ADA: The Effect of the Training Set Size on the Quality of Synthetic Images
+Download PDF
+Abstract
+The potential of deep learning for medical imaging is often constrained by limited data availability. Generative models can unlock this potential by generating synthetic data that reproduces the statistical properties of real data while being more accessible for sharing. In this study, we investigated the influence of training set size on the performance of a state-of-the-art generative adversarial network, the StyleGAN2-ADA, trained on a cohort of 3,227 subjects from the OpenBHB dataset to generate 2D slices of brain MR images from healthy subjects. The quality of the synthetic images was assessed through qualitative evaluations and state-of-the-art quantitative metrics, which are provided in a publicly accessible repository. Our results demonstrate that StyleGAN2-ADA generates realistic and high-quality images, deceiving even expert radiologists while preserving privacy, as it did not memorize training images. Notably, increasing the training set size led to slight improvements in fidelity metrics. However, training set size had no noticeable impact on diversity metrics, highlighting the persistent limitation of mode collapse. Furthermore, we observed that diversity metrics, such as coverage and β-recall, are highly sensitive to the number of synthetic images used in their computation, leading to inflated values when synthetic data significantly outnumber real ones. These findings underscore the need to carefully interpret diversity metrics and the importance of employing complementary evaluation strategies for robust assessment. Overall, while StyleGAN2-ADA shows promise as a tool for generating privacy-preserving synthetic medical images, overcoming diversity limitations will require exploring alternative generative architectures or incorporating additional regularization techniques.
+Similar content being viewed by others
+Brain Tumor Synthetic Data Generation with Adaptive StyleGANs
+Chapter
+© 2023
+Pre-trained StyleGAN Based Data Augmentation for Small Sample Brain CT Motion Artifacts Detection
+Chapter
+© 2020
+Generation of 3D Brain MRI Using Auto-Encoding Generative Adversarial Networks
+Chapter
+© 2019
+Explore related subjects
+Discover the latest articles, books and news in related subjects, suggested using machine learning.
+Biometrics
+Brain Mapping
+Functional magnetic resonance imaging
+Symbolic AI
+Machine Learning
+Artificial Intelligence
+Deep Learning Techniques for Medical Image Segmentation
+Background
+Deep learning (DL) techniques could benefit medical imaging by advancing personalized diagnosis and biomarker discovery. However, its potential is constrained by limited data availability, primarily due to privacy concerns [
+1
+], as well as the significant costs and time required to acquire medical images. A common strategy to overcome data scarcity is data augmentation, but augmented data often remains highly correlated with the original dataset [
+2
+]. An alternative approach is the generation of synthetic data using generative models [
+3
+,
+4
+,
+5
+,
+6
+,
+7
+]. These models aim to learn and replicate the statistical properties of the observed real data, creating a synthetic distribution [
+8
+]. High-quality synthetic data can allow analyses comparable to those conducted on real data while mitigating privacy failure risks. This facilitates broader data sharing, fosters open science, and accelerates research by providing a faster alternative to the lengthy process of collecting and curating real data.
+Among the generative models, two techniques have emerged for medical image generation: generative adversarial networks (GANs) [
+9
+], and diffusion models [
+10
+]. Both generate high-quality images, but diffusion models tend to overfit training data [
+11
+,
+12
+], while GANs can suffer from mode collapse, failing to capture the full diversity of the real data distribution [
+13
+,
+14
+]. As these models rely on training DL architecture, their performance remains highly dependent on the size of the training dataset.
+In this study, we focused on StyleGAN2-ADA, a state-of-the-art GAN introduced by Karras et al. [
+15
+], optimized for training with limited datasets, thanks to its adaptive discriminator augmentation (ADA). ADA dynamically adjusts the strength of the augmentations based on a heuristic that estimates the level of overfitting, applying a set of non-leaking augmentations that do not transfer to the generated images. To mitigate mode collapse, StyleGAN2-ADA implements two key mechanisms: minibatch standard deviation normalization in the discriminator and pixelwise feature vector normalization in the generator. Minibatch standard deviation normalization encourages the model to capture the full variation in the training data by ensuring that the statistics of generated and real images are aligned across minibatches. Meanwhile, pixelwise feature vector normalization prevents the magnitudes in the generator and discriminator from escalating due to adversarial competition, one of the primary triggers of mode collapse [
+16
+,
+17
+].
+StyleGAN2-ADA is recognized as one of the best-performing GAN architectures [
+18
+] and has demonstrated significant promise in medical imaging applications [
+19
+,
+20
+,
+21
+,
+22
+], particularly due to its optimization for limited-data scenarios. Its ability to generate high-quality synthetic images with small datasets has ensured its continued relevance in recent years [
+23
+,
+24
+,
+25
+,
+26
+]. However, its performance and reliability are influenced by two key factors: the size of the training dataset and the rigor of the evaluation metrics used to assess synthetic data quality. The authors of StyleGAN2-ADA explored the influence of training set size on image quality, though they limited their analysis to Fréchet Inception Distance (FID). Their results showed that while ADA improved performance compared to the StyleGAN2 baseline for small datasets, image quality remains dependent on training set size, particularly for smaller datasets. A recent work by Zoghby et al. evaluated the impact of training set size on brain MR image-to-image translation using a pix2pix GAN, finding that smaller datasets can yield results comparable to larger ones [
+27
+]. However, their dataset exhibited limited subject diversity due to the involvement of only 1,251 subjects, and employed a limited set of evaluation metrics, leaving open questions about how training set size affects broader aspects of synthetic data quality.
+Evaluation metrics are pivotal in determining the quality of synthetic images. While many studies rely primarily on FID [
+19
+,
+21
+,
+22
+,
+28
+,
+29
+], this metric returns a single score that captures only certain aspects of fidelity and diversity. Comprehensive evaluation requires a suite of metrics to assess multiple dimensions of quality, as no single metric suffices [
+30
+,
+31
+]. Common metrics such as peak signal-to-noise ratio (PSNR), normalized mean square error (NMSE), and structural similarity index (SSIM) [
+32
+], widely used for brain MR image evaluation [
+33
+,
+34
+,
+35
+,
+36
+], fail to account for the broader distributional relationships between real and synthetic data. A robust evaluation framework should instead assess fidelity (realness of synthetic data), diversity (coverage of real data distribution), and generalization (generation of authentic, non-memorized images). These characteristics are particularly relevant in the context of MRI data, where the complex features demand robust evaluation frameworks [
+33
+].
+To address these gaps, we investigate the impact of training set size on the performance of StyleGAN2-ADA using a multi-dimensional evaluation framework that assesses the fidelity, diversity, and generalizability of synthetic images. This approach, implemented in an open-source GitHub repository (available at:
+https://github.com/aiformedresearch/Synthetic_Images_Metrics_Toolkit
+), is designed for easy adaptability, enabling the community to extend this framework to new datasets and modalities. This aims to provide a nuanced understanding of generative model performance in medical imaging, where data scarcity and privacy constraints are critical concerns.
+This study addresses two critical challenges by (1) analyzing the impact of training set size on the performance of StyleGAN2-ADA and (2) emphasizing the need for diverse metrics to comprehensively evaluate synthetic data quality. We trained StyleGAN2-ADA on 2D slices of brain MR images from the OpenBHB dataset [
+37
+], which overall contains 3,227 images. To evaluate the impact of training set size, we created three subsets with 1,000, 2,000, and the full set of 3,227 images. Synthetic image quality was assessed both qualitatively and quantitatively, using state-of-the-art metrics for fidelity, diversity, and generalization as implemented in our GitHub repository. The proposed framework may facilitate standardized assessments of generative models in medical imaging research.
+Methods
+Data Source and Preprocessing
+This study utilized the OpenBHB dataset [
+37
+] (
+https://baobablab.github.io/bhb/dataset
+), aggregating T1-weighted brain MRI scans of healthy subjects from 10 publicly available datasets. The dataset, created for a public competition, consists of 3,227 training images, and 757 validation images. We maintained the same split for our experiments, using the 757 images as a test set.
+The dataset offers three preprocessing options: CAT12 (optimized for voxel-based morphometry – VBM), FSL (optimized for surface-based morphometry – SBM), and quasi-raw images with minimal preprocessing. For this study, we used quasi-raw images to preserve the inherent characteristics of the MRI scans. The quasi-raw preprocessing pipeline involved bias field correction using ANTS [
+38
+], affine registration with FSL FLIRT [
+39
+] to the 1
+mm
+3
+MNI template (with 9 degrees of freedom, avoiding shearing), and the application of a brain mask to remove non-brain tissues.
+To prepare data for our experiments, each volume was normalized to an intensity range of [0,1], and the central axial slice (182 × 218 pixels) was extracted to obtain a 2D image for each subject. The resulting images were zero-padded to the size of 256 × 256 pixels and concatenated into a single NIfTI volume with dimension 256 × 256 × N, where N represents the total number of images.
+Model Training
+We employed StyleGAN2-ADA, using the official PyTorch implementation (
+https://github.com/NVlabs/stylegan2-ada-pytorch
+). The model was trained with default hyperparameters as proposed by Karras et al. [
+15
+], except for removing color-related augmentations (luma flip, hue rotation, and saturation), which are irrelevant for grayscale MR images. The training was conducted for 2,200 kimgs (thousands of images processed in batches), using the full dataset of 3,227 images and subsets of 1,000 and 2,000 images to evaluate the effect of dataset size. Each training session was executed on a single NVIDIA A100 GPU, each configuration requiring approximately 25 days of computation time.
+Quantitative Metrics
+To comprehensively assess synthetic image quality, we computed multiple metrics, summarized in Fig.
+1
+, to assess three aspects: fidelity, diversity, and generalization. Since no single metric captures all facets of generative model performance [
+30
+], we integrated implementations from prior studies into a unified GitHub repository. Metrics were computed under two main configurations:
+1.
+Training set alignment
+: synthetic images were compared with the 3,227 images from the training set to evaluate fidelity, diversity, and generalization. To account for the effect of synthetic image quantity, metrics were computed under two sub-configurations:
+a.
+Using 50,000 synthetic images, as suggested by Heusel et al. [
+40
+].
+b.
+Using 3,000 synthetic images comparable in size to the real training set.
+2.
+Unseen data consistency
+: synthetic images were compared with 757 unseen real images from the test set to assess robustness and consistency with out-of-sample data. Similar to the first configuration, metrics were computed under two sub-configurations:
+a.
+Using 50,000 synthetic images, as recommended by Heusel et al. [
+40
+].
+b.
+Using 700 synthetic images, matching the size of the real test set.
+Fig. 1
+Full size image
+Quantitative metrics grouped by fidelity, diversity, and generalization. This figure was created using PowerPoint
+Fréchet Inception Distance (FID)
+FID [
+40
+] computes the Fréchet (Wasserstein-2) distance between the distributions (estimated as Gaussian) of real and synthetic images in the feature space of an Inception network. A lower FID score reflects closer alignment between real and synthetic distributions; therefore, it is influenced by fidelity and diversity. FID is considered the standard metric for comparing the quality of synthetic images generated by generative models [
+30
+] and has shown consistency with human perceptual evaluation of medical images [
+19
+]. However, FID is biased by the number of images involved in the computation [
+41
+].
+Kernel Inception Distance (KID)
+KID [
+41
+] provides an unbiased alternative to FID by using a polynomial kernel to estimate the similarity between real and synthetic image distributions in the feature space of an Inception Net. Like FID, it captures fidelity and diversity, with a lower score indicating better alignment.
+Precision and Recall
+Precision and recall quantify fidelity and diversity separately using the feature space of a pre-trained VGG-16 classifier [
+42
+]. Real and synthetic image distributions are modeled as manifolds (by considering the k
+th
+nearest feature vector of each embedded image), and the metrics measure the overlap between these distributions. Precision is computed by counting the fraction of generated samples covered by the real data manifold, assessing the fidelity (i.e., the realness) of the synthetic images. Similarly, recall counts the fraction of the real data manifold covered by the generator, assessing the diversity of the generative model. Both scores range from 0 to 1, with 1 indicating the ideal performance.
+Density and Coverage
+Density and coverage have been proposed by Naeem et al. to improve precision and recall, which are vulnerable to outliers due to the way the manifold is obtained [
+43
+]. To overcome this, density estimates the fidelity by counting how many real-sample neighborhood spheres contain synthetic samples. On the other hand, coverage assesses the diversity by counting the fraction of real samples whose neighborhood spheres contain at least one synthetic sample, building the nearest-neighbor manifold around real data. These scores range in [0,1], with 1 being the ideal value.
+α-precision, β-recall, and Authenticity
+α-precision and β-recall enhance traditional precision and recall by addressing their sensitivity to outliers and dependency on the domain of the pre-trained model [
+44
+]. To compute these metrics, images are initially embedded through an Inception V3 network pre-trained on ImageNet. The resulting embeddings are then mapped into a hypersphere using a one-class (OC) classifier. The OC classifier is trained to concentrate most of the samples around the center of the hypersphere, where “typical” samples are located, while positioning outliers closer to the boundaries. In this transformed space, precision and recall are computed iteratively by varying the thresholds that define “typical” samples, controlled by the parameters α and β. The iterative process generates curves representing the variation in precision and recall as the definition of"typical"changes. The final scores, which range in [0,1], are obtained considering the area under those curves, with higher values indicating better performance in terms of fidelity (α-precision) and diversity (β-recall).
+Authenticity measures the fraction of synthetic data not memorized from the training set [
+44
+]. To compute this metric, real and synthetic images are first embedded using the OC classifier. For each real image, the metric checks if its nearest neighbor is another real or synthetic image. If a synthetic image is closer to a real image than any other real image, that real image is considered memorized by the model. The authenticity score ranges from 0 to 1, with higher scores indicating better generalization. To calculate this, we compared all real images against batches of synthetic images of the same size, repeating the process until we covered 50,000 synthetic images. The average score across all batches was used as the final authenticity value.
+Qualitative Evaluation
+To qualitatively evaluate the generative model, we examined fidelity, diversity, and generalization, mirroring the aspects assessed quantitatively.
+Fidelity
+was assessed using a visual Turing test, where two expert observers (#1, M.M. and #2, C.T., with 35 and 30 years of experience, respectively) classified 100 images (50 real, 50 synthetic) presented in random order as real or fake. Crucially, the observers were blinded to the fact that the dataset contained an equal proportion of real and synthetic images, ensuring an unbiased evaluation. The experiment was repeated for each training set size using a custom-built tool that enabled adjustment of window/level settings [
+45
+].
+For each classification, we recorded the number of real images correctly classified as real (true positive – TP), real images misclassified as synthetic (false negative – FN), synthetic images correctly classified as synthetic (true negative – TN), and synthetic images misclassified as real (false positive – FP). From these values, we calculated the following metrics:
+$$Accuracy= \frac{TP+TN}{TP+TN+FP+FN}$$
+$$Sensitivity=\frac{TP}{TP+FN}$$
+$$Specificity= \frac{TN}{TN+FP}$$
+Diversity
+was assessed using t-SNE visualization, which projected real and synthetic images into two dimensions. These visualizations were generated using the Compyda web service [
+46
+] (
+https://cbia.fi.muni.cz/compyda/
+), using all the 3,227 real images from the training set and 5,000 synthetic images generated by StyleGAN2-ADA when trained on the entire dataset. The analysis was repeated using the 757 real images from the test set to evaluate consistency across unseen data.
+Generalization
+was assessed using k-NN analysis. Real and synthetic images were embedded using a pre-trained VGG-16 network. Cosine similarity was then calculated between the embedding of each real image and 50,000 synthetic images. For each real image, the k
+th
+(k = 4) closest synthetic images were identified and ranked by similarity. To visualize the results, the two real images with the highest similarity to any synthetic image were displayed alongside their four closest synthetic counterparts.
+Results
+The results of the qualitative evaluation conducted through the visual Turing test are collected in Table
+1
+. Figure
+2
+provides examples of randomly sampled real and synthetic images generated by StyleGAN2-ADA trained on the full dataset. The model demonstrated strong generalization, producing synthetic images not memorized from the training set, as revealed from the k-NN analysis shown in Fig.
+3
+. However, the t-SNE visualization (Fig.
+4
+) of 5,000 synthetic images compared with the training set indicates that the model is unable to capture the entire real data distribution. All qualitative evaluations were conducted on images generated by the model trained on the full dataset to streamline the analysis.
+Table 1 Results of the visual Turing test. The classification was performed by two experts for each training set size (TP, true positives; FN, false negatives; TN, true negatives; FP, false positives)
+Full size table
+Fig. 2
+Full size image
+Comparison of synthetic and real images: the bottom row displays real images randomly sampled from the training set, while the top row showcases synthetic images generated by StyleGAN2-ADA when trained on the entire dataset (3,227 images). This figure was created using Python
+Fig. 3
+Full size image
+k-NN analysis. Visualization of the 4-nearest neighbors (k-NN) for real images from the training set. The first column displays the two real images that exhibit the highest cosine similarity with any synthetic sample. Each subsequent column shows the top four synthetic images (out of 50,000 generated samples) ranked by their similarity to the corresponding real image. This layout highlights the ability of the model to generate synthetic images that closely resemble real data without memorizing samples from the training set. This figure was created using Python
+Fig. 4
+Full size image
+T-SNE visualization of 5,000 synthetic images (blue) compared with all the real images from the training set (orange). This figure was created using the Compyda web service
+Quantitative metrics were computed for each training set size by comparing synthetic images against both the training set (to evaluate memorization) and an unseen test set (to assess generalization). Unless otherwise specified, results discussed in this paper refer to metrics computed between the training set and 50,000 synthetic images.
+The quantitative results aligned with the qualitative findings, confirming that the images generated by StyleGAN2-ADA are realistic, not memorized from training data, but exhibit limited diversity. The metric scores computed between the full training set (3,227 images) and 50,000 synthetic images are collected in Supplementary Table
+1
+and visualized in Fig.
+5
+, grouped by category (fidelity, diversity, and generalization). Notably, the metrics highlighted a positive correlation between training set size and fidelity, demonstrating a slightly improved realism with larger training datasets. Some of the diversity metrics, such as coverage, were notably sensitive to the number of images used in the computation. This effect is evident when comparing the same real training images with a reduced set of 3,000 synthetic images (Supplementary Table
+2
+, Supplementary Fig.
+1
+).
+Fig. 5
+Full size image
+Quantitative metrics for increasing training set size. The y-axis, labeled “Metric,” represents the values of the specific metrics identified in the legend. This figure was created using Python
+To further assess performance on unseen data, metrics were calculated using 757 real test set images and either 50,000 or 700 synthetic images. The results, detailed in Supplementary Tables
+3
+and
+4
+and visualized in Supplementary Fig.
+2
+and
+3
+, reinforce the finding that the model generates realistic yet insufficiently diverse images across dataset configurations. They also highlight the sensitivity of certain diversity metrics, such as β-recall and coverage, to the number of images used in the evaluation.
+Discussion
+This study investigates the impact of training set size on the quality of synthetic images generated by StyleGAN2-ADA, trained on the OpenBHB dataset to generate 2D slices of brain MRI from healthy subjects. Three training set sizes (1,000, 2,000, and 3,227 images) were analyzed using both qualitative and quantitative methods to assess fidelity, diversity, and generalization.
+Effect of Training Set Size
+Consistent with findings by Zoghby et al. [
+27
+], training set size had minimal influence on the overall quality of the synthetic images. However, it is important to note that their work focused on image-to-image translation (transforming one image type into another), whereas our study investigates unconditional image synthesis, where entirely new images are generated from a learned distribution. Despite this methodological difference, our results reinforce their central observation regarding the limited impact of dataset size while extending its relevance to the domain of generative image synthesis.
+In our study, while fidelity metrics, as shown in Fig.
+5
+, indicated a slight improvement in image realism with larger training set sizes, this trend was not observed in the visual Turing test results conducted by expert radiologists, whose classification accuracy remained near chance level regardless of the training set size. In contrast, diversity metrics remained consistently low across all configurations, pointing to persistent mode collapse regardless of the training set size. Generalization metrics remained optimal even with the smallest datasets, suggesting that StyleGAN2-ADA effectively avoids overfitting even when trained on limited data.
+Our findings highlight that the adaptive discriminator augmentations in StyleGAN2-ADA enable the generation of highly realistic, non-memorized images, even with small datasets, with a slight increase in realism as the training set size increases. However, the mechanisms implemented in StyleGANs to address mode collapse appear insufficient in low-data regimes. This suggests that additional strategies may be necessary to enhance variation in generated images when training data is limited. Our analysis underscores the need for further research into architectural modifications or training techniques that can better maintain diversity in generated outputs, particularly in medical imaging where data scarcity is a common challenge.
+The apparent inconsistency between FID/KID scores and fidelity metrics is likely influenced by the low diversity of the generated images, as discussed further below. These results emphasize the need for comprehensive evaluation protocols incorporating domain-specific fidelity and diversity metrics to complement composite metrics like FID and KID.
+Synthetic Data Quality
+FID and KID
+FID and KID, widely used composite metrics for assessing generative model quality, ranged from 26.92 to 35.94 and 0.026 to 0.038, respectively. Analysis revealed that both FID and KID scores increased modestly when fewer synthetic images were used in the computation (as observed when comparing results from Supplementary Tables
+1
+to
+2
+, and
+3
+to
+4
+). Notably, a significant increase in their values occurred when the number of real images in the computation was reduced (transitioning from Supplementary Tables
+1
+and
+2
+to Supplementary Tables
+3
+and
+4
+). This sensitivity to dataset configuration emphasizes the limitations of these composite metrics in reliably capturing image quality across different evaluation settings. Hence, these findings highlight the importance of supplementing FID and KID with domain-specific metrics to achieve a more comprehensive and accurate assessment of fidelity and diversity.
+Fidelity
+Visual inspection (Fig.
+2
+) indicates that synthetic images produced by StyleGAN2-ADA are realistic, albeit some blurring artifacts are shared with the training data. The visual Turing test revealed that even expert observers had difficulty in distinguishing between real and synthetic images, with classification accuracies close to 50%. Interestingly, the size of the training set had no substantial impact on the accuracy, sensitivity, or specificity of either observer.
+Quantitatively, fidelity was assessed using precision, density, and α-precision, providing complementary insights into the quality of synthetic data. Precision increased from 71.5% to 86.5% with larger training sets, reflecting an improved ability of synthetic images to reside within the real data manifold. Density, which measures the portion of the real data manifold covered by the synthetic images, increases from 44% to 82.3% when increasing the training set size. The gap between precision and density suggests that outliers in the real data may have inflated the manifold size, inflating the value of precision. α-Precision, also designed to address outlier sensitivity, exhibited robust values (88.7% to 90.4%) across all training set sizes, further validating these findings.
+Fidelity metrics remained consistent regardless of the number of synthetic images used in the computation (see Supplementary Tables
+1
+and
+2
+) and yielded comparable values when evaluated against the test set (Supplementary Tables 3 and 4). This consistency demonstrates the robustness of these metrics and highlights the ability of StyleGAN2-ADA to effectively generate realistic data closely aligned with the real data distribution.
+Diversity
+Diversity was assessed qualitatively using t-SNE visualization (Fig.
+4
+) and quantitatively with recall, coverage, and β-recall metrics. The t-SNE plots revealed gaps in the embedding space of synthetic data compared with real data, suggesting mode collapse – a failure to capture all modes of real data distribution.
+Recall and β-recall scored near zero, indicating that only a small fraction of real data points falls within the synthetic data manifold. Coverage, representing the proportion of the real data’s neighborhood spheres containing synthetic samples, ranged from 51.9% to 68.6% when computed with 50,000 synthetic images. However, coverage dropped to values in 30.9–38.9% when only 3,000 synthetic images were used for the evaluation – see Supplementary Table
+2
+and Supplementary Fig.
+1
+. This drop highlights the sensitivity of coverage to the number of synthetic samples, likely inflating results when synthetic samples vastly outnumber real ones.
+Interestingly, when compared to the test set, diversity metrics such as coverage and β-recall improved (Supplementary Table
+3
+), suggesting that StyleGAN2-ADA captures broader patterns beyond the training set. However, diversity metrics dropped when the number of synthetic samples was reduced to match the size of the test set (Supplementary Table
+4
+), reaffirming their dependency on synthetic set size. These findings confirm that StyleGAN2-ADA suffers from mode collapse, and diversity metrics such as coverage and β-recall should be interpreted with caution, particularly when synthetic samples vastly outnumber real ones.
+Generalization
+Generalization was evaluated through k-NN analysis and authenticity metrics, which collectively indicated that StyleGAN2-ADA does not memorize training data. In the k-NN analysis (Fig.
+3
+), synthetic images most similar to real images were visually distinct from their nearest real neighbors, demonstrating that the model generates new data rather than replicating training samples.
+Quantitatively, authenticity analysis showed that 98% of synthetic images were farther from the nearest real image than real images were from each other, supporting the conclusion that the model generates new data. Notably, these results held across all training set sizes, affirming StyleGAN2-ADA’s robustness as a privacy-preserving generative model.
+Broader Implications and Limitations
+This study highlights the need for standardized evaluation protocols for generative models, particularly in medical imaging. To this end, we compiled state-of-the-art metrics into a publicly available GitHub repository to promote reproducibility and consistency in evaluation practices.
+While StyleGAN2-ADA demonstrated strong fidelity and generalization, its diversity limitations underscore the persistent challenge of mode collapse in GANs. Future research should explore alternative generative architectures, such as diffusion models, which may address this limitation. Additionally, this study focused on 2D slices of brain MRI, while clinical applications often require 3D data. Extending the analysis to volumetric synthesis represents a crucial step toward clinical applicability, though it is important to note that such an extension would result in a significant increase in computational demands.
+A limitation of our work is that we did not explore the causal relationships between network architecture, dataset size, and quality metrics. Future research could investigate how specific network components interact with training data volume to influence different quality dimensions through controlled ablation studies.
+Lastly, while this work primarily evaluated image quality, future evaluations should incorporate the
+utility
+of synthetic data for downstream tasks, such as classification or regression [
+47
+], to fully understand its practical value.
+Conclusion
+This study demonstrates that StyleGAN2-ADA generates realistic and novel brain MR images, capable of deceiving even expert radiologists, with high fidelity and strong generalization, regardless of training set size. However, the diversity of the model exhibits significant limitations, failing to fully capture the variability of real data due to mode collapse. Notably, increasing the training set size alone does not mitigate mode collapse, suggesting the need for alternative strategies.
+The results also reveal the sensitivity of diversity metrics, such as coverage and β-recall, to synthetic set size. When synthetic samples vastly outnumber real ones, these metrics may overestimate diversity. This underscores the importance of interpreting such metrics alongside complementary indicators to ensure robust evaluations.
+Future research should explore alternative generative models, investigate the causal relationships between network architecture and performance across different dataset sizes, and include downstream task evaluations to comprehensively assess the utility of synthetic data in clinical and research contexts. By addressing these challenges, generative models can better meet the requirements of medical imaging applications, ultimately enhancing their reliability and clinical relevance.
+Data Availability
+The dataset used for the training of the model can be accessed at
+https://ieee-dataport.org/open-access/openbhb-multi-site-brain-mri-dataset-age-prediction-and-debiasing
+.
+Code Availability
+The source code used to compute the quantitative metrics has been made available at the public GitHub repository:
+https://github.com/aiformedresearch/Synthetic_Images_Metrics_Toolkit
+. Additionally, a Docker container is available at
+https://hub.docker.com/r/aiformedresearch/metrics_toolkit
+.
+References
+W. N. Price and I. G. Cohen, “Privacy in the age of medical big data,”
+Nat. Med.
+, vol. 25, no. 1, pp. 37–43, Jan. 2019,
+https://doi.org/10.1038/s41591-018-0272-7
+.
+Article
+CAS
+PubMed
+PubMed Central
+Google Scholar
+P. Chlap, H. Min, N. Vandenberg, J. Dowling, L. Holloway, and A. Haworth, “A review of medical image data augmentation techniques for deep learning applications,”
+J. Med. Imaging Radiat. Oncol.
+, vol. 65, no. 5, Art. no. 5, 2021,
+https://doi.org/10.1111/1754-9485.13261
+.
+Article
+PubMed
+Google Scholar
+M. Giuffrè and D. L. Shung, “Harnessing the power of synthetic data in healthcare: innovation, application, and privacy,”
+Npj Digit. Med.
+, vol. 6, no. 1, pp. 1–8, Oct. 2023,
+https://doi.org/10.1038/s41746-023-00927-3
+.
+Article
+Google Scholar
+A. Gonzales, G. Guruswamy, and S. R. Smith, “Synthetic data in health care: A narrative review,”
+PLOS Digit. Health
+, vol. 2, no. 1, p. e0000082, Jan. 2023,
+https://doi.org/10.1371/journal.pdig.0000082
+.
+Article
+PubMed
+PubMed Central
+Google Scholar
+L. R. Koetzier
+et al.
+, “Generating Synthetic Data for Medical Imaging,”
+Radiology
+, vol. 312, no. 3, p. e232471, Sep. 2024,
+https://doi.org/10.1148/radiol.232471
+.
+Article
+PubMed
+PubMed Central
+Google Scholar
+E. Sizikova
+et al.
+, “Synthetic data in radiological imaging: current state and future outlook,”
+BJRArtificial Intell.
+, vol. 1, no. 1, p. ubae007, Mar. 2024,
+https://doi.org/10.1093/bjrai/ubae007
+.
+Article
+Google Scholar
+B. van Breugel, T. Liu, D. Oglic, and M. van der Schaar, “Synthetic data in biomedicine via generative artificial intelligence,” Nat. Rev. Bioeng. 2, 991–1004 (2024),
+https://doi.org/10.1038/s44222-024-00245-7
+T. E. Raghunathan, “Synthetic Data,”
+Annu. Rev. Stat. Its Appl.
+, vol. 8, no. Volume 8, 2021, pp. 129–140, Mar. 2021,
+https://doi.org/10.1146/annurev-statistics-040720-031848
+.
+Article
+Google Scholar
+I. Goodfellow
+et al.
+, “Generative Adversarial Nets,” in
+Advances in Neural Information Processing Systems
+, Curran Associates, Inc., 2014. Accessed: May 19, 2023. [Online]. Available:
+https://papers.nips.cc/paper_files/paper/2014/file/f033ed80deb0234979a61f95710dbe25-Paper.pdf
+J. Ho, A. Jain, and P. Abbeel, “Denoising Diffusion Probabilistic Models,” in
+Advances in Neural Information Processing Systems
+, Curran Associates, Inc., 2020, pp. 6840–6851. Accessed: Jun. 25, 2024. [Online]. Available:
+https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html
+G. Somepalli, V. Singla, M. Goldblum, J. Geiping, and T. Goldstein, “Diffusion Art or Digital Forgery? Investigating Data Replication in Diffusion Models,” in 2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Vancouver, BC, Canada, 2023, pp. 6048–6058.
+https://doi.org/10.1109/CVPR52729.2023.00586
+.
+N. Carlini, J. Hayes, M. Nasr, M. Jagielski, V. Sehwag, F. Tramèr, B. Balle, D. Ippolito, and E. Wallace, “Extracting Training Data from Diffusion Models,”. Published online Jan. 30, 2023. Accessed: Feb. 19, 2024. [Online].
+https://doi.org/10.48550/arXiv.2301.13188
+L. Wang, W. Chen, W. Yang, F. Bi, and F. R. Yu, “A State-of-the-Art Review on Image Synthesis With Generative Adversarial Networks,”
+IEEE Access
+, vol. 8, pp. 63514–63537, 2020,
+https://doi.org/10.1109/ACCESS.2020.2982224
+.
+Article
+Google Scholar
+S. Kazeminia
+et al.
+, “GANs for medical image analysis,”
+Artif. Intell. Med.
+, vol. 109, p. 101938, Sep. 2020,
+https://doi.org/10.1016/j.artmed.2020.101938
+.
+Article
+PubMed
+Google Scholar
+T. Karras, M. Aittala, J. Hellsten, S. Laine, J. Lehtinen, and T. Aila, “Training Generative Adversarial Networks with Limited Data,” in
+Advances in Neural Information Processing Systems
+, Curran Associates, Inc., 2020, pp. 12104–12114. Accessed: Jul. 11, 2023. [Online]. Available:
+https://papers.nips.cc/paper/2020/hash/8d30aa96e72440759f74bd2306c1fa3d-Abstract.html
+T. Karras, T. Aila, S. Laine, and J. Lehtinen, “Progressive Growing of GANs for Improved Quality, Stability, and Variation,”
+ArXiv171010196 Cs Stat
+, Feb. 2018, Accessed: Feb. 07, 2022. [Online]. Available:
+http://arxiv.org/abs/1710.10196
+T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen, and T. Aila, “Analyzing and Improving the Image Quality of StyleGAN,” in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Seattle, WA, USA, 2020, pp. 8107–8116.
+https://doi.org/10.1109/CVPR42600.2020.00813
+.
+M. Kang, J. Shin, and J. Park, “StudioGAN: A Taxonomy and Benchmark of GANs for Image Synthesis,”
+IEEE Trans. Pattern Anal. Mach. Intell.
+, vol. 45, no. 12, pp. 15725–15742, Dec. 2023,
+https://doi.org/10.1109/TPAMI.2023.3306436
+.
+Article
+PubMed
+Google Scholar
+M. Woodland. J. Wood, B. M. Anderson, S. Kundu, E. Lin, E. Koay, B. Odisio, C. Chung, H. C. Kang, A. M. Venkatesan, S. Yedururi, B. De, Y. Lin, A. B. Patel, and K. K. Brock, “Evaluating the Performance of StyleGAN2-ADA on Medical Images,”. In: Zhao, C., Svoboda, D., Wolterink, J.M., Escobar, M. (eds) Simulation and Synthesis in Medical Imaging. SASHIMI 2022. Lecture Notes in Computer Science, vol 13570. Springer, Cham.
+https://doi.org/10.1007/978-3-031-16980-9_14
+A. Montero, E. Bonet-Carne, and X. P. Burgos-Artizzu, “Generative Adversarial Networks to Improve Fetal Brain Fine-Grained Plane Classification,”
+Sensors
+, vol. 21, no. 23, Art. no. 23, Jan. 2021,
+https://doi.org/10.3390/s21237975
+.
+Article
+Google Scholar
+S. Yang, K.-D. Kim, E. Ariji, N. Takata, and Y. Kise, “Evaluating the performance of generative adversarial network-synthesized periapical images in classifying C-shaped root canals,”
+Sci. Rep.
+, vol. 13, no. 1, Art. no. 1, Oct. 2023,
+https://doi.org/10.1038/s41598-023-45290-1
+.
+Article
+CAS
+Google Scholar
+L. Fetty
+et al.
+, “Latent space manipulation for high-resolution medical image synthesis via the StyleGAN,”
+Z. Für Med. Phys.
+, vol. 30, no. 4, pp. 305–314, Nov. 2020,
+https://doi.org/10.1016/j.zemedi.2020.05.001
+.
+Article
+Google Scholar
+J.-N. Eckardt
+et al.
+, “Synthetic bone marrow images augment real samples in developing acute myeloid leukemia microscopy classification models,”
+Npj Digit. Med.
+, vol. 8, no. 1, pp. 1–10, Mar. 2025,
+https://doi.org/10.1038/s41746-025-01563-9
+.
+Article
+Google Scholar
+B. Muñoz, R. Pezoa, and H. Gutierrez, “Histopathology Image Augmentation Through StyleGAN2-ADA,”. In: Guerrero, G., San Martín, J., Meneses, E., Barrios Hernández, C.J., Osthoff, C., Monsalve Diaz, J.M. (eds) High Performance Computing. CARLA 2024. Communications in Computer and Information Science, vol 2270. Springer, Cham.
+https://doi.org/10.1007/978-3-031-80084-9_15
+D. Wang
+et al.
+, “Improving Artificial Intelligence–based Microbial Keratitis Screening Tools Constrained by Limited Data Using Synthetic Generation of Slit-Lamp Photos,”
+Ophthalmol. Sci.
+, vol. 5, no. 3, p. 100676, May 2025,
+https://doi.org/10.1016/j.xops.2024.100676
+.
+Article
+PubMed
+Google Scholar
+R. Yasuda, A. Sugawara, and H. Nishi, “Unsupervised Anomaly Sound Analysis Method Using StyleGAN2 to Estimate the Degree and Type of Abnormalities,” in IECON 2024 - 50th Annual Conference of the IEEE Industrial Electronics Society, Chicago, IL, USA, 2024, pp. 1–6.
+https://doi.org/10.1109/IECON55916.2024.10905269
+.
+M. Zoghby, B. Erickson, and G. Conte, “Generative Adversarial Networks for Brain MRI Synthesis: Impact of Training Set Size on Clinical Application,”
+J. Imaging Inform. Med.
+, vol. 37, no. 3, pp. 1228–1238, Jun. 2024,
+https://doi.org/10.1007/s10278-024-00976-4
+.
+Article
+CAS
+PubMed
+PubMed Central
+Google Scholar
+E. Dikici, M. Bigelow, R. D. White, B. S. Erdal, and L. M. Prevedello, “Constrained generative adversarial network ensembles for sharable synthetic medical images,”
+J. Med. Imaging
+, vol. 8, no. 2, p. 024004, Mar. 2021,
+https://doi.org/10.1117/1.JMI.8.2.024004
+.
+Article
+Google Scholar
+T. Kossen
+et al.
+, “Synthesizing anonymized and labeled TOF-MRA patches for brain vessel segmentation using generative adversarial networks,”
+Comput. Biol. Med.
+, vol. 131, p. 104254, Apr. 2021,
+https://doi.org/10.1016/j.compbiomed.2021.104254
+.
+Article
+PubMed
+Google Scholar
+A. Borji, “Pros and cons of GAN evaluation measures,”
+Comput. Vis. Image Underst.
+, vol. 179, pp. 41–65, Feb. 2019,
+https://doi.org/10.1016/j.cviu.2018.10.009
+.
+Article
+Google Scholar
+A. Borji, “Pros and cons of GAN evaluation measures: New developments,”
+Comput. Vis. Image Underst.
+, vol. 215, p. 103329, Jan. 2022,
+https://doi.org/10.1016/j.cviu.2021.103329
+.
+Article
+Google Scholar
+Z. Wang, A. C. Bovik, H. R. Sheikh, and E. P. Simoncelli, “Image quality assessment: from error visibility to structural similarity,”
+IEEE Trans. Image Process.
+, vol. 13, no. 4, pp. 600–612, Apr. 2004,
+https://doi.org/10.1109/TIP.2003.819861
+.
+Article
+PubMed
+Google Scholar
+H. Ali
+et al.
+, “The role of generative adversarial networks in brain MRI: a scoping review,”
+Insights Imaging
+, vol. 13, no. 1, p. 98, Jun. 2022,
+https://doi.org/10.1186/s13244-022-01237-0
+.
+Article
+PubMed
+PubMed Central
+Google Scholar
+S. Hu, B. Lei, S. Wang, Y. Wang, Z. Feng, and Y. Shen, “Bidirectional Mapping Generative Adversarial Networks for Brain MR to PET Synthesis,”
+IEEE Trans. Med. Imaging
+, vol. 41, no. 1, pp. 145–157, Jan. 2022,
+https://doi.org/10.1109/TMI.2021.3107013
+.
+Article
+PubMed
+Google Scholar
+J. Zhu, C. Tan, J. Yang, G. Yang, and P. Lio’, “Arbitrary Scale Super-Resolution for Medical Images,”
+Int. J. Neural Syst.
+, vol. 31, no. 10, p. 2150037, Oct. 2021,
+https://doi.org/10.1142/S0129065721500374
+.
+Article
+PubMed
+Google Scholar
+W.-J. Do, S. Seo, Y. Han, J. C. Ye, S. H. Choi, and S.-H. Park, “Reconstruction of multicontrast MR images through deep learning,”
+Med. Phys.
+, vol. 47, no. 3, pp. 983–997, 2020,
+https://doi.org/10.1002/mp.14006
+.
+Article
+PubMed
+Google Scholar
+B. Dufumier, A. Grigis, J. Victor, C. Ambroise, V. Frouin, and E. Duchesnay, “OpenBHB: a Large-Scale Multi-Site Brain MRI Data-set for Age Prediction and Debiasing,”
+NeuroImage
+, vol. 263, p. 119637, Nov. 2022,
+https://doi.org/10.1016/j.neuroimage.2022.119637
+.
+Article
+PubMed
+Google Scholar
+B. B. Avants, N. Tustison, and H. Johnson, “Advanced Normalization Tools (ANTS)”. Insight J. 2, 1–35 (2009).
+http://hdl.handle.net/10380/3113
+M. Jenkinson and S. Smith, “A global optimisation method for robust affine registration of brain images,”
+Med. Image Anal.
+, vol. 5, no. 2, pp. 143–156, Jun. 2001,
+https://doi.org/10.1016/S1361-8415(01)00036-6
+.
+Article
+CAS
+PubMed
+Google Scholar
+M. Heusel, H. Ramsauer, T. Unterthiner, B. Nessler, and S. Hochreiter, “GANs Trained by a Two Time-Scale Update Rule Converge to a Local Nash Equilibrium,” in
+Advances in Neural Information Processing Systems
+, Curran Associates, Inc., 2017. Accessed: Feb. 09, 2022. [Online]. Available:
+https://proceedings.neurips.cc/paper/2017/hash/8a1d694707eb0fefe65871369074926d-Abstract.html
+M. Bińkowski, D. J. Sutherland, M. Arbel, and A. Gretton, “Demystifying MMD GANs,” presented at the International Conference on Learning Representations, Feb. 2022. Accessed: Jan. 17, 2023. [Online]. Available:
+https://openreview.net/forum?id=r1lUOzWCW
+T. Kynkäänniemi, T. Karras, S. Laine, J. Lehtinen, and T. Aila, “Improved Precision and Recall Metric for Assessing Generative Models,” in
+Advances in Neural Information Processing Systems
+, Curran Associates, Inc., 2019. Accessed: Nov. 02, 2023. [Online]. Available:
+https://proceedings.neurips.cc/paper_files/paper/2019/hash/0234c510bc6d908b28c70ff313743079-Abstract.html
+M. F. Naeem, S. J. Oh, Y. Uh, Y. Choi, and J. Yoo, “Reliable Fidelity and Diversity Metrics for Generative Models”. in Proc. Int. Conf. Mach. Learn., Nov. 2020, pp. 7176–7185.
+https://doi.org/10.48550/arXiv.2002.09797
+A. Alaa, B. V. Breugel, E. S. Saveliev, and M. van der Schaar, “How Faithful is your Synthetic Data? Sample-level Metrics for Evaluating and Auditing Generative Models,” in
+Proceedings of the 39th International Conference on Machine Learning
+, PMLR, Jun. 2022, pp. 290–306. Accessed: Feb. 23, 2024. [Online]. Available:
+https://proceedings.mlr.press/v162/alaa22a.html
+M. Lai, C. Marzi, M. Mascalchi, and S. Diciotti, “Brain MRI Synthesis Using Stylegan2-ADA,” in 2024 IEEE International Symposium on Biomedical Imaging (ISBI), Athens, Greece, 2024, pp. 1–5.
+https://doi.org/10.1109/ISBI56570.2024.10635279
+T. Nečasová, D. Múčka, and D. Svoboda, “COMPYDA: An Online Tool for Verifying the Similarity of Image Datasets,” in 2024 IEEE International Symposium on Biomedical Imaging (ISBI), Athens, Greece, 2024, pp. 1–5.
+https://doi.org/10.1109/ISBI56570.2024.10635415
+.
+J. Snoke, G. M. Raab, B. Nowok, C. Dibben, and A. Slavkovic, “General and Specific Utility Measures for Synthetic Data,”
+J. R. Stat. Soc. Ser. A Stat. Soc.
+, vol. 181, no. 3, pp. 663–688, Jun. 2018,
+https://doi.org/10.1111/rssa.12358
+.
+Article
+Google Scholar
+Download references
+Funding
+Open access funding provided by Alma Mater Studiorum - Università di Bologna within the CRUI-CARE Agreement. The research leading to these results has received funding from the European Union—NextGenerationEU through the Italian Ministry of University and Research under PNRR—M4 C2-I1.3 Project PE_00000019"HEAL ITALIA"to Stefano Diciotti"CUP J33 C22002920006. The views and opinions expressed are those of the authors only and do not necessarily reflect those of the European Union or the European Commission. Neither the European Union nor the European Commission can be held responsible for them.
+Author information
+Authors and Affiliations
+Department of Electrical, Electronic, and Information Engineering “Guglielmo Marconi” - DEI, University of Bologna, 47522, Cesena, Italy
+Matteo Lai & Stefano Diciotti
+Experimental and Clinical Biomedical Sciences “Mario Serio”, University of Florence, 50139, Florence, Italy
+Mario Mascalchi
+Unit of Radiology, Azienda USL Toscana Nord Ovest, Apuane Hospital, 54100, Massa, Italy
+Carlo Tessa
+Alma Mater Research Institute for Human-Centered Artificial Intelligence, University of Bologna, 40121, Bologna, Italy
+Stefano Diciotti
+Authors
+Matteo Lai
+View author publications
+Search author on:
+PubMed
+Google Scholar
+Mario Mascalchi
+View author publications
+Search author on:
+PubMed
+Google Scholar
+Carlo Tessa
+View author publications
+Search author on:
+PubMed
+Google Scholar
+Stefano Diciotti
+View author publications
+Search author on:
+PubMed
+Google Scholar
+Contributions
+Stefano Diciotti and Matteo Lai contributed to the conception and design of the study. Matteo Lai performed data collection and analysis. Mario Mascalchi and Carlo Tessa performed the visual Turing test. The first draft of the manuscript was written by Matteo Lai and Stefano Diciotti. All authors read and approved the final manuscript.
+Corresponding author
+Correspondence to
+Stefano Diciotti
+.
+Ethics declarations
+Ethics Approval
+This is an observational study. The license attached with the open access data confirms that no ethical approval is required.
+Consent to Publish
+The real images presented in Fig.
+2
+and Fig.
+3
+were sourced from the OpenBHB dataset, which provides publicly available, anonymized data accessible via direct download.
+Consent to Participate
+Informed consent was obtained locally for each study covering participation.
+Competing Interests
+The authors have no relevant financial or non-financial interests to disclose.
+Additional information
+Publisher's Note
+Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+Supplementary Information
+Below is the link to the electronic supplementary material.
+Supplementary file1 (DOCX 920 KB) (download DOCX
+)
+Rights and permissions
+Open Access
+This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit
+http://creativecommons.org/licenses/by/4.0/
+.
+Reprints and permissions
+About this article
+Cite this article
+Lai, M., Mascalchi, M., Tessa, C.
+et al.
+Generating Brain MRI with StyleGAN2-ADA: The Effect of the Training Set Size on the Quality of Synthetic Images.
+J Digit Imaging. Inform. med.
+39
+, 2319–2329 (2026). https://doi.org/10.1007/s10278-025-01536-0
+Download citation
+Received
+:
+29 January 2025
+Revised
+:
+09 April 2025
+Accepted
+:
+28 April 2025
+Published
+:
+23 September 2025
+Version of record
+:
+23 September 2025
+Issue date
+:
+June 2026
+DOI
+:
+https://doi.org/10.1007/s10278-025-01536-0
+Share this article
+Anyone you share the following link with will be able to read this content:
+Get shareable link
+Sorry, a shareable link is not currently available for this article.
+Copy shareable link to clipboard
+Provided by the Springer Nature SharedIt content-sharing initiative
+Keywords
+Brain MRI
+Generative adversarial networks
+Medical imaging
+Synthetic data
+Profiles
+Stefano Diciotti
+View author profile

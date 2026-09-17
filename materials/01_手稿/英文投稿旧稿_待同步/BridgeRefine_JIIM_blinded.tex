@@ -1,0 +1,25 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[top=2.4cm,bottom=2.4cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{graphicx,amsmath,amssymb,booktabs,array,tabularx,longtable}
+\usepackage{microtype,setspace,xcolor,url,cite,caption,subcaption,float,fancyhdr}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\graphicspath{{figures/}}
+\setstretch{1.15}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\captionsetup{font=small,labelfont=bf,justification=justified}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Blinded manuscript}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\missing}[1]{\textcolor{red}{[REQUIRED BEFORE SUBMISSION: #1]}}
+
+\title{Does a Diffusion Bridge Add Value Beyond Direct CT-to-Synthetic-MRI Regression? A Patient-Level Ablation and Efficiency Study}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\input{BridgeRefine_JIIM_body.tex}
+\end{document}

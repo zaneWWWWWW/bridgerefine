@@ -1,0 +1,12 @@
+{
+  "batch_size": 1,
+  "warmup": 20,
+  "timed": 100,
+  "repeats": 3,
+  "cuda_synchronize": true,
+  "includes_model_load": false,
+  "includes_input_transfer": false,
+  "includes_preprocessing": false,
+  "co_resident_other_model": false,
+  "hardware": "NVIDIA GeForce RTX 5060 Laptop GPU 8 GB"
+}

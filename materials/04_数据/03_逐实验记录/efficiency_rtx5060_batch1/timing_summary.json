@@ -1,0 +1,23 @@
+{
+  "protocol": {
+    "batch_size": 1,
+    "warmup": 10,
+    "timed": 100,
+    "repeats": 3,
+    "cuda_synchronize": true,
+    "includes_model_load_time": false
+  },
+  "timing_ms_mean": {
+    "CT-only": 2.422,
+    "BridgeRefine": 1016.992
+  },
+  "timing_ms_std": {
+    "CT-only": 0.118,
+    "BridgeRefine": 13.968
+  },
+  "memory_definition": "torch.cuda.max_memory_allocated() after model load (additional inference allocation)",
+  "memory_mb": {
+    "CT-only": 44.6,
+    "BridgeRefine": 144.7
+  }
+}

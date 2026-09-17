@@ -1,0 +1,24 @@
+experiment_id: input_coarse_only_seed42
+claim_tested: Does coarse MRI alone provide useful information?
+source_machine: RTX 5060 Laptop GPU 8 GB
+gpu_name: NVIDIA GeForce RTX 5060 Laptop GPU
+seed: 42
+dataset_root: data_slices
+split_file: checkpoints/selfrdb/patient_split.json
+train/val/test patients: 144/18/18
+train/val/test slices: 27309/3473/3415
+image_size: 128x128
+batch_size: 16
+epochs: 20
+optimizer: Adam (lr=2e-4, betas=(0.5,0.999))
+loss: L1
+bridge: frozen SelfRDB, 10 sampling steps, 2 recursions
+
+Observed train/validation loss at reported checkpoints:
+  epoch 5: train=0.1141 val=0.1154
+  epoch 10: train=0.1114 val=0.1119
+  epoch 15: train=0.1100 val=0.1119
+  epoch 20: train=0.1090 val=0.1119
+
+WARNING: full per-epoch training logs were not captured for every epoch.
+status: completed_with_warning

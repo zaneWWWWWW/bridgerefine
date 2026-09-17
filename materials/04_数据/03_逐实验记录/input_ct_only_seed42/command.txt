@@ -1,0 +1,2 @@
+python train_input_ablation_and_l1_seeds.py
+python compute_unified_10x2_metrics.py

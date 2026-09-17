@@ -15,7 +15,8 @@ Date: 2026-09-17. Analysis runtime: Python 3.12.3, NumPy 1.26.4, SciPy 1.17.1.
   for some entries. The new tool reports the corrected values alongside the
   unchanged archive; this is not a silent revision of the paper.
 - All 10 primary checkpoint files were recovered locally and matched the original
-  checkpoint manifest. They are not stored in this repository.
+  checkpoint manifest. They are stored in the private materials Release and are
+  excluded from normal Git objects.
 - The recovered L1 refiner checkpoint loaded strictly into `RefinerGenerator`;
   a CPU forward pass on two zero tensors produced a finite `[1, 1, 128, 128]`
   output. Parameter count: 1,337,793.
@@ -27,3 +28,14 @@ not establish that the preserved scripts can reproduce training end to end.
 Training, full image-metric recomputation, and GPU timing were not rerun.
 The exact final multi-seed L1 training script remains absent from the supplied
 source material. See README for the other recorded reproduction gaps.
+
+## Complete materials upload validation
+
+The user's follow-up request includes the manuscripts, figures and full research
+data. The complete non-code snapshot contains 69,781 files and five relative links
+in 12 independent ZIPs (8,963,052,219 compressed bytes). The ZIPs were restored
+into an isolated directory that already contained the Git browsing copies.
+All 69,831 original-copy hashes, including the code files, then verified without
+failures. The restore utility also rejects parent traversal and absolute paths.
+Archive SHA-256 values are recorded in `materials_index.json` and the Release's
+`SHA256SUMS.txt`.

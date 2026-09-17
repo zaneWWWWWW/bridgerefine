@@ -1,0 +1,294 @@
+\begin{abstract}
+Brain computed tomography (CT)-to-synthetic-magnetic-resonance-imaging (MRI) translation is commonly evaluated against complex generative models, yet the incremental value of a diffusion bridge over direct supervised regression remains unclear. We evaluated BridgeRefine, a two-stage workflow in which a frozen SelfRDB diffusion bridge produces a coarse MRI estimate and a 1.34-million-parameter supervised network refines the estimate together with the source CT. The retrospective cohort comprised 180 paired, co-registered CT--MRI volumes, split by patient into 144 training, 18 validation, and 18 test cases (3,415 test slices). Fixed-checkpoint comparisons included SelfRDB, SynDiff, MG-CycleGAN, BridgeGAN, and a direct CT-only U-Net. Input ablation compared CT-only, coarse-only, and CT-plus-coarse refinement. BridgeRefine-L1 achieved patient-level structural similarity of $0.8184\pm0.0530$, compared with $0.8095\pm0.0536$ for CT-only and $0.7823\pm0.0538$ for coarse-only refinement. In the matched seed-42 comparison, BridgeRefine improved 17 of 18 patients (mean paired difference, 0.0089; 95\% bootstrap confidence interval, 0.0058--0.0122; Wilcoxon $p<0.001$). Across three training seeds, BridgeRefine ranged from 0.8147 to 0.8184, whereas CT-only ranged from 0.7883 to 0.8095. Gradient supervision did not show a consistent benefit across shared seeds. Under a recorded 20-step, 5-recursion timing configuration, BridgeRefine required $1017\pm14$ ms per slice versus $2.42\pm0.12$ ms for CT-only inference. Joint-input refinement provided a modest reconstruction benefit; latency for the final sampling configuration remains unmeasured. The study evaluates reconstruction fidelity and does not establish diagnostic equivalence to acquired MRI.
+\end{abstract}
+
+\noindent\textbf{Keywords:} synthetic MRI; CT-to-MRI translation; diffusion bridge; image-to-image translation; patient-level evaluation; medical image synthesis
+
+\section{Background}
+
+Synthetic medical imaging aims to recover or generate one imaging contrast from another while preserving anatomy and clinically relevant variation \cite{dayarathna2024review}. In brain imaging, non-contrast CT is fast and widely available, whereas MRI provides richer soft-tissue contrast. CT-to-synthetic-MRI translation is therefore a useful setting for studying whether cross-modal models can recover target-domain appearance from paired scans. Synthetic output, however, cannot be treated as acquired MRI without lesion-level validation, reader studies, and external testing; the present work is limited to reconstruction fidelity.
+
+Cross-modal synthesis remains difficult because CT and MRI encode tissue contrast through different physical processes. Even after co-registration, their intensities and local textures do not share a direct correspondence. Pixel-supervised regression can provide stable and efficient mapping but may attenuate high-frequency detail \cite{chartsias2018multimodal}. Conditional generative adversarial networks (GANs) and cycle-consistent models can improve target-like texture \cite{dar2019multicontrast}, but distribution matching may alter or hallucinate disease-related features, making perceptual realism insufficient evidence of anatomical fidelity \cite{isola2017pix2pix,cohen2018hallucination}. Diffusion models offer an alternative generative formulation and have been used for medical image translation, but iterative sampling increases computational cost \cite{ho2020ddpm,kazerouni2023survey,ozbey2023syndiff}.
+
+Diffusion bridges connect source and target endpoints instead of generating the target from independent noise. SelfRDB combines an image-to-image diffusion bridge with recursive self-consistency and has shown promising results in medical translation \cite{arslan2025selfrdb}. A practical uncertainty remains: if the final network is trained with paired CT--MRI supervision and also receives the original CT, how much of its performance comes from the coarse bridge output rather than the supervised CT path? A direct CT-only baseline and an input-source ablation are required to answer this question. Without those controls, improvements after refinement can be incorrectly attributed to the diffusion process.
+
+We designed BridgeRefine as an experimentally separable workflow. A frozen SelfRDB bridge first generates a coarse MRI estimate; a lightweight supervised refiner then combines the coarse estimate with CT. Freezing the bridge fixes the intermediate representation across refiner experiments, allowing the CT-only, coarse-only, and CT-plus-coarse configurations to test where the useful information originates. The study is organized around three questions: (1) does supervised post-bridge refinement improve reconstruction over bridge-only and adversarial alternatives; (2) does the coarse bridge estimate add information beyond direct CT regression; and (3) is the resulting gain robust enough to justify its inference cost?
+
+The contributions are fourfold. First, we provide a patient-level comparison of diffusion-, adversarial-, and direct supervised approaches under a common split and evaluation protocol. Second, we isolate input-source contributions through CT-only, coarse-only, and joint-input ablations. Third, we evaluate training variability across three random seeds and report paired patient-level uncertainty rather than treating slices as independent samples. Fourth, we report negative gradient and adversarial findings together with model size, a recorded inference benchmark, and memory, exposing the accuracy--efficiency trade-off of bridge-assisted refinement.
+
+\section{Materials and Methods}
+
+\subsection{Study Design and Cohort}
+
+This retrospective image-translation study used 180 paired, co-registered brain CT--MRI volumes from patients with acute stroke. Each case included a non-contrast CT volume, an MRI volume, and a binary brain mask aligned to the image space. Patients, rather than slices, were randomized using seed 42 into 144 training, 18 validation, and 18 test cases. The final test cohort contained 3,415 retained axial slices. Patient-level splitting prevented slices from the same patient from appearing in model development and testing.
+
+\missing{institution and cohort source; inclusion and exclusion criteria; CT-to-MRI acquisition interval; MRI sequence; scanner manufacturer/model and field strength; CT kVp, mAs, reconstruction kernel, and slice thickness; MRI TR, TE, and slice thickness; registration software, transform type, and quality-control protocol}
+
+\missing{ethics committee name and approval identifier or exemption; consent procedure or waiver; de-identification and data-governance statement}
+
+\begin{table}[htbp]
+\centering
+\caption{Patient-level cohort partition used for model development and final evaluation.}
+\label{tab:split}
+\begin{tabular}{lrrl}
+\toprule
+Partition & Patients & Retained slices & Role\\
+\midrule
+Training & 144 & 27,309 & Model fitting\\
+Validation & 18 & 3,473 & Checkpoint selection\\
+Test & 18 & 3,415 & Final evaluation\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Preprocessing}
+
+MRI volumes underwent N4 bias-field correction. CT windowing was selected from the detected histogram peak: peak values below 40 used center/width 35/110, values from 40 to 60 used 40/80, and values above 60 used 80/200. MRI intensities were windowed using the second and 98th percentiles. Contrast-limited adaptive histogram equalization used clip limit 1.5 and a $4\times4$ grid for CT and clip limit 2.0 and an $8\times8$ grid for MRI. Gamma correction used $\gamma=0.9$ for CT and $\gamma=1.1$ for MRI.
+
+Axial slices were extracted after volumetric preprocessing. Slices with fewer than 0.5\% nonzero pixels were excluded. CT and MRI slices were resized to $128\times128$ and mapped through $[0,255]$ to $[-1,1]$. Identical preprocessing and patient identifiers were used for all compared models. Brain masks were resized with nearest-neighbor interpolation for mask-restricted evaluation.
+
+\subsection{BridgeRefine Workflow}
+
+BridgeRefine separates coarse structural translation from paired target-domain refinement (Fig.~\ref{fig:pipeline}). Let $y$ denote the source CT and $x_0$ the paired MRI target. The SelfRDB forward bridge was implemented as
+\begin{equation}
+x_t=\left(1-\frac{t}{T}\right)x_0+\frac{t}{T}y+\sqrt{\gamma\frac{t}{T}}\epsilon,
+\end{equation}
+where $T=300$, $\gamma=0.1$, and $\epsilon$ is Gaussian noise. The approximately 14.4-million-parameter bridge used direct $x_0$ prediction and recursive estimation. Coarse MRI was generated using 10 sampling steps and two recursive estimates. The bridge checkpoint was frozen during all refiner experiments, and the same sampling protocol was used for training, validation, and testing.
+
+The supervised refiner received channel-wise concatenated CT and coarse MRI:
+\begin{equation}
+\hat{x}_{\mathrm{MRI}}=R_\theta([y,\hat{x}_{\mathrm{bridge}}]).
+\end{equation}
+The 1.34-million-parameter network contained a convolutional encoder, four residual blocks with instance normalization, bilinear upsampling, and a hyperbolic-tangent output layer. The final model minimized
+\begin{equation}
+\mathcal{L}_{\mathrm{L1}}=\|\hat{x}_{\mathrm{MRI}}-x_0\|_1.
+\end{equation}
+An ablation added in-plane gradient consistency:
+\begin{equation}
+\mathcal{L}=\mathcal{L}_{\mathrm{L1}}+0.1\left(\|\nabla_x\hat{x}-\nabla_xx_0\|_1+\|\nabla_y\hat{x}-\nabla_yx_0\|_1\right).
+\end{equation}
+This term contains no through-plane derivative and was not interpreted as an explicit inter-slice continuity constraint.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.94\textwidth]{fig1_pipeline.pdf}
+\caption{BridgeRefine workflow. A frozen SelfRDB bridge transforms paired CT into a coarse MRI estimate using 10 sampling steps and two recursive estimates. The supervised refiner combines CT and coarse MRI and is optimized against paired MRI using L1 loss. The CT-only path is shown as the direct supervised comparator.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Input-Source Ablation}
+
+The central ablation altered the information supplied to the refiner while retaining the patient split, optimization protocol, checkpoint selection, image resolution, and seed 42. CT-only used a one-channel direct supervised network; coarse-only used the frozen bridge estimate without CT; and BridgeRefine-L1 combined CT and coarse MRI. The networks were kept within 1.33--1.34 million trainable parameters. This experiment tested whether the bridge estimate provided information beyond CT and whether coarse MRI alone could replace the source modality.
+
+\subsection{Comparison Methods}
+
+Fixed-checkpoint comparisons included the frozen SelfRDB bridge, SynDiff \cite{ozbey2023syndiff}, MG-CycleGAN \cite{khalil2025mgcycle}, BridgeGAN, the direct CT-only U-Net, and BridgeRefine-L1. BridgeGAN used the same coarse bridge input with adversarial post-bridge refinement, enabling a comparison between adversarial and L1-based refinement. All local models were evaluated on the same 18 test patients using the same metric implementation and aggregation protocol.
+
+An early conditional epsilon-prediction diffusion model, a 200-slice loss screening experiment, and a three-patient adversarial pilot were retained as exploratory analyses. They were not used as patient-level confirmatory evidence or for final checkpoint selection. Their configurations and results are reported in Supplementary Material.
+
+\subsection{Training Protocol}
+
+The bridge and refiner experiments used up to 20 epochs with validation-based checkpoint retention. Input-source and multi-seed refiners used batch size 16 and Adam optimization with learning rate $2\times10^{-4}$ and $\beta=(0.5,0.999)$. Final BridgeRefine-L1 runs used seeds 42, 123, and 2026. The CT-only baseline used the same seeds. BridgeRefine-L1 plus gradient was evaluated at seeds 123 and 2026 and treated as a loss ablation rather than the final configuration.
+
+Training and evaluation were performed on an NVIDIA GeForce RTX 5060 Laptop GPU with 8 GB memory using Python 3.13.6, PyTorch 2.11.0+cu128, torchvision 0.26.0+cu128, and CUDA 12.8. Full environment and checkpoint hashes were preserved in the experiment handoff package.
+
+\subsection{Evaluation Metrics}
+
+Evaluation followed the multidimensional principle used in the benchmark study by Lai et al.: no single image metric was treated as sufficient evidence of medical image quality \cite{lai2025stylegan}. Full-image structural similarity index (SSIM) and peak signal-to-noise ratio (PSNR) quantified paired reconstruction. SSIM used $11\times11$ Gaussian local statistics after mapping images from $[-1,1]$ to $[0,1]$. PSNR was calculated from mean squared error in $[0,1]$ intensity space. Learned perceptual image patch similarity (LPIPS) used the AlexNet backbone on normalized model outputs.
+
+Mask SSIM and mask PSNR were calculated within each patient's aligned binary brain mask. Inter-slice behavior was summarized by the ratio between the mean absolute difference of adjacent predicted slices and that of adjacent real MRI slices. A ratio close to 1 indicates agreement with the reference through-plane variation; unlike an error metric, this ratio is not improved by unconditional minimization.
+
+Slice-level metrics were first averaged within each patient. Cohort summaries and inferential tests then used the 18 patient-level values, preventing the 3,415 slices from being treated as independent clinical samples.
+
+\subsection{Statistical Analysis}
+
+The primary matched analysis compared BridgeRefine-L1 seed 42 with CT-only seed 42 using patient-level SSIM. We reported the mean and median paired difference, the number of patients improved, a two-sided paired Wilcoxon signed-rank test, and a 95\% percentile bootstrap confidence interval for the mean difference using 10,000 resamples and bootstrap seed 42. Comparisons between BridgeRefine-L1 and the four fixed-checkpoint generative baselines formed a separate family and were adjusted using Holm's method. Exact baseline-family adjusted values are reported in the source-data table.
+
+Patient-level standard deviations describe between-patient variability. Multi-seed summaries describe training-run variability and were calculated from the three recorded cohort means using the sample standard deviation. Because only three runs were available, between-run standard deviations were interpreted descriptively rather than as formal variance comparisons. All tests were reported with their analysis unit and were not performed at slice level.
+
+\subsection{Efficiency Measurement}
+
+Inference latency was measured on the RTX 5060 Laptop GPU at batch size 1 after 10 warm-up slices. One hundred inference calls on the same preloaded CT slice were timed in each of three repetitions, with CUDA synchronization before and after each timed interval. Model loading was excluded. The archived benchmark used the original BridgeRefine sampling configuration of 20 bridge steps and five recursive estimates; therefore, its latency quantifies the recorded deployment configuration rather than the unified 10-step, two-recursion evaluation used for the main accuracy table. Memory was reported as the recorded peak allocation after model loading; because the original benchmark did not provide a separate empty-process baseline, it is interpreted as a process-level peak allocation rather than a fully isolated activation cost.
+
+\section{Results}
+
+\subsection{Fixed-Checkpoint Reconstruction}
+
+BridgeRefine-L1 achieved the highest patient-level SSIM, PSNR, mask SSIM, and mask PSNR among the fixed checkpoints (Table~\ref{tab:main}). SSIM increased from $0.5855\pm0.0395$ for the frozen SelfRDB bridge to $0.8184\pm0.0530$ after supervised refinement. BridgeRefine-L1 also produced an inter-slice MAD ratio of 0.967, closest to the target value of 1. Its LPIPS of 0.125 was lower than CT-only and SelfRDB but higher than MG-CycleGAN and BridgeGAN, demonstrating that perceptual similarity and paired structural reconstruction did not rank the methods identically.
+
+\begin{table}[htbp]
+\centering
+\caption{Fixed-checkpoint results for 18 test patients and 3,415 slices. SSIM is the mean $\pm$ sample standard deviation across patients; other entries are patient-level means. Higher SSIM/PSNR and values of MAD ratio closer to 1 are preferred; lower LPIPS is preferred.}
+\label{tab:main}
+\setlength{\tabcolsep}{3.5pt}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Method & SSIM & PSNR & LPIPS & Mask SSIM & Mask PSNR & MAD ratio\\
+\midrule
+SelfRDB & $0.5855\pm0.0395$ & 16.44 & 0.229 & 0.7545 & 13.64 & 3.608\\
+SynDiff & $0.7473\pm0.0687$ & 18.36 & 0.121 & 0.8207 & 16.12 & 1.575\\
+MG-CycleGAN & $0.7882\pm0.0533$ & 18.86 & 0.082 & 0.8403 & 16.31 & 1.202\\
+BridgeGAN & $0.8046\pm0.0538$ & 18.92 & \textbf{0.078} & 0.8462 & 16.50 & 1.409\\
+CT-only, seed 42 & $0.8095\pm0.0536$ & 19.77 & 0.129 & 0.8528 & 17.34 & 0.853\\
+\textbf{BridgeRefine-L1} & $\mathbf{0.8184\pm0.0530}$ & \textbf{19.95} & 0.125 & \textbf{0.8562} & \textbf{17.49} & \textbf{0.967}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The patient-level comparisons complement the cohort means in Table~\ref{tab:main}. BridgeRefine-L1 exceeded SelfRDB, SynDiff, and BridgeGAN in all 18 patients and exceeded MG-CycleGAN in 17 of 18 patients. The four baseline-family Wilcoxon tests remained significant after Holm adjustment (all adjusted $p<0.001$); this family was distinct from the primary CT-only comparison.
+
+
+\subsection{Input-Source Ablation}
+
+Joint CT-plus-coarse input outperformed both single-input configurations (Table~\ref{tab:input}). CT-only refinement reached $0.8095\pm0.0536$ SSIM, whereas coarse-only refinement reached $0.7823\pm0.0538$. Combining the two inputs increased SSIM to $0.8184\pm0.0530$ and improved PSNR and mask SSIM while lowering LPIPS relative to CT-only. The ordering, CT-plus-coarse $>$ CT-only $>$ coarse-only, indicates that CT was the dominant information source and that coarse MRI provided a smaller incremental contribution. Because the ablation used one seed, it was interpreted as mechanism-supporting evidence rather than a complete variance analysis.
+
+\begin{table}[htbp]
+\centering
+\caption{Input-source ablation at seed 42. Metrics are patient-level means; SSIM is shown with the sample standard deviation across patients.}
+\label{tab:input}
+\begin{tabular}{lccccc}
+\toprule
+Input & Trainable parameters & SSIM & PSNR & LPIPS & Mask SSIM\\
+\midrule
+CT only & 1.33M & $0.8095\pm0.0536$ & 19.77 & 0.129 & 0.8528\\
+Coarse MRI only & $\sim$1.33M & $0.7823\pm0.0538$ & 18.88 & 0.174 & 0.8234\\
+CT + coarse MRI & 1.34M & $0.8184\pm0.0530$ & 19.95 & 0.125 & 0.8562\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Matched CT-Only Comparison}
+
+BridgeRefine-L1 improved patient-level SSIM in 17 of 18 patients relative to the matched CT-only seed-42 checkpoint. The mean paired difference was 0.0089 and the median difference was 0.0088. The 95\% bootstrap confidence interval for the mean difference was 0.0058--0.0122, and the paired Wilcoxon test yielded $p=1.07\times10^{-4}$. The effect was therefore consistent in direction across patients but small in absolute magnitude.
+
+\subsection{Training-Seed Analysis}
+
+The ordering between methods persisted across the three recorded seeds (Table~\ref{tab:seeds}). BridgeRefine-L1 ranged from 0.8147 to 0.8184, whereas CT-only ranged from 0.7883 to 0.8095. Using the three recorded run means and a consistent sample-standard-deviation convention, BridgeRefine-L1 achieved $0.8171\pm0.0021$ and CT-only achieved $0.8009\pm0.0112$. The small number of runs precluded a formal claim about variance, but the observed range favored BridgeRefine-L1.
+
+\begin{table}[htbp]
+\centering
+\caption{Cohort-level SSIM across training seeds. Standard deviations are sample standard deviations across three training runs, not across patients.}
+\label{tab:seeds}
+\begin{tabular}{lcccc}
+\toprule
+Method & Seed 42 & Seed 123 & Seed 2026 & Mean $\pm$ run SD\\
+\midrule
+CT-only U-Net & 0.8095 & 0.8050 & 0.7883 & $0.8009\pm0.0112$\\
+BridgeRefine-L1 & 0.8184 & 0.8183 & 0.8147 & $0.8171\pm0.0021$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Loss and Adversarial Findings}
+
+The 200-slice exploratory screening favored L1 plus gradient over L1, but the direction did not replicate consistently on the complete cohort. At seed 123, L1 scored 0.8183 and L1 plus gradient scored 0.8172; at seed 2026, the corresponding values were 0.8147 and 0.8187. The two-run L1-plus-gradient mean was 0.8180, close to the three-run L1 mean of 0.8171. The gradient term was therefore retained as an ablation rather than a core method component.
+
+Adversarial refinement also did not improve the principal paired reconstruction metric under the evaluated configurations. BridgeGAN achieved SSIM 0.8046 on the complete cohort, below BridgeRefine-L1 at 0.8184. A three-patient adversarial pilot showed the same direction but was not treated as confirmatory evidence. These findings apply only to the tested losses and schedules and do not imply that adversarial learning is generally unsuitable for CT-to-MRI translation.
+
+\subsection{Efficiency}
+
+The bridge-assisted workflow incurred a large latency penalty under the recorded 20-step, 5-recursion timing configuration (Table~\ref{tab:efficiency}). CT-only inference required $2.42\pm0.12$ ms per slice, whereas BridgeRefine required $1017\pm14$ ms, a ratio of approximately 420. Total parameters increased from 1.33M to 15.74M because the frozen bridge remained part of the inference path. Recorded process-level peak allocation was 44.6 and 144.7 MB; the direct model remained resident during bridge measurement, so these are not isolated model-memory estimates. The reported timing characterizes the recorded 20-step, five-recursion configuration; a separate benchmark is required before assigning latency to the final 10-step, 2-recursion reconstruction setting. BridgeRefine should be considered an accuracy-oriented workflow rather than a low-latency replacement for direct regression.
+
+\begin{table}[htbp]
+\centering
+\caption{Archived benchmark on an NVIDIA GeForce RTX 5060 Laptop GPU at batch size 1. BridgeRefine uses 20 sampling steps and five recursive estimates, whereas the reconstruction tables use 10 steps and two recursions. Memory is recorded process-level peak allocation; resident models were not isolated between measurements.}
+\label{tab:efficiency}
+\begin{tabular}{lrr}
+\toprule
+Measure & CT-only U-Net & BridgeRefine\\
+\midrule
+Trainable parameters & 1.33M & 1.34M\\
+Total parameters & 1.33M & 15.74M\\
+Recorded process peak & 44.6 MB & 144.7 MB\\
+Time per slice & $2.42\pm0.12$ ms & $1017\pm14$ ms\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Qualitative Findings}
+
+Representative higher-, median-, and lower-SSIM patients are shown in Fig.~\ref{fig:qualitative}. The cases were selected by ranking patient-level BridgeRefine SSIM within the fixed-checkpoint test cohort; these labels are not clinical quality categories. SelfRDB showed visible high-frequency texture, SynDiff appeared smoother with local contrast changes, and the adversarial and L1-refined outputs differed in texture and structural appearance. The figure provides descriptive context only; no blinded clinical reader assessment was performed.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\textwidth]{fig5_qualitative.pdf}
+\caption{Orthogonal views for higher-, median-, and lower-SSIM test patients. Rows show real MRI, SelfRDB, SynDiff, MG-CycleGAN, BridgeGAN, and BridgeRefine-L1. The figure is descriptive and does not establish diagnostic performance.}
+\label{fig:qualitative}
+\end{figure}
+
+\section{Discussion}
+
+\subsection{Principal Findings}
+
+This study asked whether a diffusion bridge adds measurable value beyond direct supervised CT-to-synthetic-MRI regression. Three findings answer that question. First, supervised refinement accounted for the largest observed change: SSIM increased from 0.5855 for bridge-only SelfRDB to 0.8184 for BridgeRefine-L1. Second, CT was the principal information source, because CT-only refinement exceeded coarse-only refinement by 0.0272 SSIM. Third, adding coarse MRI to CT yielded a smaller but consistent matched improvement of 0.0089 SSIM, with improvement in 17 of 18 test patients. The bridge therefore contributed incremental information, but it was not the dominant source of performance.
+
+The input comparison supports a benefit from the learned intermediate representation under the evaluated setting. Because the coarse estimate is itself generated from CT, it does not introduce an independently acquired source of patient information. The improvement may reflect a useful learned transformation or training prior. The present ablation does not establish recovery of MRI-specific information absent from CT, nor does it isolate the effects of all architectural and optimization choices.
+
+\subsection{Metric-Dependent Method Ranking}
+
+The method ranking depended on the evaluation dimension. BridgeRefine-L1 led SSIM, PSNR, mask metrics, and inter-slice ratio, whereas BridgeGAN and MG-CycleGAN achieved lower LPIPS. This divergence is important: a perceptual metric can favor target-like texture even when paired structural metrics favor a different model. Medical synthesis should therefore not be summarized by a single scalar. The multidimensional evaluation strategy follows the broader lesson of Lai et al., who showed that fidelity, diversity, and generalization metrics can respond differently to training and evaluation sample size \cite{lai2025stylegan}.
+
+The present metrics still assess reconstruction rather than clinical utility. SSIM and PSNR emphasize paired similarity; LPIPS reflects learned perceptual features; mask metrics restrict evaluation to the brain; and the MAD ratio summarizes through-plane variation. None directly measures lesion sensitivity, diagnostic specificity, or whether subtle stroke-related signals are preserved. The agreement of several reconstruction measures strengthens the image-fidelity conclusion but cannot substitute for reader or downstream-task evaluation.
+
+\subsection{Supervision Strategy}
+
+The full-cohort loss results did not support gradient supervision as an independent core contribution. The exploratory subset favored the gradient term, but the two complete-cohort shared seeds changed in opposite directions. This discrepancy illustrates why subset-level slice results should not determine a final medical imaging claim. More repetitions would be required to estimate a loss-by-seed interaction.
+
+Adversarial configurations were also inferior on SSIM under the evaluated settings, despite favorable LPIPS for BridgeGAN. This is compatible with the known tension between distribution matching and paired anatomical fidelity \cite{cohen2018hallucination}. The finding should not be generalized to all GAN designs; different discriminators, reconstruction weights, or training schedules could change the balance. The evidence supports L1 refinement as the conservative final configuration for this cohort.
+
+\subsection{Accuracy--Efficiency Trade-off}
+
+The diffusion bridge produced a small patient-level gain but the archived deployment benchmark measured approximately 420-fold higher per-slice latency. This trade-off is more informative than the accuracy value alone. CT-only U-Net provides a strong, low-cost baseline for latency-sensitive settings, while BridgeRefine may be considered when offline processing and incremental paired fidelity are prioritized. The frozen bridge reduced retraining complexity but did not reduce inference-time sampling cost. Because the benchmark used 20 sampling steps and five recursive estimates whereas the main evaluation used 10 steps and two recursions, the latency ratio should be interpreted as configuration-specific.
+
+The current implementation was not optimized for deployment. Distillation, step reduction, cached intermediate representations, or a learned one-step bridge surrogate could reduce latency, but these possibilities require separate validation. Until then, the results do not support real-time use or an unconditional practical advantage over CT-only regression.
+
+\subsection{Clinical Interpretation}
+
+The outputs should be interpreted as synthetic MRI-like reconstructions, not diagnostic replacements for acquired MRI. Generative models can suppress, distort, or invent local signal while maintaining favorable global metrics \cite{cohen2018hallucination}. The cohort consisted of patients with acute stroke, but the study did not evaluate lesion detection, infarct characterization, hemorrhage exclusion, treatment decisions, or radiologist confidence. Clinical claims should therefore remain outside the evidence boundary.
+
+Future validation should include external institutions, scanner and protocol shifts, lesion-level endpoints, and blinded readers. A useful next step would compare whether CT-only and BridgeRefine outputs differentially affect a downstream stroke task, while also quantifying failure cases by lesion size and location.
+
+\subsection{Limitations}
+
+This study has several limitations. First, it used a single-center cohort of 180 patients, with only 18 independent test patients; the thousands of slices do not increase the clinical sample size. Second, models operated on $128\times128$ two-dimensional axial slices and did not enforce volumetric consistency. Third, input-source ablation was performed at one seed, and only three runs were available for the principal multi-seed comparison. Fourth, the exploratory loss screening and adversarial pilot were not confirmatory patient-level studies. Fifth, only seed 42 retained complete non-SSIM metrics for CT-only, limiting metric-wise multi-seed comparison. Sixth, no external cohort, blinded reader study, lesion endpoint, or downstream task was available. Finally, complete per-epoch logs were not preserved for two pre-existing checkpoints, although checkpoints, predictions, patient-level metrics, environment records, and hashes were retained.
+
+\section{Conclusion}
+
+BridgeRefine combines a frozen diffusion bridge with lightweight supervised refinement for paired brain CT-to-synthetic-MRI translation. Joint-input refinement achieved a modest reconstruction improvement over direct CT regression, with higher SSIM in 17 of 18 test patients and favorable cohort-level ordering across three training seeds. These findings support the utility of the learned intermediate representation within this cohort. Gradient supervision showed mixed effects across shared seeds, and adversarial refinement traded lower SSIM for lower LPIPS. The archived timing study demonstrates substantial computational cost for the 20-step, five-recursion configuration; the efficiency of the final 10-step, two-recursion setting remains to be measured. External, lesion-level, and reader validation are required before diagnostic use.
+
+\section*{Acknowledgements}
+\missing{acknowledgements, if applicable}
+
+\section*{Statements and Declarations}
+
+\textbf{Funding.} \missing{funding sources and grant numbers, or a no-funding statement}
+
+\textbf{Competing interests.} \missing{competing-interest statement for all authors}
+
+\textbf{Ethics approval.} \missing{ethics committee, approval number, and compliance statement, or exemption details}
+
+\textbf{Consent to participate.} \missing{informed-consent statement or waiver}
+
+\textbf{Consent for publication.} \missing{statement covering publication of de-identified example images}
+
+\textbf{Data availability.} \missing{data-access statement consistent with institutional governance and consent}
+
+\textbf{Code availability.} Analysis artifacts, patient-level result tables, and experiment manifests have been archived locally. \missing{public repository, controlled-access archive, or justified code-availability statement}
+
+\textbf{Author contributions.} \missing{CRediT-style author contribution statement}
+
+\begin{thebibliography}{99}
+\bibitem{arslan2025selfrdb} F. Arslan, B. Kabas, O. Dalmaz, M. "Ozbey, and T. \c{C}ukur, ``Self-Consistent Recursive Diffusion Bridge for Medical Image Translation,'' \textit{Medical Image Analysis}, vol. 106, 103747, 2025. doi: 10.1016/j.media.2025.103747.
+\bibitem{ozbey2023syndiff} M. "Ozbey et al., ``Unsupervised Medical Image Translation with Adversarial Diffusion Models,'' \textit{IEEE Transactions on Medical Imaging}, vol. 42, no. 12, pp. 3524--3539, 2023. doi: 10.1109/TMI.2023.3290149.
+\bibitem{khalil2025mgcycle} M. A. Khalil et al., ``Mask-Guided and Fidelity-Constrained Deep Learning Model for Accurate Translation of Brain CT Images to Diffusion MRI Images in Acute Stroke Patients,'' \textit{Journal of Imaging Informatics in Medicine}, 2025. doi: 10.1007/s10278-025-01649-6.
+\bibitem{ho2020ddpm} J. Ho, A. Jain, and P. Abbeel, ``Denoising Diffusion Probabilistic Models,'' in \textit{Advances in Neural Information Processing Systems}, 2020.
+\bibitem{isola2017pix2pix} P. Isola, J.-Y. Zhu, T. Zhou, and A. A. Efros, ``Image-to-Image Translation with Conditional Adversarial Networks,'' in \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition}, 2017.
+\bibitem{cohen2018hallucination} J. P. Cohen, M. Luck, and S. Honari, ``Distribution Matching Losses Can Hallucinate Features in Medical Image Translation,'' in \textit{Medical Image Computing and Computer Assisted Intervention -- MICCAI 2018}, pp. 529--536, 2018. doi: 10.1007/978-3-030-00928-1\_60.
+\bibitem{kazerouni2023survey} A. Kazerouni et al., ``Diffusion Models in Medical Imaging: A Comprehensive Survey,'' \textit{Medical Image Analysis}, vol. 88, 102846, 2023. doi: 10.1016/j.media.2023.102846.
+\bibitem{dayarathna2024review} S. Dayarathna et al., ``Deep Learning Based Synthesis of MRI, CT and PET: Review and Analysis,'' \textit{Medical Image Analysis}, vol. 92, 103046, 2024. doi: 10.1016/j.media.2023.103046.
+\bibitem{chartsias2018multimodal} A. Chartsias, T. Joyce, M. V. Giuffrida, and S. A. Tsaftaris, ``Multimodal MR Synthesis via Modality-Invariant Latent Representation,'' \textit{IEEE Transactions on Medical Imaging}, vol. 37, no. 3, pp. 803--814, 2018. doi: 10.1109/TMI.2017.2764326.
+\bibitem{dar2019multicontrast} S. U. H. Dar et al., ``Image Synthesis in Multi-Contrast MRI With Conditional Generative Adversarial Networks,'' \textit{IEEE Transactions on Medical Imaging}, vol. 38, no. 10, pp. 2375--2388, 2019. doi: 10.1109/TMI.2019.2901750.
+\bibitem{lai2025stylegan} M. Lai, M. Mascalchi, C. Tessa, and S. Diciotti, ``Generating Brain MRI with StyleGAN2-ADA: The Effect of the Training Set Size on the Quality of Synthetic Images,'' \textit{Journal of Imaging Informatics in Medicine}, vol. 39, pp. 2319--2329, 2026. doi: 10.1007/s10278-025-01536-0.
+\end{thebibliography}

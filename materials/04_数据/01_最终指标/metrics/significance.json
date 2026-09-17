@@ -1,0 +1,59 @@
+{
+  "test": "two-sided Wilcoxon signed-rank on patient-level SSIM",
+  "holm_family": [
+    "BridgeRefine-L1 vs SelfRDB",
+    "BridgeRefine-L1 vs SynDiff",
+    "BridgeRefine-L1 vs MG-CycleGAN",
+    "BridgeRefine-L1 vs BridgeGAN",
+    "BridgeRefine-L1 vs coarse-only",
+    "BridgeRefine-L1 vs CT-only"
+  ],
+  "comparisons": [
+    {
+      "comparison": "BridgeRefine-L1 vs SelfRDB",
+      "raw_p": 7.62939453125e-06,
+      "holm_p": 4.57763671875e-05,
+      "mean_delta_ssim": 0.23285
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs SynDiff",
+      "raw_p": 7.62939453125e-06,
+      "holm_p": 3.814697265625e-05,
+      "mean_delta_ssim": 0.07105555555555558
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs MG-CycleGAN",
+      "raw_p": 1.52587890625e-05,
+      "holm_p": 4.57763671875e-05,
+      "mean_delta_ssim": 0.030149999999999996
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs BridgeGAN",
+      "raw_p": 7.62939453125e-06,
+      "holm_p": 3.0517578125e-05,
+      "mean_delta_ssim": 0.013744444444444441
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs coarse-only",
+      "raw_p": 0.0001960933545337302,
+      "holm_p": 0.0001960933545337302,
+      "mean_delta_ssim": 0.03602222222222222
+    },
+    {
+      "comparison": "BridgeRefine-L1 vs CT-only",
+      "raw_p": 0.0001068115234375,
+      "holm_p": 0.000213623046875,
+      "mean_delta_ssim": 0.008894444444444446
+    }
+  ],
+  "ct_only_vs_bridgerefine_l1": {
+    "mean_paired_delta": 0.008894444444444446,
+    "median_paired_delta": 0.008799999999999975,
+    "improved_patients": "17/18",
+    "bootstrap_ci95": [
+      0.005827499999999994,
+      0.01222791666666668
+    ],
+    "bootstrap_method": "percentile bootstrap, 10,000 resamples, seed 42"
+  }
+}

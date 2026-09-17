@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[top=2.4cm,bottom=2.4cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{booktabs,graphicx,amsmath,array,xcolor,hyperref}
+\graphicspath{{figures/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\title{Supplementary Material: Does a Diffusion Bridge Add Value Beyond Direct CT-to-Synthetic-MRI Regression?}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Evidence Hierarchy}
+
+The primary evidence consisted of the 18-patient fixed-checkpoint comparison, the matched CT-only analysis, input-source ablation, three-seed results, and the standardized efficiency benchmark. The 200-slice loss screening and three-patient adversarial experiments were exploratory. They were not interpreted as independent clinical samples and were not used to select the final L1 checkpoint.
+
+\section{Exploratory Loss Screening}
+
+\begin{table}[htbp]
+\centering
+\caption{Exploratory 200-slice comparison. These slice-level values are hypothesis-generating and not confirmatory patient-level results.}
+\begin{tabular}{lc}
+\toprule
+Configuration & SSIM\\
+\midrule
+Bridge only & 0.598\\
+L1 refinement & 0.869\\
+L1 + SSIM refinement & 0.868\\
+L1 + gradient refinement & 0.878\\
+L1 + GAN refinement & 0.803\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The subset favored L1 plus gradient by 0.009 over L1. This ordering did not remain consistent on the complete test cohort. At seed 123, L1 exceeded L1 plus gradient (0.8183 versus 0.8172); at seed 2026, L1 plus gradient exceeded L1 (0.8187 versus 0.8147). The final method was therefore defined as L1 refinement.
+
+\section{Three-Patient Adversarial Pilot}
+
+\begin{table}[htbp]
+\centering
+\caption{Three-patient bridge and adversarial pilot. Values apply only to the tested pilot configuration.}
+\begin{tabular}{lc}
+\toprule
+Configuration & SSIM\\
+\midrule
+SelfRDB pilot baseline & 0.66\\
+Internal adversarial weighting, 0.10 & 0.39\\
+Internal adversarial weighting, 0.02 & 0.43\\
+Supervised post-bridge refinement & 0.82\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pilot did not establish a general limitation of adversarial learning. It documented only that the tested internal adversarial configurations degraded reconstruction. On the complete cohort, external adversarial refinement (BridgeGAN) achieved SSIM 0.8046 versus 0.8184 for BridgeRefine-L1.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\textwidth]{fig3_robustness_ablation.pdf}
+\caption{Training-seed and exploratory ablation summary. Panel a shows run-level cohort means. Panels b and c are explicitly exploratory and should not be interpreted as patient-level confirmatory comparisons.}
+\end{figure}
+
+\section{Reproducibility Artifacts}
+
+The experiment handoff package contains per-experiment manifests, configurations, commands, environment records, checkpoints, 3,415-row slice-level metric files, 18-row patient-level metric files, prediction indices, predictions, and SHA-256 checksums. The final frozen source-data directory contains the patient-level comparison table, seed table, efficiency records, unified $10\times2$ coarse-output evaluation, and claim--evidence audit.
+
+\section{Known Artifact Notes}
+
+Five per-experiment summary files contain an incorrect metadata field, \texttt{n\_slices=54}. The corresponding slice-level CSV files and prediction indices each contain the correct 3,415 test slices, and the final frozen manuscript source data use 3,415. This metadata field must not be used for sample-size reporting.
+
+Full per-epoch logs were not preserved for two checkpoints created before the final handoff standard. The checkpoints, validation-selected epochs, predictions, metric files, and hashes are retained; no unrecorded training trajectory is claimed.
+
+\end{document}
+

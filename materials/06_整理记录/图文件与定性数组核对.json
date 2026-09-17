@@ -1,0 +1,174 @@
+{
+  "latex_references": [
+    {
+      "manuscript": "01_手稿/审计交接稿_20260910/论文修改稿.tex",
+      "figure": "fig1_pipeline.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/审计交接稿_20260910/论文修改稿.tex",
+      "figure": "fig2_evidence_landscape.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/审计交接稿_20260910/论文修改稿.tex",
+      "figure": "fig3_robustness_ablation.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/审计交接稿_20260910/论文修改稿.tex",
+      "figure": "fig4_efficiency.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/审计交接稿_20260910/论文修改稿.tex",
+      "figure": "fig5_qualitative.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/英文投稿旧稿_待同步/BridgeRefine_JIIM_body.tex",
+      "figure": "fig1_pipeline.pdf",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/英文投稿旧稿_待同步/BridgeRefine_JIIM_body.tex",
+      "figure": "fig5_qualitative.pdf",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/英文投稿旧稿_待同步/BridgeRefine_JIIM_supplement.tex",
+      "figure": "fig3_robustness_ablation.pdf",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/中文主稿/BridgeRefine_JIIM_中文稿.tex",
+      "figure": "BridgeRefine_pipeline_final.pdf",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/中文主稿/BridgeRefine_JIIM_中文稿.tex",
+      "figure": "fig2_main_results.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/中文主稿/BridgeRefine_JIIM_中文稿.tex",
+      "figure": "fig5_qualitative_handoff.png",
+      "exists": true
+    },
+    {
+      "manuscript": "01_手稿/中文主稿/BridgeRefine_JIIM_中文稿.tex",
+      "figure": "fig4_efficiency.png",
+      "exists": true
+    }
+  ],
+  "qualitative_arrays": [
+    {
+      "case": "1BC014",
+      "shapes": {
+        "ct": [
+          186,
+          128,
+          128
+        ],
+        "mri_real": [
+          186,
+          128,
+          128
+        ],
+        "coarse_mri": [
+          186,
+          128,
+          128
+        ],
+        "bridgerefine_l1": [
+          186,
+          128,
+          128
+        ],
+        "ct_only": [
+          186,
+          128,
+          128
+        ],
+        "brain_mask": [
+          186,
+          128,
+          128
+        ]
+      },
+      "finite": true
+    },
+    {
+      "case": "1BC007",
+      "shapes": {
+        "ct": [
+          184,
+          128,
+          128
+        ],
+        "mri_real": [
+          184,
+          128,
+          128
+        ],
+        "coarse_mri": [
+          184,
+          128,
+          128
+        ],
+        "bridgerefine_l1": [
+          184,
+          128,
+          128
+        ],
+        "ct_only": [
+          184,
+          128,
+          128
+        ],
+        "brain_mask": [
+          184,
+          128,
+          128
+        ]
+      },
+      "finite": true
+    },
+    {
+      "case": "1BA222",
+      "shapes": {
+        "ct": [
+          203,
+          128,
+          128
+        ],
+        "mri_real": [
+          203,
+          128,
+          128
+        ],
+        "coarse_mri": [
+          203,
+          128,
+          128
+        ],
+        "bridgerefine_l1": [
+          203,
+          128,
+          128
+        ],
+        "ct_only": [
+          203,
+          128,
+          128
+        ],
+        "brain_mask": [
+          203,
+          128,
+          128
+        ]
+      },
+      "finite": true
+    }
+  ]
+}

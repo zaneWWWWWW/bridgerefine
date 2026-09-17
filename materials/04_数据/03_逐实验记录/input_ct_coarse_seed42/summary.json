@@ -1,0 +1,18 @@
+{
+  "n_patients": 18,
+  "n_slices": 54,
+  "ssim_patient_mean": 0.8183642332050062,
+  "ssim_patient_std": 0.05296495037523937,
+  "ssim_patient_ci95": [
+    0.7942674612303847,
+    0.8416079656638374
+  ],
+  "psnr_patient_mean": 19.950381123152585,
+  "lpips_patient_mean": 0.12528425622594178,
+  "improved_patients_vs_ct_only": null,
+  "mean_paired_delta_vs_ct_only": null,
+  "median_paired_delta_vs_ct_only": null,
+  "wilcoxon_raw_p": null,
+  "holm_corrected_p": null,
+  "notes": "Unified 10-step x 2-recursion coarse MRI; patient-level aggregation."
+}

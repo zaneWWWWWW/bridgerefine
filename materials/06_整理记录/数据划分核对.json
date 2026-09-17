@@ -1,0 +1,1438 @@
+{
+  "splits": [
+    {
+      "split": "train",
+      "patients": 144,
+      "paired_slices": 27309,
+      "ct_slices": 27315,
+      "mr_slices": 27554
+    },
+    {
+      "split": "val",
+      "patients": 18,
+      "paired_slices": 3473,
+      "ct_slices": 3474,
+      "mr_slices": 3497
+    },
+    {
+      "split": "test",
+      "patients": 18,
+      "paired_slices": 3415,
+      "ct_slices": 3417,
+      "mr_slices": 3448
+    }
+  ],
+  "unmatched_patients": [
+    {
+      "patient": "1BA001",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0201",
+        "0202",
+        "0203"
+      ]
+    },
+    {
+      "patient": "1BA005",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0205"
+      ]
+    },
+    {
+      "patient": "1BA014",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0173"
+      ]
+    },
+    {
+      "patient": "1BA022",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0210"
+      ]
+    },
+    {
+      "patient": "1BA032",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0174",
+        "0176"
+      ]
+    },
+    {
+      "patient": "1BA040",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0188"
+      ]
+    },
+    {
+      "patient": "1BA054",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0220",
+        "0221",
+        "0222"
+      ]
+    },
+    {
+      "patient": "1BA058",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0195",
+        "0196"
+      ]
+    },
+    {
+      "patient": "1BA075",
+      "ct_only": 1,
+      "mr_only": 1,
+      "example_ct_only": [
+        "0000"
+      ],
+      "example_mr_only": [
+        "0206"
+      ]
+    },
+    {
+      "patient": "1BA076",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0195",
+        "0196"
+      ]
+    },
+    {
+      "patient": "1BA082",
+      "ct_only": 0,
+      "mr_only": 5,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA085",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0206"
+      ]
+    },
+    {
+      "patient": "1BA103",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0207",
+        "0208",
+        "0209"
+      ]
+    },
+    {
+      "patient": "1BA105",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0200"
+      ]
+    },
+    {
+      "patient": "1BA111",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0219"
+      ]
+    },
+    {
+      "patient": "1BA125",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001"
+      ]
+    },
+    {
+      "patient": "1BA131",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0001",
+        "0002",
+        "0206"
+      ]
+    },
+    {
+      "patient": "1BA141",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0189"
+      ]
+    },
+    {
+      "patient": "1BA143",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0210",
+        "0211",
+        "0212"
+      ]
+    },
+    {
+      "patient": "1BA151",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0216"
+      ]
+    },
+    {
+      "patient": "1BA159",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0194",
+        "0195"
+      ]
+    },
+    {
+      "patient": "1BA164",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0206"
+      ]
+    },
+    {
+      "patient": "1BA172",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0201"
+      ]
+    },
+    {
+      "patient": "1BA175",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0188"
+      ]
+    },
+    {
+      "patient": "1BA185",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001"
+      ]
+    },
+    {
+      "patient": "1BA189",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0207",
+        "0208"
+      ]
+    },
+    {
+      "patient": "1BA206",
+      "ct_only": 0,
+      "mr_only": 5,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA220",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA227",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0209",
+        "0210"
+      ]
+    },
+    {
+      "patient": "1BA239",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000"
+      ]
+    },
+    {
+      "patient": "1BA247",
+      "ct_only": 0,
+      "mr_only": 7,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA253",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001"
+      ]
+    },
+    {
+      "patient": "1BA278",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0212"
+      ]
+    },
+    {
+      "patient": "1BA288",
+      "ct_only": 0,
+      "mr_only": 6,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA292",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0195",
+        "0196"
+      ]
+    },
+    {
+      "patient": "1BA300",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0209",
+        "0210"
+      ]
+    },
+    {
+      "patient": "1BA305",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA307",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000"
+      ]
+    },
+    {
+      "patient": "1BA345",
+      "ct_only": 0,
+      "mr_only": 8,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BA358",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001"
+      ]
+    },
+    {
+      "patient": "1BA359",
+      "ct_only": 0,
+      "mr_only": 6,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BB005",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0193"
+      ]
+    },
+    {
+      "patient": "1BB006",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0185"
+      ]
+    },
+    {
+      "patient": "1BB007",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0199"
+      ]
+    },
+    {
+      "patient": "1BB016",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0162",
+        "0163"
+      ]
+    },
+    {
+      "patient": "1BB017",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0187",
+        "0188"
+      ]
+    },
+    {
+      "patient": "1BB028",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0174",
+        "0175"
+      ]
+    },
+    {
+      "patient": "1BB030",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0173",
+        "0174"
+      ]
+    },
+    {
+      "patient": "1BB033",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0180"
+      ]
+    },
+    {
+      "patient": "1BB039",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0195"
+      ]
+    },
+    {
+      "patient": "1BB041",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0191",
+        "0192"
+      ]
+    },
+    {
+      "patient": "1BB043",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0174",
+        "0175"
+      ]
+    },
+    {
+      "patient": "1BB044",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0186",
+        "0187"
+      ]
+    },
+    {
+      "patient": "1BB049",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0194",
+        "0195"
+      ]
+    },
+    {
+      "patient": "1BB051",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0196",
+        "0197"
+      ]
+    },
+    {
+      "patient": "1BB052",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0184"
+      ]
+    },
+    {
+      "patient": "1BB062",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0217"
+      ]
+    },
+    {
+      "patient": "1BB071",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0194",
+        "0195"
+      ]
+    },
+    {
+      "patient": "1BB072",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0177"
+      ]
+    },
+    {
+      "patient": "1BB075",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0193"
+      ]
+    },
+    {
+      "patient": "1BB076",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0189",
+        "0190"
+      ]
+    },
+    {
+      "patient": "1BB079",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0183"
+      ]
+    },
+    {
+      "patient": "1BB082",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0188"
+      ]
+    },
+    {
+      "patient": "1BB091",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0170",
+        "0171"
+      ]
+    },
+    {
+      "patient": "1BB095",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0190",
+        "0191"
+      ]
+    },
+    {
+      "patient": "1BB098",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0168",
+        "0169"
+      ]
+    },
+    {
+      "patient": "1BB100",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0181"
+      ]
+    },
+    {
+      "patient": "1BB109",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171",
+        "0172"
+      ]
+    },
+    {
+      "patient": "1BB145",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0182",
+        "0183",
+        "0184"
+      ]
+    },
+    {
+      "patient": "1BB151",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0166"
+      ]
+    },
+    {
+      "patient": "1BB152",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0261"
+      ]
+    },
+    {
+      "patient": "1BB171",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0207",
+        "0208"
+      ]
+    },
+    {
+      "patient": "1BB173",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171",
+        "0172",
+        "0173"
+      ]
+    },
+    {
+      "patient": "1BB175",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0197",
+        "0198"
+      ]
+    },
+    {
+      "patient": "1BB177",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0192",
+        "0193"
+      ]
+    },
+    {
+      "patient": "1BB179",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0202",
+        "0203"
+      ]
+    },
+    {
+      "patient": "1BB182",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0181",
+        "0182",
+        "0183"
+      ]
+    },
+    {
+      "patient": "1BB184",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171"
+      ]
+    },
+    {
+      "patient": "1BB189",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0196",
+        "0197"
+      ]
+    },
+    {
+      "patient": "1BB198",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0178"
+      ]
+    },
+    {
+      "patient": "1BC001",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0184",
+        "0185"
+      ]
+    },
+    {
+      "patient": "1BC008",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0169",
+        "0170",
+        "0171"
+      ]
+    },
+    {
+      "patient": "1BC009",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0169"
+      ]
+    },
+    {
+      "patient": "1BC010",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0184"
+      ]
+    },
+    {
+      "patient": "1BC019",
+      "ct_only": 1,
+      "mr_only": 2,
+      "example_ct_only": [
+        "0001"
+      ],
+      "example_mr_only": [
+        "0178",
+        "0179"
+      ]
+    },
+    {
+      "patient": "1BC020",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0218"
+      ]
+    },
+    {
+      "patient": "1BC022",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BC023",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171"
+      ]
+    },
+    {
+      "patient": "1BC027",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0229"
+      ]
+    },
+    {
+      "patient": "1BC034",
+      "ct_only": 1,
+      "mr_only": 1,
+      "example_ct_only": [
+        "0000"
+      ],
+      "example_mr_only": [
+        "0180"
+      ]
+    },
+    {
+      "patient": "1BC035",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0004",
+        "0005",
+        "0203"
+      ]
+    },
+    {
+      "patient": "1BC036",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0164"
+      ]
+    },
+    {
+      "patient": "1BC037",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0177",
+        "0178",
+        "0179"
+      ]
+    },
+    {
+      "patient": "1BC039",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0176"
+      ]
+    },
+    {
+      "patient": "1BC046",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0213"
+      ]
+    },
+    {
+      "patient": "1BC048",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0177"
+      ]
+    },
+    {
+      "patient": "1BC049",
+      "ct_only": 1,
+      "mr_only": 0,
+      "example_ct_only": [
+        "0002"
+      ],
+      "example_mr_only": []
+    },
+    {
+      "patient": "1BC051",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0239"
+      ]
+    },
+    {
+      "patient": "1BC053",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0167"
+      ]
+    },
+    {
+      "patient": "1BC056",
+      "ct_only": 0,
+      "mr_only": 7,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0179"
+      ]
+    },
+    {
+      "patient": "1BC063",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0224",
+        "0225",
+        "0226"
+      ]
+    },
+    {
+      "patient": "1BC064",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0183"
+      ]
+    },
+    {
+      "patient": "1BC065",
+      "ct_only": 0,
+      "mr_only": 8,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BC067",
+      "ct_only": 1,
+      "mr_only": 1,
+      "example_ct_only": [
+        "0001"
+      ],
+      "example_mr_only": [
+        "0175"
+      ]
+    },
+    {
+      "patient": "1BC073",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0213",
+        "0214"
+      ]
+    },
+    {
+      "patient": "1BC074",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171",
+        "0172"
+      ]
+    },
+    {
+      "patient": "1BC082",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000"
+      ]
+    },
+    {
+      "patient": "1BC083",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0174"
+      ]
+    },
+    {
+      "patient": "1BC084",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0002",
+        "0003",
+        "0004"
+      ]
+    },
+    {
+      "patient": "1BC087",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0217",
+        "0218"
+      ]
+    },
+    {
+      "patient": "1BC088",
+      "ct_only": 0,
+      "mr_only": 4,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0004",
+        "0005",
+        "0183"
+      ]
+    },
+    {
+      "patient": "1BC090",
+      "ct_only": 1,
+      "mr_only": 1,
+      "example_ct_only": [
+        "0003"
+      ],
+      "example_mr_only": [
+        "0181"
+      ]
+    },
+    {
+      "patient": "1BC094",
+      "ct_only": 0,
+      "mr_only": 5,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0004",
+        "0214",
+        "0215"
+      ]
+    },
+    {
+      "patient": "1BA097",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0201"
+      ]
+    },
+    {
+      "patient": "1BA158",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0227",
+        "0228"
+      ]
+    },
+    {
+      "patient": "1BA325",
+      "ct_only": 0,
+      "mr_only": 6,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0002"
+      ]
+    },
+    {
+      "patient": "1BB011",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0189"
+      ]
+    },
+    {
+      "patient": "1BB083",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0190"
+      ]
+    },
+    {
+      "patient": "1BB085",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0195"
+      ]
+    },
+    {
+      "patient": "1BB096",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0197"
+      ]
+    },
+    {
+      "patient": "1BB111",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0176",
+        "0177",
+        "0178"
+      ]
+    },
+    {
+      "patient": "1BC047",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0182",
+        "0183"
+      ]
+    },
+    {
+      "patient": "1BC068",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0171",
+        "0172"
+      ]
+    },
+    {
+      "patient": "1BC081",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0225"
+      ]
+    },
+    {
+      "patient": "1BC085",
+      "ct_only": 1,
+      "mr_only": 1,
+      "example_ct_only": [
+        "0002"
+      ],
+      "example_mr_only": [
+        "0184"
+      ]
+    },
+    {
+      "patient": "1BC086",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0211",
+        "0212"
+      ]
+    },
+    {
+      "patient": "1BA012",
+      "ct_only": 0,
+      "mr_only": 5,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0001",
+        "0193"
+      ]
+    },
+    {
+      "patient": "1BA091",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0208"
+      ]
+    },
+    {
+      "patient": "1BA100",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0188"
+      ]
+    },
+    {
+      "patient": "1BA116",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0197"
+      ]
+    },
+    {
+      "patient": "1BA184",
+      "ct_only": 0,
+      "mr_only": 6,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0198",
+        "0199",
+        "0200"
+      ]
+    },
+    {
+      "patient": "1BA222",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000"
+      ]
+    },
+    {
+      "patient": "1BA328",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000",
+        "0199"
+      ]
+    },
+    {
+      "patient": "1BB002",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0170",
+        "0171"
+      ]
+    },
+    {
+      "patient": "1BB003",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0194"
+      ]
+    },
+    {
+      "patient": "1BB008",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0178",
+        "0179"
+      ]
+    },
+    {
+      "patient": "1BB200",
+      "ct_only": 0,
+      "mr_only": 3,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0189",
+        "0190",
+        "0191"
+      ]
+    },
+    {
+      "patient": "1BB205",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0218",
+        "0219"
+      ]
+    },
+    {
+      "patient": "1BC007",
+      "ct_only": 1,
+      "mr_only": 0,
+      "example_ct_only": [
+        "0001"
+      ],
+      "example_mr_only": []
+    },
+    {
+      "patient": "1BC014",
+      "ct_only": 1,
+      "mr_only": 2,
+      "example_ct_only": [
+        "0004"
+      ],
+      "example_mr_only": [
+        "0191",
+        "0192"
+      ]
+    },
+    {
+      "patient": "1BC050",
+      "ct_only": 0,
+      "mr_only": 2,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0165",
+        "0166"
+      ]
+    },
+    {
+      "patient": "1BC080",
+      "ct_only": 0,
+      "mr_only": 1,
+      "example_ct_only": [],
+      "example_mr_only": [
+        "0000"
+      ]
+    }
+  ],
+  "raw_files": 721,
+  "split_overlap": false
+}

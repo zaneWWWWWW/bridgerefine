@@ -1,0 +1,171 @@
+{
+  "repo": "zaneWWWWWW/bridgerefine",
+  "tag": "materials-2026-09-17",
+  "total_files": 69781,
+  "total_bytes": 10016461735,
+  "git_browsing_files": 319,
+  "categories": {
+    "00_使用说明.md": {
+      "files": 1,
+      "bytes": 3528
+    },
+    "01_手稿": {
+      "files": 14,
+      "bytes": 10818637
+    },
+    "03_图表": {
+      "files": 88,
+      "bytes": 351613339
+    },
+    "04_数据": {
+      "files": 69603,
+      "bytes": 9596722068
+    },
+    "05_说明与历史": {
+      "files": 62,
+      "bytes": 35846460
+    },
+    "06_整理记录": {
+      "files": 13,
+      "bytes": 21457743
+    }
+  },
+  "archives": [
+    {
+      "name": "bridgerefine-materials-01.zip",
+      "bytes": 272386408,
+      "sha256": "1e93aa9816a32a62d16f6bc52495bfade5a4b9fec827a0f9f308a8b78e16bd80",
+      "files": 189,
+      "uncompressed_bytes": 711518630,
+      "first_path": "00_使用说明.md",
+      "last_path": "04_数据/03_逐实验记录/input_ct_coarse_seed123/predictions/index.csv"
+    },
+    {
+      "name": "bridgerefine-materials-02.zip",
+      "bytes": 443952810,
+      "sha256": "871ad704152aac085759b796eb8f28f1d4ee772d6a73b5656d92879e3df0d57c",
+      "files": 30,
+      "uncompressed_bytes": 677321524,
+      "first_path": "04_数据/03_逐实验记录/input_ct_coarse_seed123/predictions/preds.pt",
+      "last_path": "04_数据/03_逐实验记录/input_ct_coarse_seed42/predictions/index.csv"
+    },
+    {
+      "name": "bridgerefine-materials-03.zip",
+      "bytes": 686162435,
+      "sha256": "02962f5935a7241db9ce16a2e4a306734dc354b26e106e5d9d4ca052cf80abb4",
+      "files": 55,
+      "uncompressed_bytes": 940358861,
+      "first_path": "04_数据/03_逐实验记录/input_ct_coarse_seed42/predictions/preds.pt",
+      "last_path": "04_数据/04_影像数据/brain/1BA082/mask.nii.gz"
+    },
+    {
+      "name": "bridgerefine-materials-04.zip",
+      "bytes": 942111578,
+      "sha256": "d6da61bfe24f2ca935b4dfcfedd7471dcfa45ffb4dd4c9a7e7957e63629e87a9",
+      "files": 123,
+      "uncompressed_bytes": 942087776,
+      "first_path": "04_数据/04_影像数据/brain/1BA082/mr.nii.gz",
+      "last_path": "04_数据/04_影像数据/brain/1BA325/mask.nii.gz"
+    },
+    {
+      "name": "bridgerefine-materials-05.zip",
+      "bytes": 940578119,
+      "sha256": "87bb4aa4194df324f73a3debd0771cf3f868142ca9452a3ef5d7baf5c39c662a",
+      "files": 139,
+      "uncompressed_bytes": 940551225,
+      "first_path": "04_数据/04_影像数据/brain/1BA325/mr.nii.gz",
+      "last_path": "04_数据/04_影像数据/brain/1BB095/mr.nii.gz"
+    },
+    {
+      "name": "bridgerefine-materials-06.zip",
+      "bytes": 940236018,
+      "sha256": "78aa6098c63b8763064dba3fb1863e0de3127e45add7d204d3b9e915f671d6f4",
+      "files": 162,
+      "uncompressed_bytes": 940204676,
+      "first_path": "04_数据/04_影像数据/brain/1BB096/ct.nii.gz",
+      "last_path": "04_数据/04_影像数据/brain/1BC053/mr.nii.gz"
+    },
+    {
+      "name": "bridgerefine-materials-07.zip",
+      "bytes": 945600223,
+      "sha256": "984933ac754a400ebb8396ee4d923cd119b5920f5004c527c3793aa78bee024a",
+      "files": 9170,
+      "uncompressed_bytes": 943693663,
+      "first_path": "04_数据/04_影像数据/brain/1BC054/ct.nii.gz",
+      "last_path": "04_数据/04_影像数据/data_slices/1BA141/ct/0066.jpg"
+    },
+    {
+      "name": "bridgerefine-materials-08.zip",
+      "bytes": 947813218,
+      "sha256": "eecce2b42a1efa8266b9b0cd4cf1c23fe0e91d88028808c719b66c044b58411d",
+      "files": 19905,
+      "uncompressed_bytes": 943672956,
+      "first_path": "04_数据/04_影像数据/data_slices/1BA141/ct/0067.jpg",
+      "last_path": "04_数据/04_影像数据/data_slices/1BB033/ct/0076.jpg"
+    },
+    {
+      "name": "bridgerefine-materials-09.zip",
+      "bytes": 946901753,
+      "sha256": "a70116766c1d57b534c559c230501ffd47c6248419118a23f21846a9476f7438",
+      "files": 15548,
+      "uncompressed_bytes": 943667747,
+      "first_path": "04_数据/04_影像数据/data_slices/1BB033/ct/0077.jpg",
+      "last_path": "04_数据/04_影像数据/data_slices/1BB182/mr/0076.png"
+    },
+    {
+      "name": "bridgerefine-materials-10.zip",
+      "bytes": 947135981,
+      "sha256": "7eef82bd53092ae9d527a8b808817f76b9718fa1268416fc0ca82689292c6cee",
+      "files": 16800,
+      "uncompressed_bytes": 943641559,
+      "first_path": "04_数据/04_影像数据/data_slices/1BB182/mr/0077.png",
+      "last_path": "04_数据/04_影像数据/data_slices/1BC065/mr/0090.png"
+    },
+    {
+      "name": "bridgerefine-materials-11.zip",
+      "bytes": 685884343,
+      "sha256": "813167ef78ab75c15518d17c389832f6926f8fbab2450ab0c8ae96ef4b9c6d9a",
+      "files": 7583,
+      "uncompressed_bytes": 695163146,
+      "first_path": "04_数据/04_影像数据/data_slices/1BC065/mr/0091.png",
+      "last_path": "04_数据/06_模型权重/other_model/phase2_CT_only_L1/best.pt"
+    },
+    {
+      "name": "bridgerefine-materials-12.zip",
+      "bytes": 264289333,
+      "sha256": "b3a5adde1faeddf07503cc9718b7db706df11a6aae88a18e566b1bd00d64edfa",
+      "files": 77,
+      "uncompressed_bytes": 394579972,
+      "first_path": "04_数据/07_预测缓存/test_coarse_10x2.pt",
+      "last_path": "06_整理记录/版本核对与缺项.md"
+    }
+  ],
+  "symlinks": [
+    {
+      "path": "materials/01_手稿/中文主稿/figures",
+      "target": "../../03_图表/投稿配套图",
+      "is_directory": true
+    },
+    {
+      "path": "materials/01_手稿/审计交接稿_20260910/figures",
+      "target": "../../03_图表/交接版配套图",
+      "is_directory": true
+    },
+    {
+      "path": "materials/01_手稿/英文投稿旧稿_待同步/figures",
+      "target": "../../03_图表/投稿配套图",
+      "is_directory": true
+    },
+    {
+      "path": "materials/03_图表/真实定性病例",
+      "target": "../04_数据/05_定性病例",
+      "is_directory": true
+    },
+    {
+      "path": "materials/04_数据/06_模型权重/other_model/input_ablation/coarse_only_seed42/best.pt",
+      "target": "../../../../03_逐实验记录/input_coarse_only_seed42/checkpoints/best.pt",
+      "is_directory": false
+    }
+  ],
+  "note": "Complete curated non-code materials. Code is in the repository root. ZIPs are independent; restore all into one directory."
+}

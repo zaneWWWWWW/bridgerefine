@@ -1,0 +1,20 @@
+{
+  "experiment_id": "efficiency_rtx5060_batch1",
+  "claim_tested": "Reproducible inference time and memory on RTX 5060 8 GB.",
+  "status": "completed",
+  "source_machine": "RTX 5060 Laptop GPU 8 GB",
+  "gpu_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "protocol": {
+    "batch_size": 1,
+    "warmup": 10,
+    "timed": 100,
+    "repeats": 3,
+    "cuda_synchronize": true,
+    "includes_model_load_time": false
+  },
+  "result_files": {
+    "timing_raw": "timing_raw.csv",
+    "timing_summary": "timing_summary.json",
+    "memory_summary": "memory_summary.json"
+  }
+}

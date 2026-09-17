@@ -1,0 +1,3 @@
+﻿method,time_ms_mean,time_ms_std,peak_extra_mem_mb,warmup,timed,repeats
+CT-only,2.422,0.118,44.6,10,100,3
+BridgeRefine,1016.992,13.968,144.7,10,100,3

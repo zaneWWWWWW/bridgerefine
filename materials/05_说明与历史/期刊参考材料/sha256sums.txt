@@ -1,0 +1,2 @@
+19ce6bf769fbb8465ffb0cfe4260b7578c4fb5e37f3b74dfd34d27a24db5a5b7  /home/zanewang/projects/paper/journal_benchmark/Lai2025_JIIM_StyleGAN2_BrainMRI.pdf
+5353d054337a351cfcf67472b52a06e5d98fc617667ebbb3136c48fa96548ebe  /home/zanewang/projects/paper/journal_benchmark/Lai2025_JIIM_StyleGAN2_BrainMRI_中文译读版.pdf
