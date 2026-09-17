@@ -1,0 +1,6 @@
+test_patients: 18
+test_slices: 3415
+image_size: 128x128
+metrics: [ssim, psnr, lpips, mask_ssim, mask_psnr, mad_ratio]
+aggregation: patient-level mean first, then cohort mean/SD
+statistics: two-sided Wilcoxon, Holm correction, percentile bootstrap 10,000

@@ -1,0 +1,357 @@
+[
+  {
+    "path": "original/project/main.py",
+    "source": "Cross-modal conversion/main.py",
+    "sha256": "09f920e15268857792cc1b67f4e17b50a9df73ac7a7303a61460254f0f292b28"
+  },
+  {
+    "path": "original/project/preprocess_all.py",
+    "source": "Cross-modal conversion/preprocess_all.py",
+    "sha256": "fbda878b3b1d8a70812c13184ed90d282930c5a6577ed58e044ad39dd6ad85e9"
+  },
+  {
+    "path": "original/project/diffusion_dataset.py",
+    "source": "Cross-modal conversion/diffusion_dataset.py",
+    "sha256": "40aa3a5c26823016f87f1b03ae52282838b7929adfd498324c7bea19cb2d11b7"
+  },
+  {
+    "path": "original/project/diffusion_model.py",
+    "source": "Cross-modal conversion/diffusion_model.py",
+    "sha256": "6e4607a0fc0f06cc871101454f3ce14ca40a4411903e98ad9fed4391a1bff826"
+  },
+  {
+    "path": "original/project/diffusion_train.py",
+    "source": "Cross-modal conversion/diffusion_train.py",
+    "sha256": "650e0c0c68291a59d8e6649ccdd53b7a0103566c33d5c05a1b30701c3fac02f2"
+  },
+  {
+    "path": "original/project/diffusion_inference.py",
+    "source": "Cross-modal conversion/diffusion_inference.py",
+    "sha256": "6a75638fcc785cbc768f0cca766400f97a77bb96c1a964c767fb6bc822f35835"
+  },
+  {
+    "path": "original/project/evaluate_metrics.py",
+    "source": "Cross-modal conversion/evaluate_metrics.py",
+    "sha256": "866f6f519ba93bbb8025e1639f5ca537695095a41934e9fa646f8027dfda6716"
+  },
+  {
+    "path": "original/project/selfrdb/__init__.py",
+    "source": "Cross-modal conversion/selfrdb/__init__.py",
+    "sha256": "c580eb1569a3fa377a58280454fe793dcc77bde32e1d9b52523ee1e0b5d459a6"
+  },
+  {
+    "path": "original/project/selfrdb/bridge_model.py",
+    "source": "Cross-modal conversion/selfrdb/bridge_model.py",
+    "sha256": "fd23f5b773190baa5956ff93a2b0cfb447744d127e7c9236c990b4dd0852caa6"
+  },
+  {
+    "path": "original/project/selfrdb/dataset.py",
+    "source": "Cross-modal conversion/selfrdb/dataset.py",
+    "sha256": "3065f3c7ce2a2330c713564289ee91ff19ad520ea3e4b07abe209f48e1bd2e32"
+  },
+  {
+    "path": "original/project/selfrdb/evaluate.py",
+    "source": "Cross-modal conversion/selfrdb/evaluate.py",
+    "sha256": "b94bf3dbb68da0ff40ebbc6f7a2e0886153a99d47d1d9299cd9801375c6a810e"
+  },
+  {
+    "path": "original/project/selfrdb/inference.py",
+    "source": "Cross-modal conversion/selfrdb/inference.py",
+    "sha256": "8bd56850ddc59cf05e4d1cf9fe6428ee25ad573cfb89142e3d4eb958b01ab47a"
+  },
+  {
+    "path": "original/project/selfrdb/network.py",
+    "source": "Cross-modal conversion/selfrdb/network.py",
+    "sha256": "e586f5075423f0822c6fd7f302e53b8f459820c18e17f67007f8d39d159e9e6a"
+  },
+  {
+    "path": "original/project/selfrdb/preprocess.py",
+    "source": "Cross-modal conversion/selfrdb/preprocess.py",
+    "sha256": "0f7d4c1a5ab98bcc0f63c3ca29af8b04b91a2c4e698c8c00e26ce843035386de"
+  },
+  {
+    "path": "original/project/selfrdb/run_train.py",
+    "source": "Cross-modal conversion/selfrdb/run_train.py",
+    "sha256": "a9452ad0acf7d69f0762165dac6dd1b452037486f8818eab1aebd614cc6452d9"
+  },
+  {
+    "path": "original/project/selfrdb/train.py",
+    "source": "Cross-modal conversion/selfrdb/train.py",
+    "sha256": "1552adfcd89d413cbc20f1f6c27a84f2a9e824a3a57e02e12ee4e2f3464a5b16"
+  },
+  {
+    "path": "original/project/selfrdb/train_stable.py",
+    "source": "Cross-modal conversion/selfrdb/train_stable.py",
+    "sha256": "2fb71c7032418668f87dff71f18131c67fcf3727f59e78ba93d36d6736cc1dba"
+  },
+  {
+    "path": "original/project/mg_cyclegan/model.py",
+    "source": "Cross-modal conversion/mg_cyclegan/model.py",
+    "sha256": "4d24fd16f65fb0313054c751e29e0682f920446c1b8ad3daf8745061ef76671e"
+  },
+  {
+    "path": "original/project/mg_cyclegan/train.py",
+    "source": "Cross-modal conversion/mg_cyclegan/train.py",
+    "sha256": "6b7a00056af75468557fd00b3556541f09ac9b93fb35fd687b2b024789d685f2"
+  },
+  {
+    "path": "original/project/syndiff/model.py",
+    "source": "Cross-modal conversion/syndiff/model.py",
+    "sha256": "4e1d5f280c9ecfcaafcc8ecadd8977ea3ecfc4e5f48dd234be33719e6c42a63d"
+  },
+  {
+    "path": "original/project/syndiff/train.py",
+    "source": "Cross-modal conversion/syndiff/train.py",
+    "sha256": "0050a377bf3b9804e0e6a346ae2b0995abb4b0471077041ee5daf0ffd827b3a4"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/__init__.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/__init__.py",
+    "sha256": "c580eb1569a3fa377a58280454fe793dcc77bde32e1d9b52523ee1e0b5d459a6"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/bridge_model.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/bridge_model.py",
+    "sha256": "fd23f5b773190baa5956ff93a2b0cfb447744d127e7c9236c990b4dd0852caa6"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/continue_train.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/continue_train.py",
+    "sha256": "6fbacfa3545a1ec430eebf4b47ec301097a4ef11a8f77c0e5f592256d802dd1b"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/dataset.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/dataset.py",
+    "sha256": "3065f3c7ce2a2330c713564289ee91ff19ad520ea3e4b07abe209f48e1bd2e32"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/evaluate.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/evaluate.py",
+    "sha256": "b94bf3dbb68da0ff40ebbc6f7a2e0886153a99d47d1d9299cd9801375c6a810e"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/inference.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/inference.py",
+    "sha256": "8bd56850ddc59cf05e4d1cf9fe6428ee25ad573cfb89142e3d4eb958b01ab47a"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/network.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/network.py",
+    "sha256": "e586f5075423f0822c6fd7f302e53b8f459820c18e17f67007f8d39d159e9e6a"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/preprocess.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/preprocess.py",
+    "sha256": "0f7d4c1a5ab98bcc0f63c3ca29af8b04b91a2c4e698c8c00e26ce843035386de"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/run_train.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/run_train.py",
+    "sha256": "a9452ad0acf7d69f0762165dac6dd1b452037486f8818eab1aebd614cc6452d9"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/train.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/train.py",
+    "sha256": "1552adfcd89d413cbc20f1f6c27a84f2a9e824a3a57e02e12ee4e2f3464a5b16"
+  },
+  {
+    "path": "original/project/other_model/SelfRDB/train_stable.py",
+    "source": "Cross-modal conversion/other_model/SelfRDB/train_stable.py",
+    "sha256": "2fb71c7032418668f87dff71f18131c67fcf3727f59e78ba93d36d6736cc1dba"
+  },
+  {
+    "path": "original/project/other_model/BridgeGAN/model.py",
+    "source": "Cross-modal conversion/other_model/BridgeGAN/model.py",
+    "sha256": "d5f98a2c6c2677463e0fbd7e88dce2f563525a5d9fc50c663c5183420de80ff1"
+  },
+  {
+    "path": "original/project/other_model/BridgeGAN/precompute.py",
+    "source": "Cross-modal conversion/other_model/BridgeGAN/precompute.py",
+    "sha256": "51d3cc74ee47459345a4bb6fdfbdfff05d0273d7f663244b1b9074ff4a364b9d"
+  },
+  {
+    "path": "original/project/other_model/BridgeGAN/train.py",
+    "source": "Cross-modal conversion/other_model/BridgeGAN/train.py",
+    "sha256": "ce337a4fa290018c34253d26686ea3fc127e6f8062f56af938b147afce4d9f0c"
+  },
+  {
+    "path": "original/project/other_model/BridgeGAN/train_256.py",
+    "source": "Cross-modal conversion/other_model/BridgeGAN/train_256.py",
+    "sha256": "703a31cd56b1bf75e298056d290ba6c782577ecae802604f8cc48c48d0d4fa24"
+  },
+  {
+    "path": "original/project/other_model/BridgeGAN/train_srdb_256.py",
+    "source": "Cross-modal conversion/other_model/BridgeGAN/train_srdb_256.py",
+    "sha256": "ec42b83c1e14714fe8f98e933461916e2f0a9979ca5a1420a83801c36359988d"
+  },
+  {
+    "path": "original/project/other_model/MG_CycleGAN/model.py",
+    "source": "Cross-modal conversion/other_model/MG_CycleGAN/model.py",
+    "sha256": "4d24fd16f65fb0313054c751e29e0682f920446c1b8ad3daf8745061ef76671e"
+  },
+  {
+    "path": "original/project/other_model/MG_CycleGAN/train.py",
+    "source": "Cross-modal conversion/other_model/MG_CycleGAN/train.py",
+    "sha256": "6b7a00056af75468557fd00b3556541f09ac9b93fb35fd687b2b024789d685f2"
+  },
+  {
+    "path": "original/project/other_model/SynDiff/fix_train.py",
+    "source": "Cross-modal conversion/other_model/SynDiff/fix_train.py",
+    "sha256": "362e6dfd485f24985a5e56d303c8e4e18744c010840d2ec15d05fb585a9b1e1d"
+  },
+  {
+    "path": "original/project/other_model/SynDiff/model.py",
+    "source": "Cross-modal conversion/other_model/SynDiff/model.py",
+    "sha256": "4e1d5f280c9ecfcaafcc8ecadd8977ea3ecfc4e5f48dd234be33719e6c42a63d"
+  },
+  {
+    "path": "original/project/other_model/SynDiff/train.py",
+    "source": "Cross-modal conversion/other_model/SynDiff/train.py",
+    "sha256": "0050a377bf3b9804e0e6a346ae2b0995abb4b0471077041ee5daf0ffd827b3a4"
+  },
+  {
+    "path": "original/project/other_model/Masked_Bridge/bridge_model.py",
+    "source": "Cross-modal conversion/other_model/Masked_Bridge/bridge_model.py",
+    "sha256": "9c26718170a03dee9bf8c50a63d0d2dffd40ca6dae146bc20805e3520547f9af"
+  },
+  {
+    "path": "original/project/other_model/Masked_Bridge/network.py",
+    "source": "Cross-modal conversion/other_model/Masked_Bridge/network.py",
+    "sha256": "32baba6520f4022e9300c53a3880e61073ddb9c23057d1662f8001164a195d24"
+  },
+  {
+    "path": "original/project/other_model/Masked_Bridge/train.py",
+    "source": "Cross-modal conversion/other_model/Masked_Bridge/train.py",
+    "sha256": "cbd335ec0b3bccf6c6a78153923d48d7b3be231d077b17d908ea2a8131a38a29"
+  },
+  {
+    "path": "original/project/other_model/Masked_Adv_Diff_Bridge/model.py",
+    "source": "Cross-modal conversion/other_model/Masked_Adv_Diff_Bridge/model.py",
+    "sha256": "04f0150c13fd54fd05a46920c2369017189de0242ac5aa378ab5a06ecc4bd3d5"
+  },
+  {
+    "path": "original/project/other_model/Masked_Adv_Diff_Bridge/train.py",
+    "source": "Cross-modal conversion/other_model/Masked_Adv_Diff_Bridge/train.py",
+    "sha256": "154d7c5e433f4c11c25572f7c4e649710125dc91b4bbebab29b403a261da54c3"
+  },
+  {
+    "path": "original/project/other_model/eval_full.py",
+    "source": "Cross-modal conversion/other_model/eval_full.py",
+    "sha256": "ddff874ed9b77ccd147d433fe1981480ef287ab4690a35c7b99e6f9f482feab9"
+  },
+  {
+    "path": "original/project/other_model/final_multiseed.py",
+    "source": "Cross-modal conversion/other_model/final_multiseed.py",
+    "sha256": "018d115c0edb5a2d26d40f2663d90fd9e4f141aff9294ef44a9330a8e7dd3220"
+  },
+  {
+    "path": "original/project/other_model/final_multiseed_cont.py",
+    "source": "Cross-modal conversion/other_model/final_multiseed_cont.py",
+    "sha256": "f7311b76e552879657828bf1af1201928dc1397b684aa8c17faa09facc74ad70"
+  },
+  {
+    "path": "original/project/other_model/generate_comparison.py",
+    "source": "Cross-modal conversion/other_model/generate_comparison.py",
+    "sha256": "0599603c4d325d2232dd7ee49f297bc9afe4cc26b592ad5287b16c63553446af"
+  },
+  {
+    "path": "original/project/other_model/improve_experiments.py",
+    "source": "Cross-modal conversion/other_model/improve_experiments.py",
+    "sha256": "3dd6388806d2966c24157920337fd074da4e7b844da5a6e2d816631ee10c3a66"
+  },
+  {
+    "path": "original/project/other_model/improve_l1_unet.py",
+    "source": "Cross-modal conversion/other_model/improve_l1_unet.py",
+    "sha256": "1b70695e6dcaf9dbb4e6d2325d27040ea0da0d8932c77b307df82c3b0b478e1c"
+  },
+  {
+    "path": "original/project/other_model/phase1_unified_metrics.py",
+    "source": "Cross-modal conversion/other_model/phase1_unified_metrics.py",
+    "sha256": "6b69de5dd7047cf5dc7ab98b9867572c89733de6ee9738a6926b29e0b74a0835"
+  },
+  {
+    "path": "original/project/other_model/phase1a_l1_infer.py",
+    "source": "Cross-modal conversion/other_model/phase1a_l1_infer.py",
+    "sha256": "5453771f04ca838278efa62390c865df71524949ed71a85a3aec326f6b66682e"
+  },
+  {
+    "path": "original/project/other_model/phase1b_metrics.py",
+    "source": "Cross-modal conversion/other_model/phase1b_metrics.py",
+    "sha256": "c7504c120a22c971f4b84a58de6ad851f8594e7dd9f0b71a46e3e5ab391c9680"
+  },
+  {
+    "path": "original/project/other_model/phase2_ct_unet.py",
+    "source": "Cross-modal conversion/other_model/phase2_ct_unet.py",
+    "sha256": "88f5043a6d03b431be0d0e7f447acea43e8b8662d10c994dba094292be1e9847"
+  },
+  {
+    "path": "original/project/other_model/phase2_loss_ablation.py",
+    "source": "Cross-modal conversion/other_model/phase2_loss_ablation.py",
+    "sha256": "40ad4caad76ed390669d4911500aac4fa08ef898375f1af745fea29323cebd52"
+  },
+  {
+    "path": "original/project/other_model/phase3_final.py",
+    "source": "Cross-modal conversion/other_model/phase3_final.py",
+    "sha256": "c4bccf2ead66512474bd83c9872839b0bdb3fed9ba37dd8abf78dc55d53071a8"
+  },
+  {
+    "path": "original/project/experiments/supplement_generate_coarse.py",
+    "source": "Cross-modal conversion/experiments/supplement_generate_coarse.py",
+    "sha256": "2fafd2a311dc9207fdb527a2c62286f236ee1f63c389483c1afb1a92de3592c1"
+  },
+  {
+    "path": "original/handoff_v2/scripts/benchmark.py",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/scripts/benchmark.py",
+    "sha256": "07582e20634d46c57849103aad22c9dee0ab98e11a337510314a01ab3edabe48"
+  },
+  {
+    "path": "original/handoff_v2/scripts/evaluate.py",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/scripts/evaluate.py",
+    "sha256": "a7b08587060d733f1c1a98613d0ed1c5a704c9878142f995249aea138e56ee3e"
+  },
+  {
+    "path": "original/handoff_v2/scripts/statistics.py",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/scripts/statistics.py",
+    "sha256": "db0a9110c81360454d849b2023c33eff5f59fcb494ad2abac05cb56a9ad892c5"
+  },
+  {
+    "path": "original/handoff_v2/efficiency/benchmark.py",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/efficiency/benchmark.py",
+    "sha256": "07582e20634d46c57849103aad22c9dee0ab98e11a337510314a01ab3edabe48"
+  },
+  {
+    "path": "configs/bridge.yaml",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/configs/bridge.yaml",
+    "sha256": "4dc693854e2d9ad21fe27edfe64b64a896d6ae9c6ee1bd617827442ad6940465"
+  },
+  {
+    "path": "configs/ct_only.yaml",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/configs/ct_only.yaml",
+    "sha256": "719c2c8a043d8349ff3ff2c86c6f35c8d219371bc3c01340f4843c3fec857b47"
+  },
+  {
+    "path": "configs/evaluation.yaml",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/configs/evaluation.yaml",
+    "sha256": "59897aeb82d9905d1a817967bfb8051e81edb44df78a784640fe5bea5490ff7d"
+  },
+  {
+    "path": "configs/refiner_l1.yaml",
+    "source": "BridgeRefine_paper_handoff_v2/handoff_v2/configs/refiner_l1.yaml",
+    "sha256": "6526cf90a56753cb4d47a2b2f173387fcf078e5e5f21b2a469cfa04817afe50f"
+  },
+  {
+    "path": "original/figure_scripts/build_figures_legacy.py",
+    "source": "Cross-modal conversion/other_model/paper/nature_bridge_refine/build_figures.py",
+    "sha256": "e4c5085747fbdfb31c3a14f6142bee61a67ed572a075680cf63f98623e258c71"
+  },
+  {
+    "path": "original/figure_scripts/redraw_pipeline.py",
+    "source": "Cross-modal conversion/other_model/paper/jiim_submission/figures/redraw_pipeline.py",
+    "sha256": "7639b8ce21bd80fe6edc554afe60f3d9f52ed3eca294e3560a6e0324efc2af69"
+  },
+  {
+    "path": "original/figure_scripts/make_bridgerefine_schematic.py",
+    "source": "Cross-modal conversion/output/figures/make_bridgerefine_schematic.py",
+    "sha256": "98a6f3af576023ac28521adf5bc99e9a48281803c7f4760a6ef0701323eeec67"
+  }
+]

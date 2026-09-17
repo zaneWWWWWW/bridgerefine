@@ -1,0 +1,17 @@
+# Selected packages copied from the original experiment environment record.
+# Original platform: Windows, Python 3.13.6, CUDA 12.8.
+# This is NOT a tested installation lock for the current machine.
+# Install the matching PyTorch build using the appropriate PyTorch index.
+torch==2.11.0+cu128
+torchvision==0.26.0+cu128
+numpy==2.4.3
+opencv-python==4.13.0.92
+scipy==1.17.1
+lpips==0.1.4
+nibabel==5.4.2
+simpleitk==2.5.4
+matplotlib==3.10.9
+pandas==3.0.5
+pillow==12.1.1
+PyYAML==6.0.3
+tqdm==4.67.3
