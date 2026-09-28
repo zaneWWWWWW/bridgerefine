@@ -1,0 +1,22 @@
+[
+  {
+    "path": "original/paper_assets/jiim_submission/redraw_pipeline.py",
+    "source": "Cross-modal conversion/other_model/paper/jiim_submission/figures/redraw_pipeline.py",
+    "sha256": "7639b8ce21bd80fe6edc554afe60f3d9f52ed3eca294e3560a6e0324efc2af69"
+  },
+  {
+    "path": "original/paper_assets/nature_bridge_refine/build_figures.py",
+    "source": "Cross-modal conversion/other_model/paper/nature_bridge_refine/build_figures.py",
+    "sha256": "e4c5085747fbdfb31c3a14f6142bee61a67ed572a075680cf63f98623e258c71"
+  },
+  {
+    "path": "original/paper_assets/nature_bridge_refine/format_word.py",
+    "source": "Cross-modal conversion/other_model/paper/nature_bridge_refine/format_word.py",
+    "sha256": "3a6d2704ea51993374260d1e4c9a1eb1aafd5bfcfad70dba87f2135404d8ab1d"
+  },
+  {
+    "path": "original/paper_assets/output/figures/make_bridgerefine_schematic.py",
+    "source": "Cross-modal conversion/output/figures/make_bridgerefine_schematic.py",
+    "sha256": "98a6f3af576023ac28521adf5bc99e9a48281803c7f4760a6ef0701323eeec67"
+  }
+]

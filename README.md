@@ -36,6 +36,7 @@ python3 tools/download_materials.py
 | `original/project/other_model/{SynDiff,MG_CycleGAN,Masked_Bridge,Masked_Adv_Diff_Bridge}/` | 对照及探索实验 |
 | `original/handoff_v2/` | 10×2 评估、效率测量与统计脚本原件 |
 | `original/figure_scripts/` | 原始图表绘制脚本，部分包含旧结果 |
+| `original/paper_assets/` | 当前中文稿/投稿稿专用的图表生成、版式整理脚本及说明 |
 | `configs/` | 交接材料中记录的模型/评估参数说明 |
 | `tools/` | 本次新增、可独立使用的来源校验与结果汇总工具 |
 | `SOURCE_MANIFEST.json` | 每份原始代码/配置的来源与 SHA-256 |
@@ -73,6 +74,7 @@ python tools/summarize_results.py \
 - 部分旧精炼脚本通过 `idx % len(coarse)` 取缓存，不能据此保证患者与切片对齐；重跑前必须检查缓存对应关系。
 - 评估和 benchmark 原件依赖旧目录布局、缓存、GPU 和影像路径。当前配置 YAML 是参数记录，未实现统一配置加载入口。
 - `checkpoints/selfrdb/selfrdb_best.pt` 和 `other_model/SelfRDB/selfrdb_best.pt` 在原材料中不是同一文件。应按论文 checkpoint 清单核对 SHA-256；整理包已恢复并核对全部 10 个主要权重，另附 coarse-only 权重。
+- `original/paper_assets/` 保存本地工作区额外发现的论文图表生成脚本和 Word 排版脚本；演示文稿生成器与临时图片生成脚本不属于论文实验/稿件资产归档。
 
 原训练环境的可恢复依赖见 `requirements-training-recorded.txt`，它是归档记录，不是已验证的跨平台环境锁。此次未重新训练网络、重算全套影像指标或复测 GPU 时延。
 
