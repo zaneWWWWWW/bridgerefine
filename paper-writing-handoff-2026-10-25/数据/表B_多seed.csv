@@ -1,0 +1,7 @@
+model,seed,ssim
+CT-only,42,0.8095
+CT-only,123,0.805
+CT-only,2026,0.7883
+BridgeRefine-L1,42,0.8184
+BridgeRefine-L1,123,0.8183
+BridgeRefine-L1,2026,0.8147
