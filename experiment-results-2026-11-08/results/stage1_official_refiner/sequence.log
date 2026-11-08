@@ -1,0 +1,11 @@
+﻿2026-11-04T16:13:57.2234833+08:00 Generating official train/validation priors
+2026-11-04T16:14:20.8779215+08:00 Generation exit code: 1
+2026-11-04T16:14:44.5292619+08:00 Generating official train/validation priors
+2026-11-04T17:27:19.8530706+08:00 Generation exit code: 0
+2026-11-04T17:27:19.8668602+08:00 Training official-prior refiner seed 42
+2026-11-04T18:10:34.1255209+08:00 Seed 42 exit code: 0
+2026-11-04T18:10:34.1312229+08:00 Training official-prior refiner seed 123
+2026-11-04T19:54:51.3887220+08:00 Seed 123 exit code: 0
+2026-11-04T19:54:51.4102301+08:00 Training official-prior refiner seed 2026
+2026-11-04T20:52:32.0340857+08:00 Seed 2026 exit code: 0
+2026-11-04T20:52:32.0514663+08:00 Official-prior refiner sequence complete.

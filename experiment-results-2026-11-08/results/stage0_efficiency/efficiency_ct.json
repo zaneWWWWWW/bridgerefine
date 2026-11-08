@@ -1,0 +1,28 @@
+{
+  "device": "NVIDIA GeForce RTX 3090",
+  "torch_version": "2.11.0+cu128",
+  "input_size": [
+    1,
+    1,
+    128,
+    128
+  ],
+  "batch_size": 1,
+  "precision": "float32",
+  "warmup": 20,
+  "timed_per_repeat": 100,
+  "repeats": 3,
+  "scope": "GPU model inference only; preprocessing, input transfer, and cached prior transfer are excluded",
+  "results": [
+    {
+      "method": "CT-only U-Net",
+      "parameters": 1334657,
+      "mean_ms": 3.2823180065800748,
+      "repeat_sd_ms": 0.1830209194195389,
+      "p50_single_ms": 3.172100055962801,
+      "p95_single_ms": 4.384670173749328,
+      "additional_peak_allocated_mb": 4212.78125,
+      "peak_reserved_mb": 4250.0
+    }
+  ]
+}

@@ -1,0 +1,735 @@
+{
+  "root": "E:\\tyllltl\\Cross-modal conversion",
+  "checks": [
+    {
+      "name": "split_file_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\checkpoints\\selfrdb\\patient_split.json"
+    },
+    {
+      "name": "split_counts",
+      "passed": true,
+      "details": {
+        "train": 144,
+        "val": 18,
+        "test": 18
+      }
+    },
+    {
+      "name": "patient_split_disjoint",
+      "passed": true,
+      "details": {
+        "train_val": [],
+        "train_test": [],
+        "val_test": []
+      }
+    },
+    {
+      "name": "patient_union_count",
+      "passed": true,
+      "details": 180
+    },
+    {
+      "name": "names_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_train.json"
+    },
+    {
+      "name": "names_train_nonempty",
+      "passed": true,
+      "details": 27309
+    },
+    {
+      "name": "names_train_unique",
+      "passed": true,
+      "details": {
+        "count": 27309,
+        "unique": 27309
+      }
+    },
+    {
+      "name": "names_train_patients_match_split",
+      "passed": true,
+      "details": {
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "names_val_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_val.json"
+    },
+    {
+      "name": "names_val_nonempty",
+      "passed": true,
+      "details": 3473
+    },
+    {
+      "name": "names_val_unique",
+      "passed": true,
+      "details": {
+        "count": 3473,
+        "unique": 3473
+      }
+    },
+    {
+      "name": "names_val_patients_match_split",
+      "passed": true,
+      "details": {
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "names_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_test.json"
+    },
+    {
+      "name": "names_test_nonempty",
+      "passed": true,
+      "details": 3415
+    },
+    {
+      "name": "names_test_unique",
+      "passed": true,
+      "details": {
+        "count": 3415,
+        "unique": 3415
+      }
+    },
+    {
+      "name": "names_test_patients_match_split",
+      "passed": true,
+      "details": {
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "cache_ct_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_train.npy"
+    },
+    {
+      "name": "cache_ct_train_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_ct_train_row_count",
+      "passed": true,
+      "details": {
+        "array": 27309,
+        "names": 27309
+      }
+    },
+    {
+      "name": "cache_ct_train_single_channel",
+      "passed": true,
+      "details": [
+        27309,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_ct_val_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_val.npy"
+    },
+    {
+      "name": "cache_ct_val_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_ct_val_row_count",
+      "passed": true,
+      "details": {
+        "array": 3473,
+        "names": 3473
+      }
+    },
+    {
+      "name": "cache_ct_val_single_channel",
+      "passed": true,
+      "details": [
+        3473,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_ct_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_test.npy"
+    },
+    {
+      "name": "cache_ct_test_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_ct_test_row_count",
+      "passed": true,
+      "details": {
+        "array": 3415,
+        "names": 3415
+      }
+    },
+    {
+      "name": "cache_ct_test_single_channel",
+      "passed": true,
+      "details": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_mr_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_train.npy"
+    },
+    {
+      "name": "cache_mr_train_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_mr_train_row_count",
+      "passed": true,
+      "details": {
+        "array": 27309,
+        "names": 27309
+      }
+    },
+    {
+      "name": "cache_mr_train_single_channel",
+      "passed": true,
+      "details": [
+        27309,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_mr_val_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_val.npy"
+    },
+    {
+      "name": "cache_mr_val_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_mr_val_row_count",
+      "passed": true,
+      "details": {
+        "array": 3473,
+        "names": 3473
+      }
+    },
+    {
+      "name": "cache_mr_val_single_channel",
+      "passed": true,
+      "details": [
+        3473,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_mr_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_test.npy"
+    },
+    {
+      "name": "cache_mr_test_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_mr_test_row_count",
+      "passed": true,
+      "details": {
+        "array": 3415,
+        "names": 3415
+      }
+    },
+    {
+      "name": "cache_mr_test_single_channel",
+      "passed": true,
+      "details": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_pix2pix_prior_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\pix2pix_prior_train.npy"
+    },
+    {
+      "name": "cache_pix2pix_prior_train_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_pix2pix_prior_train_row_count",
+      "passed": true,
+      "details": {
+        "array": 27309,
+        "names": 27309
+      }
+    },
+    {
+      "name": "cache_pix2pix_prior_train_single_channel",
+      "passed": true,
+      "details": [
+        27309,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_pix2pix_prior_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\pix2pix_prior_test.npy"
+    },
+    {
+      "name": "cache_pix2pix_prior_test_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_pix2pix_prior_test_row_count",
+      "passed": true,
+      "details": {
+        "array": 3415,
+        "names": 3415
+      }
+    },
+    {
+      "name": "cache_pix2pix_prior_test_single_channel",
+      "passed": true,
+      "details": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_coarse_2x1_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\coarse_2x1_train.npy"
+    },
+    {
+      "name": "cache_coarse_2x1_train_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_coarse_2x1_train_row_count",
+      "passed": true,
+      "details": {
+        "array": 27309,
+        "names": 27309
+      }
+    },
+    {
+      "name": "cache_coarse_2x1_train_single_channel",
+      "passed": true,
+      "details": [
+        27309,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_detreg_train_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_train.npy"
+    },
+    {
+      "name": "cache_detreg_train_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_detreg_train_row_count",
+      "passed": true,
+      "details": {
+        "array": 27309,
+        "names": 27309
+      }
+    },
+    {
+      "name": "cache_detreg_train_single_channel",
+      "passed": true,
+      "details": [
+        27309,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_detreg_val_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_val.npy"
+    },
+    {
+      "name": "cache_detreg_val_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_detreg_val_row_count",
+      "passed": true,
+      "details": {
+        "array": 3473,
+        "names": 3473
+      }
+    },
+    {
+      "name": "cache_detreg_val_single_channel",
+      "passed": true,
+      "details": [
+        3473,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_detreg_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_test.npy"
+    },
+    {
+      "name": "cache_detreg_test_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_detreg_test_row_count",
+      "passed": true,
+      "details": {
+        "array": 3415,
+        "names": 3415
+      }
+    },
+    {
+      "name": "cache_detreg_test_single_channel",
+      "passed": true,
+      "details": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "cache_bridge_10x2_test_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\bridge_eval_coarse_test.npy"
+    },
+    {
+      "name": "cache_bridge_10x2_test_finite",
+      "passed": true,
+      "details": "checked first 32 slices"
+    },
+    {
+      "name": "cache_bridge_10x2_test_row_count",
+      "passed": true,
+      "details": {
+        "array": 3415,
+        "names": 3415
+      }
+    },
+    {
+      "name": "cache_bridge_10x2_test_single_channel",
+      "passed": true,
+      "details": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "name": "metrics_patient_file_exists",
+      "passed": true,
+      "details": "E:\\tyllltl\\Cross-modal conversion\\other_model\\paper\\source_data\\unified10x2\\metrics_patient_unified_10x2.csv"
+    },
+    {
+      "name": "metrics_patient_count",
+      "passed": true,
+      "details": 18
+    },
+    {
+      "name": "metrics_patients_match_test_split",
+      "passed": true,
+      "details": {
+        "missing": [],
+        "extra": []
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\checkpoints\\selfrdb\\patient_split.json",
+      "size_bytes": 2757,
+      "sha256": "21a7b82ece44d1de7de673e85153e24c1e4d225de1116af26b8bde3a91619f50"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_train.json",
+      "size_bytes": 409635,
+      "sha256": "7d5528da944664270f24e75e79054f63e36e8d6f99da5dc381dd2675091f9909"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_val.json",
+      "size_bytes": 52095,
+      "sha256": "1efcdf15599b310792123930dcf0bc97f3d20c5fbad79c14bab070c7408bf5ae"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\names_test.json",
+      "size_bytes": 51225,
+      "sha256": "044d4fe1ef61abb18d12e6468e78c73ec8cfcdd4d1b6993b8c2a80b8b95c74f2"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_train.npy",
+      "size_bytes": 1789722752,
+      "sha256": "bf2a980674b8356558c13f88b53ea11cd587cf65cb301bb2869478453adc7269"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_val.npy",
+      "size_bytes": 227606656,
+      "sha256": "9991b8280b1b39b6abe986051e9617e6411889c6c57eeb212ca979b3c644f647"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\ct_test.npy",
+      "size_bytes": 223805568,
+      "sha256": "733e8a6bd67a47eb73d2e1599f71311240e678ac75f3287ce6387548c6af837f"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_train.npy",
+      "size_bytes": 1789722752,
+      "sha256": "6bbd6987b90a8cc9edb116913008e7f664b22faedf80097720225d00d55e1d7c"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_val.npy",
+      "size_bytes": 227606656,
+      "sha256": "b54de231ae67b30a0e07103ab8a95e0b93abfa1db04b8c08d5d76e746773b551"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\mr_test.npy",
+      "size_bytes": 223805568,
+      "sha256": "302a3fe09d54e5a53dbc2cc56c6a6dcb9ae568f1ead5de1a15e82e17b20109a7"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\pix2pix_prior_train.npy",
+      "size_bytes": 1789722752,
+      "sha256": "865a0317079bd186a2c9b279034a4fe077326463bc622cd2174f99d3c34fa7d7"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\pix2pix_prior_test.npy",
+      "size_bytes": 223805568,
+      "sha256": "0920b71a5cc6cd7a0fc17da71064a486f6c61e2ca2576b6141c821e595b160f4"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\cache\\coarse_2x1_train.npy",
+      "size_bytes": 1789722752,
+      "sha256": "434a614d660cfc6bf95e4565f1febc45d58353a41d1c197ec2e9708647670f0c"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_train.npy",
+      "size_bytes": 1789722752,
+      "sha256": "462aaee9084071a565687d41ef76cc7042f6f2828cafd196bc2ed6108aece92e"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_val.npy",
+      "size_bytes": 227606656,
+      "sha256": "aa1df234d0e933668a30ae456a20b2f3e7579a74a260c7fd4379a1389ddafc61"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\detreg_coarse_test.npy",
+      "size_bytes": 223805568,
+      "sha256": "567ab03cf825f9a921d1fc3c48f09881dce7fb13b499089bf09bc84c38e45016"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\bridge_eval_coarse_test.npy",
+      "size_bytes": 223805568,
+      "sha256": "2c062852acf1283c0da8ef9d502e41c27f874730c722a7b446946a80a136ad2e"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\other_model\\paper\\source_data\\unified10x2\\metrics_patient_unified_10x2.csv",
+      "size_bytes": 8229,
+      "sha256": "f983da8bd1c606209eff44a976d2f719fd0184579ec7078cfa2842e23b59790b"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\other_model\\SelfRDB\\selfrdb_best.pt",
+      "size_bytes": 57697509,
+      "sha256": "bb2a1dbf0fd5f6c8fa6dfaded91b79f54fd17f570da1d1ce4c73202b2ba81978"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\E1_detreg_seed42\\best.pt",
+      "size_bytes": 5358785,
+      "sha256": "0c658e992e216fee711d0f7a086361461132f8c518fa7a30c9cacbdca0ffbd5f"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\E2_capct_seed42\\best.pt",
+      "size_bytes": 65141441,
+      "sha256": "94b53088815f11ba15a83cc52666987d5640665228510583e12f89997f8020ba"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\E3_bridgerefine_seed42\\best.pt",
+      "size_bytes": 5358785,
+      "sha256": "6d01298ed7a05e131ecba9f8f52d7031c4ffd3f7b676e0183fd6efb6172d97f7"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\controls\\E4_ct_only_seed42\\best.pt",
+      "size_bytes": 5346177,
+      "sha256": "67aadcae2b07d74fdfe1ef0cc79abfaf9020dce120fa1c77fb729840280bc916"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\gan_prior\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "4c825f92ac016d926f02fd1a363b87d54cea160c42dcfb28feae606634371483"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\gan_prior\\seed123\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "88173220f15b14a10713f308f06506240b262ee72dafee58698258302948c820"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\gan_prior\\seed2026\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "a44e441d7aece5aa78e2c34be44f4de373447b7676351c1846f7541d0f6a1b42"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\coarse_2x1\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "845fda66e37b498470d9d22856bd238f9f49ce4e5ab9d4ddbe0ff073d42ff1fb"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\coarse_2x1\\seed123\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "233c8e0df872e83dbc666b4b2d9deb5c99f3cde61da07d3e02003996cd298eed"
+    },
+    {
+      "path": "E:\\tyllltl\\Cross-modal conversion\\experiments\\coarse_2x1\\seed2026\\last.pt",
+      "size_bytes": 5358721,
+      "sha256": "ee16f21bce31e0d3bf3611ad6ae763651f541378e04b965893922505b8b6e330"
+    }
+  ],
+  "summary": {
+    "total_checks": 71,
+    "passed": 71,
+    "failed": 0,
+    "split_counts": {
+      "train": 144,
+      "val": 18,
+      "test": 18
+    },
+    "names_counts": {
+      "train": 27309,
+      "val": 3473,
+      "test": 3415
+    },
+    "array_shapes": {
+      "ct_train": [
+        27309,
+        1,
+        128,
+        128
+      ],
+      "ct_val": [
+        3473,
+        1,
+        128,
+        128
+      ],
+      "ct_test": [
+        3415,
+        1,
+        128,
+        128
+      ],
+      "mr_train": [
+        27309,
+        1,
+        128,
+        128
+      ],
+      "mr_val": [
+        3473,
+        1,
+        128,
+        128
+      ],
+      "mr_test": [
+        3415,
+        1,
+        128,
+        128
+      ],
+      "pix2pix_prior_train": [
+        27309,
+        1,
+        128,
+        128
+      ],
+      "pix2pix_prior_test": [
+        3415,
+        1,
+        128,
+        128
+      ],
+      "coarse_2x1_train": [
+        27309,
+        1,
+        128,
+        128
+      ],
+      "detreg_train": [
+        27309,
+        1,
+        128,
+        128
+      ],
+      "detreg_val": [
+        3473,
+        1,
+        128,
+        128
+      ],
+      "detreg_test": [
+        3415,
+        1,
+        128,
+        128
+      ],
+      "bridge_10x2_test": [
+        3415,
+        1,
+        128,
+        128
+      ]
+    }
+  }
+}

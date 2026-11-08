@@ -1,0 +1,58 @@
+{
+  "device": "NVIDIA GeForce RTX 3090",
+  "torch_version": "2.11.0+cu128",
+  "input_size": [
+    1,
+    1,
+    128,
+    128
+  ],
+  "batch_size": 1,
+  "precision": "float32",
+  "warmup": 20,
+  "timed_per_repeat": 100,
+  "repeats": 3,
+  "scope": "GPU model inference only; each method ran in an isolated process. Preprocessing, input transfer, and prior transfer from host storage are excluded.",
+  "results": [
+    {
+      "method": "CT-only U-Net",
+      "parameters": 1334657,
+      "mean_ms": 3.2823180065800748,
+      "repeat_sd_ms": 0.1830209194195389,
+      "p50_single_ms": 3.172100055962801,
+      "p95_single_ms": 4.384670173749328,
+      "additional_peak_allocated_mb": 4212.78125,
+      "peak_reserved_mb": 4250.0
+    },
+    {
+      "method": "Conditional GAN prior + refiner",
+      "parameters": 12703426,
+      "mean_ms": 10.02756632088373,
+      "repeat_sd_ms": 0.06862889978049469,
+      "p50_single_ms": 9.673200082033873,
+      "p95_single_ms": 12.35767025500536,
+      "additional_peak_allocated_mb": 4204.78125,
+      "peak_reserved_mb": 4274.0
+    },
+    {
+      "method": "Local bridge 2x1 + refiner",
+      "parameters": 15743170,
+      "mean_ms": 51.13458733074367,
+      "repeat_sd_ms": 1.2605492041597337,
+      "p50_single_ms": 50.23719999007881,
+      "p95_single_ms": 56.170669849961996,
+      "additional_peak_allocated_mb": 6339.43896484375,
+      "peak_reserved_mb": 6434.0
+    },
+    {
+      "method": "Local bridge 10x2 + refiner",
+      "parameters": 15743170,
+      "mean_ms": 341.34418066125363,
+      "repeat_sd_ms": 1.0755768899034421,
+      "p50_single_ms": 337.91040000505745,
+      "p95_single_ms": 370.3081351239235,
+      "additional_peak_allocated_mb": 6339.43896484375,
+      "peak_reserved_mb": 6434.0
+    }
+  ]
+}

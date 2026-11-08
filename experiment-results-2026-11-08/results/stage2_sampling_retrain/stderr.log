@@ -1,0 +1,5 @@
+E:\tyllltl\Cross-modal conversion\experiments\ordered_supplement_20261030\stage2_sampling_retrain.py:102: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  batch = torch.from_numpy(
+E:\tyllltl\Cross-modal conversion\experiments\ordered_supplement_20261030\stage2_sampling_retrain.py:167: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  losses.append(float(loss))

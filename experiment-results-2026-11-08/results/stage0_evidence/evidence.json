@@ -1,0 +1,546 @@
+{
+  "n_patients": 18,
+  "n_slices": 3415,
+  "prior_quality": [
+    {
+      "prior": "Conditional GAN (pix2pix)",
+      "ssim_mean": 0.8189607248386889,
+      "psnr_mean": 19.396991440113638,
+      "mae_mean": 0.1001602306833737,
+      "lpips_mean": 0.07139186882257978,
+      "ssim_sd": 0.05288574944652294,
+      "psnr_sd": 1.4837890953485202,
+      "mae_sd": 0.023526492598870227,
+      "lpips_sd": 0.01833910170487523,
+      "ssim_bootstrap_ci95": [
+        0.7947900570411223,
+        0.841937854368344
+      ],
+      "psnr_bootstrap_ci95": [
+        18.730622304867023,
+        20.052167225605842
+      ],
+      "mae_bootstrap_ci95": [
+        0.08982173288212124,
+        0.11083196513390574
+      ],
+      "lpips_bootstrap_ci95": [
+        0.06391087778075039,
+        0.08033338895650319
+      ]
+    },
+    {
+      "prior": "Local bridge 10x2",
+      "ssim_mean": 0.5855114296381929,
+      "psnr_mean": 16.437847951679668,
+      "mae_mean": 0.15675487659853246,
+      "lpips_mean": 0.22867093251984277,
+      "ssim_sd": 0.03943942975685613,
+      "psnr_sd": 1.0221803145210235,
+      "mae_sd": 0.023440969535387785,
+      "lpips_sd": 0.025325045388723984,
+      "ssim_bootstrap_ci95": [
+        0.5679361207711391,
+        0.6032509732289826
+      ],
+      "psnr_bootstrap_ci95": [
+        15.981952365225794,
+        16.891134596465825
+      ],
+      "mae_bootstrap_ci95": [
+        0.14645215383523713,
+        0.16735722143737866
+      ],
+      "lpips_bootstrap_ci95": [
+        0.21740807422633732,
+        0.2399427426586622
+      ]
+    },
+    {
+      "prior": "Local bridge 2x1",
+      "ssim_mean": 0.5938038269908759,
+      "psnr_mean": 17.57505685139534,
+      "mae_mean": 0.13935610852398214,
+      "lpips_mean": 0.2472570028003965,
+      "ssim_sd": 0.035759072039169185,
+      "psnr_sd": 1.0589765008475835,
+      "mae_sd": 0.020649568313344198,
+      "lpips_sd": 0.025109341650581853,
+      "ssim_bootstrap_ci95": [
+        0.577929266614547,
+        0.6101209707025483
+      ],
+      "psnr_bootstrap_ci95": [
+        17.106814612927156,
+        18.049539091210047
+      ],
+      "mae_bootstrap_ci95": [
+        0.13018266047336108,
+        0.14856052147106988
+      ],
+      "lpips_bootstrap_ci95": [
+        0.2362097626522927,
+        0.2585761519180312
+      ]
+    },
+    {
+      "prior": "Deterministic regressor",
+      "ssim_mean": 0.8094525455987872,
+      "psnr_mean": 19.770186572440604,
+      "mae_mean": 0.09797324689603532,
+      "lpips_mean": 0.12873814876402395,
+      "ssim_sd": 0.05362640552723999,
+      "psnr_sd": 1.3067495505235909,
+      "mae_sd": 0.020096027251434057,
+      "lpips_sd": 0.01983463207826433,
+      "ssim_bootstrap_ci95": [
+        0.7852263840148204,
+        0.8326778975025119
+      ],
+      "psnr_bootstrap_ci95": [
+        19.192716909930745,
+        20.352447677868195
+      ],
+      "mae_bootstrap_ci95": [
+        0.08915847323605283,
+        0.10699190612507331
+      ],
+      "lpips_bootstrap_ci95": [
+        0.1205291739904593,
+        0.13826853271691944
+      ]
+    },
+    {
+      "prior": "Null prior (CT copy)",
+      "ssim_mean": 0.452259310397324,
+      "psnr_mean": 11.957675613232663,
+      "mae_mean": 0.26028535182858975,
+      "lpips_mean": 0.22198267646685343,
+      "ssim_sd": 0.04183092608175517,
+      "psnr_sd": 0.8391540767133554,
+      "mae_sd": 0.03334965686150024,
+      "lpips_sd": 0.023613117127304628,
+      "ssim_bootstrap_ci95": [
+        0.4336760330931118,
+        0.47182830227770384
+      ],
+      "psnr_bootstrap_ci95": [
+        11.582263528123505,
+        12.334340944580468
+      ],
+      "mae_bootstrap_ci95": [
+        0.245316366948909,
+        0.27559199312256966
+      ],
+      "lpips_bootstrap_ci95": [
+        0.2117941058217555,
+        0.23288307218574364
+      ]
+    }
+  ],
+  "seed_summary": [
+    {
+      "method": "Conditional GAN prior + refiner",
+      "seed": 42,
+      "patient_mean": 0.8351607885831211,
+      "patient_sd": 0.0492152214787903
+    },
+    {
+      "method": "Conditional GAN prior + refiner",
+      "seed": 123,
+      "patient_mean": 0.833361183030425,
+      "patient_sd": 0.04900311544731956
+    },
+    {
+      "method": "Conditional GAN prior + refiner",
+      "seed": 2026,
+      "patient_mean": 0.8357577875104493,
+      "patient_sd": 0.04885009159162953
+    },
+    {
+      "method": "Local bridge 2x1 + refiner",
+      "seed": 42,
+      "patient_mean": 0.8264101135807209,
+      "patient_sd": 0.05058015555648694
+    },
+    {
+      "method": "Local bridge 2x1 + refiner",
+      "seed": 123,
+      "patient_mean": 0.8251787790450567,
+      "patient_sd": 0.05093002192736497
+    },
+    {
+      "method": "Local bridge 2x1 + refiner",
+      "seed": 2026,
+      "patient_mean": 0.8209809855668202,
+      "patient_sd": 0.05261159483638564
+    }
+  ],
+  "paired_statistics": {
+    "gan_vs_bridge2_seedwise": {
+      "42": {
+        "comparison": "GAN prior + refiner vs bridge 2x1 + refiner, seed 42",
+        "n_patients": 18,
+        "mean_delta": 0.008750675002400165,
+        "median_delta": 0.007506063760055248,
+        "sd_delta": 0.012622336361559077,
+        "improved_patients": 15,
+        "bootstrap_ci95": [
+          0.003990698843318814,
+          0.015344260763436134
+        ],
+        "wilcoxon_raw_p": 0.0008392333984375,
+        "patients": [
+          "1BA012",
+          "1BA091",
+          "1BA100",
+          "1BA116",
+          "1BA184",
+          "1BA222",
+          "1BA256",
+          "1BA328",
+          "1BB002",
+          "1BB003",
+          "1BB008",
+          "1BB200",
+          "1BB205",
+          "1BC007",
+          "1BC014",
+          "1BC050",
+          "1BC066",
+          "1BC080"
+        ],
+        "paired_differences": [
+          0.003841961423555973,
+          0.00785545450477787,
+          0.004880348101575338,
+          0.01051466386330313,
+          0.013351633091165493,
+          0.007044460385891016,
+          0.007156673015332626,
+          0.013540676145842645,
+          0.012502344215617467,
+          0.003992130154186868,
+          -0.00447834090570387,
+          0.009283986041154879,
+          0.004741024533543081,
+          0.01133667742428568,
+          0.05343111644509024,
+          0.008730038729581002,
+          -0.005736122186156489,
+          -0.0044765749398399945
+        ]
+      },
+      "123": {
+        "comparison": "GAN prior + refiner vs bridge 2x1 + refiner, seed 123",
+        "n_patients": 18,
+        "mean_delta": 0.008182403985368113,
+        "median_delta": 0.007327244865356519,
+        "sd_delta": 0.013557995406154894,
+        "improved_patients": 14,
+        "bootstrap_ci95": [
+          0.0027717873001921224,
+          0.015085717728426252
+        ],
+        "wilcoxon_raw_p": 0.00896453857421875,
+        "patients": [
+          "1BA012",
+          "1BA091",
+          "1BA100",
+          "1BA116",
+          "1BA184",
+          "1BA222",
+          "1BA256",
+          "1BA328",
+          "1BB002",
+          "1BB003",
+          "1BB008",
+          "1BB200",
+          "1BB205",
+          "1BC007",
+          "1BC014",
+          "1BC050",
+          "1BC066",
+          "1BC080"
+        ],
+        "paired_differences": [
+          -0.0003865311543146399,
+          0.008496708340115067,
+          0.004436205993307407,
+          0.009982048254932763,
+          0.014018963382701699,
+          0.0030508722577776703,
+          0.004309677025851166,
+          0.016827297933173946,
+          0.013719349398332414,
+          0.0072344830355693945,
+          -0.003709935070423609,
+          0.006112023636146824,
+          0.007420006695143644,
+          0.013042673468589783,
+          0.053010308614341195,
+          0.009948364532355036,
+          -0.010503648683942601,
+          -0.009725595923031127
+        ]
+      },
+      "2026": {
+        "comparison": "GAN prior + refiner vs bridge 2x1 + refiner, seed 2026",
+        "n_patients": 18,
+        "mean_delta": 0.014776801943628952,
+        "median_delta": 0.013077387346133562,
+        "sd_delta": 0.013211786967240496,
+        "improved_patients": 16,
+        "bootstrap_ci95": [
+          0.009418072115309631,
+          0.021278787111565695
+        ],
+        "wilcoxon_raw_p": 3.814697265625e-05,
+        "patients": [
+          "1BA012",
+          "1BA091",
+          "1BA100",
+          "1BA116",
+          "1BA184",
+          "1BA222",
+          "1BA256",
+          "1BA328",
+          "1BB002",
+          "1BB003",
+          "1BB008",
+          "1BB200",
+          "1BB205",
+          "1BC007",
+          "1BC014",
+          "1BC050",
+          "1BC066",
+          "1BC080"
+        ],
+        "paired_differences": [
+          0.004720706182221535,
+          0.007476677641200524,
+          0.00451152629040652,
+          0.01292171877652859,
+          0.02412810861462289,
+          0.013233055915738534,
+          0.010567382854573815,
+          0.023525383436318603,
+          0.02746450024492597,
+          0.019058709292067655,
+          0.014718706688184424,
+          0.016095233026635736,
+          0.010315081805264192,
+          0.015134273663811149,
+          0.056207190918665995,
+          0.010526426633199137,
+          -0.0027722541628212305,
+          -0.0018499928362228912
+        ]
+      }
+    },
+    "gan_vs_bridge2_seed_average": {
+      "comparison": "GAN prior + refiner vs bridge 2x1 + refiner, patient-wise 3-seed average",
+      "n_patients": 18,
+      "mean_delta": 0.010569960310465741,
+      "median_delta": 0.00883894506353805,
+      "sd_delta": 0.012848173410183473,
+      "improved_patients": 16,
+      "bootstrap_ci95": [
+        0.0055076335747796185,
+        0.017057274538566355
+      ],
+      "wilcoxon_raw_p": 0.00025177001953125,
+      "patients": [
+        "1BA012",
+        "1BA091",
+        "1BA100",
+        "1BA116",
+        "1BA184",
+        "1BA222",
+        "1BA256",
+        "1BA328",
+        "1BB002",
+        "1BB003",
+        "1BB008",
+        "1BB200",
+        "1BB205",
+        "1BC007",
+        "1BC014",
+        "1BC050",
+        "1BC066",
+        "1BC080"
+      ],
+      "paired_differences": [
+        0.002725378817154289,
+        0.007942946828697783,
+        0.004609360128429718,
+        0.011139476964921458,
+        0.017166235029496768,
+        0.007776129519802555,
+        0.0073445776319193135,
+        0.017964452505111694,
+        0.01789539795295869,
+        0.01009510749394138,
+        0.002176810237352278,
+        0.010497080901312406,
+        0.007492037677983454,
+        0.013171208185562056,
+        0.05421620532603255,
+        0.009734943298378318,
+        -0.006337341677640218,
+        -0.005350721233031153
+      ]
+    }
+  },
+  "center_summary": [
+    {
+      "center": "1BA",
+      "method": "Conditional GAN + refiner seed 42",
+      "n_patients": 8,
+      "ssim_mean": 0.8815187018332993,
+      "ssim_sd": 0.010470300040859288
+    },
+    {
+      "center": "1BA",
+      "method": "Local bridge 2x1 + refiner seed 42",
+      "n_patients": 8,
+      "ssim_mean": 0.8729954680168688,
+      "ssim_sd": 0.012101789959508351
+    },
+    {
+      "center": "1BA",
+      "method": "Conditional GAN + refiner seed 123",
+      "n_patients": 8,
+      "ssim_mean": 0.879518291951469,
+      "ssim_sd": 0.011040198311375784
+    },
+    {
+      "center": "1BA",
+      "method": "Local bridge 2x1 + refiner seed 123",
+      "n_patients": 8,
+      "ssim_mean": 0.871926386697276,
+      "ssim_sd": 0.013870370028539289
+    },
+    {
+      "center": "1BA",
+      "method": "Conditional GAN + refiner seed 2026",
+      "n_patients": 8,
+      "ssim_mean": 0.8817662690700232,
+      "ssim_sd": 0.0110934467686735
+    },
+    {
+      "center": "1BA",
+      "method": "Local bridge 2x1 + refiner seed 2026",
+      "n_patients": 8,
+      "ssim_mean": 0.8691306991060718,
+      "ssim_sd": 0.013503287738105416
+    },
+    {
+      "center": "1BB",
+      "method": "Conditional GAN + refiner seed 42",
+      "n_patients": 5,
+      "ssim_mean": 0.7773324782206285,
+      "ssim_sd": 0.026411360979074257
+    },
+    {
+      "center": "1BB",
+      "method": "Local bridge 2x1 + refiner seed 42",
+      "n_patients": 5,
+      "ssim_mean": 0.7721242494128688,
+      "ssim_sd": 0.021416252554172347
+    },
+    {
+      "center": "1BB",
+      "method": "Conditional GAN + refiner seed 123",
+      "n_patients": 5,
+      "ssim_mean": 0.7766510075216136,
+      "ssim_sd": 0.026371259091280207
+    },
+    {
+      "center": "1BB",
+      "method": "Local bridge 2x1 + refiner seed 123",
+      "n_patients": 5,
+      "ssim_mean": 0.7704958219826599,
+      "ssim_sd": 0.022886942440319413
+    },
+    {
+      "center": "1BB",
+      "method": "Conditional GAN + refiner seed 2026",
+      "n_patients": 5,
+      "ssim_mean": 0.7786242731335031,
+      "ssim_sd": 0.025636471969073524
+    },
+    {
+      "center": "1BB",
+      "method": "Local bridge 2x1 + refiner seed 2026",
+      "n_patients": 5,
+      "ssim_mean": 0.7610938269220876,
+      "ssim_sd": 0.019893917896784897
+    },
+    {
+      "center": "1BC",
+      "method": "Conditional GAN + refiner seed 42",
+      "n_patients": 5,
+      "ssim_mean": 0.8188164377453291,
+      "ssim_sd": 0.02434137838683781
+    },
+    {
+      "center": "1BC",
+      "method": "Local bridge 2x1 + refiner seed 42",
+      "n_patients": 5,
+      "ssim_mean": 0.8061594106507368,
+      "ssim_sd": 0.04026598287329929
+    },
+    {
+      "center": "1BC",
+      "method": "Conditional GAN + refiner seed 123",
+      "n_patients": 5,
+      "ssim_mean": 0.8162199842655655,
+      "ssim_sd": 0.02546596889203967
+    },
+    {
+      "center": "1BC",
+      "method": "Local bridge 2x1 + refiner seed 123",
+      "n_patients": 5,
+      "ssim_mean": 0.8050655638639028,
+      "ssim_sd": 0.03936126242894951
+    },
+    {
+      "center": "1BC",
+      "method": "Conditional GAN + refiner seed 2026",
+      "n_patients": 5,
+      "ssim_mean": 0.8192777313920766,
+      "ssim_sd": 0.024818699296909583
+    },
+    {
+      "center": "1BC",
+      "method": "Local bridge 2x1 + refiner seed 2026",
+      "n_patients": 5,
+      "ssim_mean": 0.8038286025487503,
+      "ssim_sd": 0.03951479398778322
+    }
+  ],
+  "prior_to_final_gain": {
+    "Conditional GAN (pix2pix)": {
+      "prior_vs_final_spearman": 0.9896800825593396,
+      "prior_vs_gain_spearman": -0.5025799793601652,
+      "prior_ssim_mean": 0.8189607248386889,
+      "final_ssim_mean": 0.8351607885831211,
+      "delta_ssim_mean": 0.016200063744432343
+    },
+    "Local bridge 10x2": {
+      "prior_vs_final_spearman": 0.9793601651186791,
+      "prior_vs_gain_spearman": 0.7254901960784313,
+      "prior_ssim_mean": 0.5855114296381929,
+      "final_ssim_mean": 0.8183555555555555,
+      "delta_ssim_mean": 0.23284412591736267
+    },
+    "Local bridge 2x1": {
+      "prior_vs_final_spearman": 0.9256965944272446,
+      "prior_vs_gain_spearman": 0.32094943240454077,
+      "prior_ssim_mean": 0.5938038269908759,
+      "final_ssim_mean": 0.8264101135807209,
+      "delta_ssim_mean": 0.23260628658984508
+    }
+  }
+}

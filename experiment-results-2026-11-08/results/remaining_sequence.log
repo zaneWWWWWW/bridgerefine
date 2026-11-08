@@ -1,0 +1,32 @@
+﻿2026-11-04T16:23:56.3463060+08:00 Waiting for official-prior refiner
+2026-11-04T20:52:46.1459401+08:00 Official-prior refiner exit code: 0
+2026-11-04T20:52:46.1736233+08:00 Starting stage2_mechanism_fixed
+2026-11-04T20:53:08.2250978+08:00 stage2_mechanism_fixed exit code: 1
+2026-11-05T11:55:05.7572263+08:00 Waiting for official-prior refiner
+2026-11-05T11:55:06.5023604+08:00 Official-prior refiner exit code: 0
+2026-11-05T11:55:06.5079557+08:00 Starting stage2_mechanism_fixed
+2026-11-05T11:55:46.5972176+08:00 stage2_mechanism_fixed exit code: 1
+2026-11-05T11:55:59.0836992+08:00 Waiting for official-prior refiner
+2026-11-05T11:55:59.9001582+08:00 Official-prior refiner exit code: 0
+2026-11-05T11:55:59.9057929+08:00 Starting stage2_mechanism_fixed
+2026-11-05T11:57:42.9760707+08:00 stage2_mechanism_fixed exit code: 0
+2026-11-05T11:57:42.9770961+08:00 Starting stage2_mechanism_retrain
+2026-11-05T11:58:33.0135097+08:00 stage2_mechanism_retrain exit code: 1
+2026-11-05T11:59:03.7057313+08:00 Waiting for official-prior refiner
+2026-11-05T11:59:04.4791424+08:00 Official-prior refiner exit code: 0
+2026-11-05T11:59:04.4853136+08:00 Starting stage2_mechanism_fixed
+2026-11-05T12:00:44.5590008+08:00 stage2_mechanism_fixed exit code: 0
+2026-11-05T12:00:44.5600271+08:00 Starting stage2_mechanism_retrain
+2026-11-05T15:42:04.6010924+08:00 stage2_mechanism_retrain exit code: 0
+2026-11-05T15:42:04.6144695+08:00 Starting stage2_sampling_retrain
+2026-11-05T18:00:42.9313285+08:00 stage2_sampling_retrain exit code: 0
+2026-11-05T18:00:42.9380323+08:00 Starting stage3_resolution_256_ct
+2026-11-05T21:35:39.7350131+08:00 stage3_resolution_256_ct exit code: 0
+2026-11-05T21:35:39.7395762+08:00 Starting stage3_resolution_256_gan
+2026-11-06T05:47:08.4914148+08:00 stage3_resolution_256_gan exit code: 0
+2026-11-06T05:47:08.4970203+08:00 Starting stage3_roi3d
+2026-11-06T05:48:31.5752192+08:00 stage3_roi3d exit code: 0
+2026-11-06T05:48:31.5787821+08:00 Starting stage3_final_statistics
+2026-11-06T05:48:39.5972980+08:00 stage3_final_statistics exit code: 0
+2026-11-06T05:48:39.6013613+08:00 Starting stage3_official_efficiency
+2026-11-06T05:48:43.6157162+08:00 stage3_official_efficiency exit code: 1

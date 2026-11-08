@@ -1,0 +1,19 @@
+[gpu] free 22.75 GB of 24.00 GB; capping this process at 100% (24.00 GB)
+[ct_long] epoch 1/100 train=0.145731 val=0.128178 117s
+[ct_long] epoch 2/100 train=0.125563 val=0.122279 94s
+[ct_long] epoch 3/100 train=0.119654 val=0.116080 94s
+[ct_long] epoch 4/100 train=0.115333 val=0.112286 95s
+[ct_long] epoch 5/100 train=0.112582 val=0.111703 95s
+[ct_long] epoch 6/100 train=0.110215 val=0.110619 95s
+[ct_long] epoch 7/100 train=0.108642 val=0.108938 94s
+[ct_long] epoch 8/100 train=0.115663 val=0.108730 94s
+[ct_long] epoch 9/100 train=0.106378 val=0.106366 94s
+[ct_long] epoch 10/100 train=0.104761 val=0.108265 97s
+[ct_long] epoch 11/100 train=0.103836 val=0.107168 103s
+[ct_long] epoch 12/100 train=0.102745 val=0.106421 94s
+[ct_long] epoch 13/100 train=0.101742 val=0.104458 108s
+[ct_long] epoch 14/100 train=0.100866 val=0.104470 223s
+[ct_long] epoch 15/100 train=0.099992 val=0.103725 258s
+[ct_long] epoch 16/100 train=0.099389 val=0.104683 265s
+[ct_long] epoch 17/100 train=0.098651 val=0.104062 260s
+[ct_long] epoch 18/100 train=0.098163 val=0.103723 143s

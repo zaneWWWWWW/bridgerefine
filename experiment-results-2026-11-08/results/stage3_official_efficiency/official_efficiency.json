@@ -1,0 +1,39 @@
+{
+  "device": "NVIDIA GeForce RTX 3090",
+  "input_size": [
+    1,
+    1,
+    128,
+    128
+  ],
+  "batch_size": 1,
+  "precision": "float32",
+  "warmup": 20,
+  "timed_per_repeat": 100,
+  "repeats": 3,
+  "scope": "GPU model inference only; preprocessing, host transfer, and refiner input transfer are excluded",
+  "results": [
+    {
+      "method": "Official SelfRDB prior",
+      "parameters": 32802756,
+      "mean_ms": 1128.6900406666489,
+      "repeat_sd_ms": 7.41227017906577,
+      "p50_single_ms": 1119.150049984455,
+      "p95_single_ms": 1198.6609999992652,
+      "samples": 300,
+      "additional_peak_allocated_mb": 54.40185546875,
+      "peak_reserved_mb": 520.0
+    },
+    {
+      "method": "Official SelfRDB prior + refiner",
+      "parameters": 34140549,
+      "mean_ms": 1129.0865583343355,
+      "repeat_sd_ms": 17.365092502362934,
+      "p50_single_ms": 1115.567300003022,
+      "p95_single_ms": 1187.2543750185287,
+      "samples": 300,
+      "additional_peak_allocated_mb": 44.66064453125,
+      "peak_reserved_mb": 520.0
+    }
+  ]
+}

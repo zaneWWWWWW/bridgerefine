@@ -1,0 +1,23 @@
+﻿{
+    "exported_at":  "2026-11-08T13:20:57.3943706+08:00",
+    "source_root":  "E:\\tyllltl\\Cross-modal conversion\\experiments\\ordered_supplement_20261030",
+    "included_extensions":  [
+                                ".json",
+                                ".csv",
+                                ".log",
+                                ".md",
+                                ".py",
+                                ".ps1",
+                                ".txt"
+                            ],
+    "excluded_patterns":  [
+                              "*.npy",
+                              "*.pt",
+                              "*.ckpt",
+                              "images",
+                              "raw predictions"
+                          ],
+    "official_selfrdb_commit":  "6262ede",
+    "official_checkpoint":  "logs/official_cached_seed42_b8_e20/version_0/checkpoints/epoch=18-step=129694.ckpt",
+    "note":  "Large checkpoints and arrays remain on the experiment host."
+}

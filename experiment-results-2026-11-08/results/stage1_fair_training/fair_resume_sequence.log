@@ -1,0 +1,7 @@
+﻿2026-11-03T22:40:37.1087878+08:00 Starting ct_long
+2026-11-04T00:04:51.3114883+08:00 ct_long exit code: 0
+2026-11-04T00:04:51.3232736+08:00 Starting ct_strong
+2026-11-04T07:51:58.5672398+08:00 ct_strong exit code: 0
+2026-11-04T07:51:58.5871215+08:00 Starting joint_gan
+2026-11-04T08:29:05.2432416+08:00 joint_gan exit code: 0
+2026-11-04T08:29:05.2473662+08:00 Fair resume sequence complete.

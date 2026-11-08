@@ -1,0 +1,80 @@
+[
+  {
+    "method": "Conditional GAN prior + refiner",
+    "seed": 42,
+    "ssim_mean": 0.8351565763536771,
+    "ssim_sd": 0.04921420887223926,
+    "psnr_mean": 20.028891462071055,
+    "psnr_sd": 1.4887986715897763,
+    "mae_mean": 0.09188911308033623,
+    "mae_sd": 0.021678682811906182,
+    "lpips_mean": 0.10743450881462333,
+    "lpips_sd": 0.019484439836051994,
+    "max_abs_ssim_difference_vs_summary": 5.508134812926002e-06
+  },
+  {
+    "method": "Conditional GAN prior + refiner",
+    "seed": 123,
+    "ssim_mean": 0.8333571017522429,
+    "ssim_sd": 0.049002164026424495,
+    "psnr_mean": 20.014003818801413,
+    "psnr_sd": 1.4955710762939938,
+    "mae_mean": 0.09284165726114316,
+    "mae_sd": 0.0218479860847781,
+    "lpips_mean": 0.10548966739780333,
+    "lpips_sd": 0.02051590892100434,
+    "max_abs_ssim_difference_vs_summary": 5.459119825745873e-06
+  },
+  {
+    "method": "Conditional GAN prior + refiner",
+    "seed": 2026,
+    "ssim_mean": 0.8357536820056344,
+    "ssim_sd": 0.04884910966832006,
+    "psnr_mean": 20.058028523532847,
+    "psnr_sd": 1.499380500833654,
+    "mae_mean": 0.09192317596663996,
+    "mae_sd": 0.02156643331904381,
+    "lpips_mean": 0.10658439214051732,
+    "lpips_sd": 0.019425587358792604,
+    "max_abs_ssim_difference_vs_summary": 5.45155578457468e-06
+  },
+  {
+    "method": "Local bridge 2x1 + refiner",
+    "seed": 42,
+    "ssim_mean": 0.826405903627801,
+    "ssim_sd": 0.0505792261513323,
+    "psnr_mean": 19.94440354297295,
+    "psnr_sd": 1.3474116075796103,
+    "mae_mean": 0.09409167769047022,
+    "mae_sd": 0.02037146651448639,
+    "lpips_mean": 0.11907939441012767,
+    "lpips_sd": 0.021322670066254663,
+    "max_abs_ssim_difference_vs_summary": 5.554426745102425e-06
+  },
+  {
+    "method": "Local bridge 2x1 + refiner",
+    "seed": 123,
+    "ssim_mean": 0.8251747147627257,
+    "ssim_sd": 0.050929132237568724,
+    "psnr_mean": 19.97638067281625,
+    "psnr_sd": 1.361810050590341,
+    "mae_mean": 0.09398410017809415,
+    "mae_sd": 0.019890156397943757,
+    "lpips_mean": 0.12327465040987251,
+    "lpips_sd": 0.02266541711858948,
+    "max_abs_ssim_difference_vs_summary": 5.17319906789826e-06
+  },
+  {
+    "method": "Local bridge 2x1 + refiner",
+    "seed": 2026,
+    "ssim_mean": 0.8209765885238821,
+    "ssim_sd": 0.0526106827385353,
+    "psnr_mean": 19.957082388117517,
+    "psnr_sd": 1.3686044665610742,
+    "mae_mean": 0.09460240206736265,
+    "mae_sd": 0.02033145762730855,
+    "lpips_mean": 0.12441160996975843,
+    "lpips_sd": 0.021060416463523152,
+    "max_abs_ssim_difference_vs_summary": 5.7544199948411645e-06
+  }
+]

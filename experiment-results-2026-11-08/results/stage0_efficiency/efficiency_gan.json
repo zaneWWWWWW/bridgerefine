@@ -1,0 +1,28 @@
+{
+  "device": "NVIDIA GeForce RTX 3090",
+  "torch_version": "2.11.0+cu128",
+  "input_size": [
+    1,
+    1,
+    128,
+    128
+  ],
+  "batch_size": 1,
+  "precision": "float32",
+  "warmup": 20,
+  "timed_per_repeat": 100,
+  "repeats": 3,
+  "scope": "GPU model inference only; preprocessing, input transfer, and cached prior transfer are excluded",
+  "results": [
+    {
+      "method": "Conditional GAN prior + refiner",
+      "parameters": 12703426,
+      "mean_ms": 10.02756632088373,
+      "repeat_sd_ms": 0.06862889978049469,
+      "p50_single_ms": 9.673200082033873,
+      "p95_single_ms": 12.35767025500536,
+      "additional_peak_allocated_mb": 4204.78125,
+      "peak_reserved_mb": 4274.0
+    }
+  ]
+}

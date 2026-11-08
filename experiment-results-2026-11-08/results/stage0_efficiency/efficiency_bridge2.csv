@@ -1,0 +1,2 @@
+﻿method,parameters,mean_ms,repeat_sd_ms,p50_single_ms,p95_single_ms,additional_peak_allocated_mb,peak_reserved_mb
+Local bridge 2x1 + refiner,15743170,51.13458733074367,1.2605492041597337,50.23719999007881,56.170669849961996,6339.43896484375,6434.0

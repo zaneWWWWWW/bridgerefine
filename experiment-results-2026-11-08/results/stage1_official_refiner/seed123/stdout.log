@@ -1,0 +1,179 @@
+[official-refiner seed123] epoch 1/20 train=0.088686 val=0.101946 145s
+[official-refiner seed123] epoch 2/20 train=0.082577 val=0.101059 119s
+[official-refiner seed123] epoch 3/20 train=0.081117 val=0.100570 210s
+[official-refiner seed123] epoch 4/20 train=0.080151 val=0.100119 668s
+[official-refiner seed123] epoch 5/20 train=0.079368 val=0.099574 677s
+[official-refiner seed123] epoch 6/20 train=0.078715 val=0.100205 746s
+[official-refiner seed123] epoch 7/20 train=0.078181 val=0.098439 848s
+[official-refiner seed123] epoch 8/20 train=0.077724 val=0.098392 861s
+[official-refiner seed123] epoch 9/20 train=0.077284 val=0.098285 598s
+[official-refiner seed123] epoch 10/20 train=0.076947 val=0.097969 117s
+[official-refiner seed123] epoch 11/20 train=0.076607 val=0.097485 117s
+[official-refiner seed123] epoch 12/20 train=0.076325 val=0.097602 120s
+[official-refiner seed123] epoch 13/20 train=0.076049 val=0.097396 128s
+[official-refiner seed123] epoch 14/20 train=0.075821 val=0.097140 134s
+[official-refiner seed123] epoch 15/20 train=0.075582 val=0.097624 120s
+[official-refiner seed123] epoch 16/20 train=0.075402 val=0.098171 115s
+[official-refiner seed123] epoch 17/20 train=0.075194 val=0.096487 115s
+[official-refiner seed123] epoch 18/20 train=0.075010 val=0.096951 111s
+[official-refiner seed123] epoch 19/20 train=0.074823 val=0.096538 124s
+[official-refiner seed123] epoch 20/20 train=0.074656 val=0.096371 124s
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: E:\tyllltl\envs\bridge\Lib\site-packages\lpips\weights\v0.1\alex.pth
+{
+  "method": "Official SelfRDB prior + refiner",
+  "seed": 123,
+  "parameters": 1337793,
+  "best_epoch": 20,
+  "best_val_l1": 0.09637051739663169,
+  "curve": [
+    {
+      "epoch": 1,
+      "train_l1": 0.08868633516368665,
+      "val_l1": 0.10194551365773427,
+      "seconds": 145.34117197990417
+    },
+    {
+      "epoch": 2,
+      "train_l1": 0.08257733824349511,
+      "val_l1": 0.10105949992959176,
+      "seconds": 119.0351071357727
+    },
+    {
+      "epoch": 3,
+      "train_l1": 0.08111713589294645,
+      "val_l1": 0.10056980197786375,
+      "seconds": 210.02616953849792
+    },
+    {
+      "epoch": 4,
+      "train_l1": 0.08015119328937664,
+      "val_l1": 0.10011938373750495,
+      "seconds": 668.1945478916168
+    },
+    {
+      "epoch": 5,
+      "train_l1": 0.07936822304202971,
+      "val_l1": 0.09957440151558669,
+      "seconds": 677.0070252418518
+    },
+    {
+      "epoch": 6,
+      "train_l1": 0.0787148535478716,
+      "val_l1": 0.1002053129675793,
+      "seconds": 745.7847092151642
+    },
+    {
+      "epoch": 7,
+      "train_l1": 0.07818088318894924,
+      "val_l1": 0.09843925871823832,
+      "seconds": 848.0041446685791
+    },
+    {
+      "epoch": 8,
+      "train_l1": 0.07772414846802163,
+      "val_l1": 0.09839226678389226,
+      "seconds": 861.3426790237427
+    },
+    {
+      "epoch": 9,
+      "train_l1": 0.07728413712552117,
+      "val_l1": 0.09828501358132712,
+      "seconds": 597.555095911026
+    },
+    {
+      "epoch": 10,
+      "train_l1": 0.07694655668387869,
+      "val_l1": 0.09796917476800447,
+      "seconds": 117.05191612243652
+    },
+    {
+      "epoch": 11,
+      "train_l1": 0.07660723555339599,
+      "val_l1": 0.09748517864740679,
+      "seconds": 117.3250560760498
+    },
+    {
+      "epoch": 12,
+      "train_l1": 0.07632511655460489,
+      "val_l1": 0.09760201371924106,
+      "seconds": 120.03868746757507
+    },
+    {
+      "epoch": 13,
+      "train_l1": 0.07604892857826957,
+      "val_l1": 0.09739586465938133,
+      "seconds": 127.88659882545471
+    },
+    {
+      "epoch": 14,
+      "train_l1": 0.07582061582955707,
+      "val_l1": 0.09713990814724265,
+      "seconds": 134.1148328781128
+    },
+    {
+      "epoch": 15,
+      "train_l1": 0.07558186652285133,
+      "val_l1": 0.09762357293233692,
+      "seconds": 120.45877456665039
+    },
+    {
+      "epoch": 16,
+      "train_l1": 0.0754022749418181,
+      "val_l1": 0.09817067297374502,
+      "seconds": 115.4329731464386
+    },
+    {
+      "epoch": 17,
+      "train_l1": 0.07519390445818376,
+      "val_l1": 0.0964870018358408,
+      "seconds": 115.41605353355408
+    },
+    {
+      "epoch": 18,
+      "train_l1": 0.0750097649156663,
+      "val_l1": 0.09695069498191847,
+      "seconds": 111.30650901794434
+    },
+    {
+      "epoch": 19,
+      "train_l1": 0.07482328037933336,
+      "val_l1": 0.09653831787435287,
+      "seconds": 123.94263911247253
+    },
+    {
+      "epoch": 20,
+      "train_l1": 0.07465638289531608,
+      "val_l1": 0.09637051739663169,
+      "seconds": 123.70247960090637
+    }
+  ],
+  "ssim_mean": 0.8366380711236471,
+  "psnr_mean": 20.144842232690138,
+  "mae_mean": 0.09083426639360428,
+  "lpips_mean": 0.11226368410189647,
+  "ssim_sd": 0.046459621678330336,
+  "psnr_sd": 1.4049771225198981,
+  "mae_sd": 0.020070686997215155,
+  "lpips_sd": 0.02282426504181311,
+  "per_patient_ssim": {
+    "1BA012": 0.8841033640007178,
+    "1BA091": 0.889384601139216,
+    "1BA100": 0.889189066404992,
+    "1BA116": 0.8585886319881768,
+    "1BA184": 0.8710428054886635,
+    "1BA222": 0.8949485388882642,
+    "1BA256": 0.8824023902416229,
+    "1BA328": 0.8805188521592304,
+    "1BB002": 0.8033425310078789,
+    "1BB003": 0.7853190975705373,
+    "1BB008": 0.7709602402167374,
+    "1BB200": 0.7928591417887855,
+    "1BB205": 0.7595298148076469,
+    "1BC007": 0.8424277490247851,
+    "1BC014": 0.785723703522836,
+    "1BC050": 0.8446959155978578,
+    "1BC066": 0.8098471983410847,
+    "1BC080": 0.8146016380366157
+  }
+}

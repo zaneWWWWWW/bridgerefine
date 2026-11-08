@@ -1,0 +1,2 @@
+﻿method,parameters,mean_ms,repeat_sd_ms,p50_single_ms,p95_single_ms,additional_peak_allocated_mb,peak_reserved_mb
+Local bridge 10x2 + refiner,15743170,341.34418066125363,1.0755768899034421,337.91040000505745,370.3081351239235,6339.43896484375,6434.0

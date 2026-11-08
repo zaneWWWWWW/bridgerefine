@@ -1,0 +1,229 @@
+[gpu] free 22.75 GB of 24.00 GB; capping this process at 100% (24.00 GB)
+=== fold 0: train 27306 / test 6891 ===
+    bridge: resuming from epoch 21
+    detreg: reused
+    refiner [detreg] epoch  5/20
+    refiner [detreg] epoch 10/20
+    refiner [detreg] epoch 15/20
+    refiner [detreg] epoch 20/20
+    refiner [ct_only] epoch  5/20
+    refiner [ct_only] epoch 10/20
+    refiner [ct_only] epoch 15/20
+    refiner [ct_only] epoch 20/20
+fold 0 done
+=== fold 1: train 27369 / test 6828 ===
+    bridge epoch  1/20 942s
+    bridge epoch  2/20 925s
+    bridge epoch  3/20 965s
+    bridge epoch  4/20 928s
+    bridge epoch  5/20 1368s
+    bridge epoch  6/20 2187s
+    bridge epoch  7/20 2164s
+    bridge epoch  8/20 1971s
+    bridge epoch  9/20 886s
+    bridge epoch 10/20 854s
+    bridge epoch 11/20 842s
+    bridge epoch 12/20 846s
+    bridge epoch 13/20 846s
+    bridge epoch 14/20 859s
+    bridge epoch 15/20 857s
+    bridge epoch 16/20 1808s
+    bridge epoch 17/20 2326s
+    bridge epoch 18/20 2351s
+    bridge epoch 19/20 1072s
+    bridge epoch 20/20 872s
+    detreg epoch  1/20
+    detreg epoch  2/20
+    detreg epoch  3/20
+    detreg epoch  4/20
+    detreg epoch  5/20
+    detreg epoch  6/20
+    detreg epoch  7/20
+    detreg epoch  8/20
+    detreg epoch  9/20
+    detreg epoch 10/20
+    detreg epoch 11/20
+    detreg epoch 12/20
+    detreg epoch 13/20
+    detreg epoch 14/20
+    detreg epoch 15/20
+    detreg epoch 16/20
+    detreg epoch 17/20
+    detreg epoch 18/20
+    detreg epoch 19/20
+    detreg epoch 20/20
+    refiner [bridge] epoch  5/20
+    refiner [bridge] epoch 10/20
+    refiner [bridge] epoch 15/20
+    refiner [bridge] epoch 20/20
+    refiner [detreg] epoch  5/20
+    refiner [detreg] epoch 10/20
+    refiner [detreg] epoch 15/20
+    refiner [detreg] epoch 20/20
+    refiner [ct_only] epoch  5/20
+    refiner [ct_only] epoch 10/20
+    refiner [ct_only] epoch 15/20
+    refiner [ct_only] epoch 20/20
+fold 1 done
+=== fold 2: train 27433 / test 6764 ===
+    bridge epoch  1/20 887s
+    bridge epoch  2/20 885s
+    bridge epoch  3/20 886s
+    bridge epoch  4/20 886s
+    bridge epoch  5/20 888s
+    bridge epoch  6/20 886s
+    bridge epoch  7/20 886s
+    bridge epoch  8/20 887s
+    bridge epoch  9/20 888s
+    bridge epoch 10/20 888s
+    bridge epoch 11/20 887s
+    bridge epoch 12/20 885s
+    bridge epoch 13/20 887s
+    bridge epoch 14/20 887s
+    bridge epoch 15/20 888s
+    bridge epoch 16/20 888s
+    bridge epoch 17/20 886s
+    bridge epoch 18/20 888s
+    bridge epoch 19/20 886s
+    bridge epoch 20/20 874s
+    detreg epoch  1/20
+    detreg epoch  2/20
+    detreg epoch  3/20
+    detreg epoch  4/20
+    detreg epoch  5/20
+    detreg epoch  6/20
+    detreg epoch  7/20
+    detreg epoch  8/20
+    detreg epoch  9/20
+    detreg epoch 10/20
+    detreg epoch 11/20
+    detreg epoch 12/20
+    detreg epoch 13/20
+    detreg epoch 14/20
+    detreg epoch 15/20
+    detreg epoch 16/20
+    detreg epoch 17/20
+    detreg epoch 18/20
+    detreg epoch 19/20
+    detreg epoch 20/20
+    refiner [bridge] epoch  5/20
+    refiner [bridge] epoch 10/20
+    refiner [bridge] epoch 15/20
+    refiner [bridge] epoch 20/20
+    refiner [detreg] epoch  5/20
+    refiner [detreg] epoch 10/20
+    refiner [detreg] epoch 15/20
+    refiner [detreg] epoch 20/20
+    refiner [ct_only] epoch  5/20
+    refiner [ct_only] epoch 10/20
+    refiner [ct_only] epoch 15/20
+    refiner [ct_only] epoch 20/20
+fold 2 done
+=== fold 3: train 27324 / test 6873 ===
+    bridge epoch  1/20 998s
+    bridge epoch  2/20 926s
+    bridge epoch  3/20 913s
+    bridge epoch  4/20 940s
+    bridge epoch  5/20 912s
+    bridge epoch  6/20 1266s
+    bridge epoch  7/20 1124s
+    bridge epoch  8/20 968s
+    bridge epoch  9/20 966s
+    bridge epoch 10/20 1272s
+    bridge epoch 11/20 1273s
+    bridge epoch 12/20 1096s
+    bridge epoch 13/20 1063s
+    bridge epoch 14/20 993s
+    bridge epoch 15/20 991s
+    bridge epoch 16/20 992s
+    bridge epoch 17/20 946s
+    bridge epoch 18/20 944s
+    bridge epoch 19/20 946s
+    bridge epoch 20/20 945s
+    detreg epoch  1/20
+    detreg epoch  2/20
+    detreg epoch  3/20
+    detreg epoch  4/20
+    detreg epoch  5/20
+    detreg epoch  6/20
+    detreg epoch  7/20
+    detreg epoch  8/20
+    detreg epoch  9/20
+    detreg epoch 10/20
+    detreg epoch 11/20
+    detreg epoch 12/20
+    detreg epoch 13/20
+    detreg epoch 14/20
+    detreg epoch 15/20
+    detreg epoch 16/20
+    detreg epoch 17/20
+    detreg epoch 18/20
+    detreg epoch 19/20
+    detreg epoch 20/20
+    refiner [bridge] epoch  5/20
+    refiner [bridge] epoch 10/20
+    refiner [bridge] epoch 15/20
+    refiner [bridge] epoch 20/20
+    refiner [detreg] epoch  5/20
+    refiner [detreg] epoch 10/20
+    refiner [detreg] epoch 15/20
+    refiner [detreg] epoch 20/20
+    refiner [ct_only] epoch  5/20
+    refiner [ct_only] epoch 10/20
+    refiner [ct_only] epoch 15/20
+    refiner [ct_only] epoch 20/20
+fold 3 done
+=== fold 4: train 27356 / test 6841 ===
+    bridge epoch  1/20 819s
+    bridge epoch  2/20 809s
+    bridge epoch  3/20 799s
+    bridge epoch  4/20 765s
+    bridge epoch  5/20 763s
+    bridge epoch  6/20 763s
+    bridge epoch  7/20 764s
+    bridge epoch  8/20 764s
+    bridge epoch  9/20 765s
+    bridge epoch 10/20 765s
+    bridge epoch 11/20 764s
+    bridge epoch 12/20 773s
+    bridge epoch 13/20 782s
+    bridge epoch 14/20 789s
+    bridge epoch 15/20 777s
+    bridge epoch 16/20 777s
+    bridge epoch 17/20 793s
+    bridge epoch 18/20 852s
+    bridge epoch 19/20 853s
+    bridge epoch 20/20 861s
+    detreg epoch  1/20
+    detreg epoch  2/20
+    detreg epoch  3/20
+    detreg epoch  4/20
+    detreg epoch  5/20
+    detreg epoch  6/20
+    detreg epoch  7/20
+    detreg epoch  8/20
+    detreg epoch  9/20
+    detreg epoch 10/20
+    detreg epoch 11/20
+    detreg epoch 12/20
+    detreg epoch 13/20
+    detreg epoch 14/20
+    detreg epoch 15/20
+    detreg epoch 16/20
+    detreg epoch 17/20
+    detreg epoch 18/20
+    detreg epoch 19/20
+    detreg epoch 20/20
+    refiner [bridge] epoch  5/20
+    refiner [bridge] epoch 10/20
+    refiner [bridge] epoch 15/20
+    refiner [bridge] epoch 20/20
+    refiner [detreg] epoch  5/20
+    refiner [detreg] epoch 10/20
+    refiner [detreg] epoch 15/20
+    refiner [detreg] epoch 20/20
+    refiner [ct_only] epoch  5/20
+    refiner [ct_only] epoch 10/20
+    refiner [ct_only] epoch 15/20
+    refiner [ct_only] epoch 20/20
+fold 4 done

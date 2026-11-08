@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "E:\tyllltl\Cross-modal conversion\experiments\ordered_supplement_20261030\stage3_official_efficiency.py", line 144, in <module>
+    main()
+    ~~~~^^
+  File "E:\tyllltl\Cross-modal conversion\experiments\ordered_supplement_20261030\stage3_official_efficiency.py", line 62, in main
+    from main import BridgeRunner
+ImportError: cannot import name 'BridgeRunner' from 'main' (E:\tyllltl\Cross-modal conversion\main.py)

@@ -1,0 +1,75 @@
+[gpu] free 22.75 GB of 24.00 GB; capping this process at 100% (24.00 GB)
+Loaded 27454 paired slices from 144 patients
+Loaded 3487 paired slices from 18 patients
+Loaded 3435 paired slices from 18 patients
+[gan256] epoch 1/20 G=14.7299 D=0.1632 785s
+[gan256] epoch 2/20 G=13.0778 D=0.1806 767s
+[gan256] epoch 3/20 G=12.5586 D=0.1619 767s
+[gan256] epoch 4/20 G=12.2170 D=0.1731 767s
+[gan256] epoch 5/20 G=12.0281 D=0.1698 768s
+[gan256] epoch 6/20 G=11.8416 D=0.1689 769s
+[gan256] epoch 7/20 G=11.5444 D=0.1822 768s
+[gan256] epoch 8/20 G=11.3621 D=0.1842 769s
+[gan256] epoch 9/20 G=11.3445 D=0.1729 769s
+[gan256] epoch 10/20 G=11.2533 D=0.1706 770s
+[gan256] epoch 11/20 G=11.0521 D=0.1855 771s
+[gan256] epoch 12/20 G=11.0243 D=0.1682 770s
+[gan256] epoch 13/20 G=10.9002 D=0.1758 773s
+[gan256] epoch 14/20 G=10.7966 D=0.1901 771s
+[gan256] epoch 15/20 G=10.7015 D=0.1789 777s
+[gan256] epoch 16/20 G=10.7337 D=0.1609 827s
+[gan256] epoch 17/20 G=10.5547 D=0.1774 1720s
+[gan256] epoch 18/20 G=10.6522 D=0.1470 1966s
+[gan256] epoch 19/20 G=10.5200 D=0.1542 1977s
+[gan256] epoch 20/20 G=10.3234 D=0.1670 1438s
+[gan-refiner-256] epoch 1/20 train=0.136911 val=0.111044 717s
+[gan-refiner-256] epoch 2/20 train=0.120022 val=0.105372 467s
+[gan-refiner-256] epoch 3/20 train=0.115405 val=0.104020 463s
+[gan-refiner-256] epoch 4/20 train=0.112715 val=0.103947 465s
+[gan-refiner-256] epoch 5/20 train=0.110900 val=0.103738 465s
+[gan-refiner-256] epoch 6/20 train=0.109323 val=0.102054 463s
+[gan-refiner-256] epoch 7/20 train=0.108366 val=0.102394 464s
+[gan-refiner-256] epoch 8/20 train=0.107363 val=0.102561 465s
+[gan-refiner-256] epoch 9/20 train=0.106716 val=0.102141 464s
+[gan-refiner-256] epoch 10/20 train=0.106129 val=0.101695 464s
+[gan-refiner-256] epoch 11/20 train=0.105711 val=0.101720 463s
+[gan-refiner-256] epoch 12/20 train=0.105165 val=0.101974 464s
+[gan-refiner-256] epoch 13/20 train=0.104565 val=0.101831 462s
+[gan-refiner-256] epoch 14/20 train=0.104277 val=0.101298 465s
+[gan-refiner-256] epoch 15/20 train=0.103939 val=0.101126 465s
+[gan-refiner-256] epoch 16/20 train=0.103622 val=0.101268 463s
+[gan-refiner-256] epoch 17/20 train=0.103319 val=0.101484 464s
+[gan-refiner-256] epoch 18/20 train=0.102935 val=0.101106 465s
+[gan-refiner-256] epoch 19/20 train=0.102746 val=0.104495 463s
+[gan-refiner-256] epoch 20/20 train=0.102600 val=0.101369 467s
+{
+  "experiment": "gan_prior_refiner_256",
+  "parameters": 12703426,
+  "pretrain_epochs": 20,
+  "refiner_best_epoch": 18,
+  "refiner_best_val_l1": 0.1011055697371345,
+  "ssim_mean": 0.7979875476729111,
+  "ssim_sd": 0.05250118418898843,
+  "psnr_mean": 19.809713590066483,
+  "psnr_sd": 1.5059191564747505,
+  "per_patient_ssim": {
+    "1BA012": 0.8569532856345177,
+    "1BA091": 0.8373169288543112,
+    "1BA100": 0.8572473408693962,
+    "1BA116": 0.8426337526534414,
+    "1BA184": 0.838195901928526,
+    "1BA222": 0.8562835087917121,
+    "1BA256": 0.8554612339711657,
+    "1BA328": 0.8524270741024402,
+    "1BB002": 0.7545742914957159,
+    "1BB003": 0.7429243839278663,
+    "1BB008": 0.7162109392412593,
+    "1BB200": 0.7420541224656282,
+    "1BB205": 0.7324998135413598,
+    "1BC007": 0.7993061215333317,
+    "1BC014": 0.7301798023844278,
+    "1BC050": 0.8034153353084218,
+    "1BC066": 0.7642977857726744,
+    "1BC080": 0.7817942356362062
+  }
+}

@@ -1,0 +1,2 @@
+﻿method,parameters,mean_ms,repeat_sd_ms,p50_single_ms,p95_single_ms,additional_peak_allocated_mb,peak_reserved_mb
+CT-only U-Net,1334657,3.2823180065800748,0.1830209194195389,3.172100055962801,4.384670173749328,4212.78125,4250.0

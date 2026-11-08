@@ -1,0 +1,121 @@
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: E:\tyllltl\envs\bridge\Lib\site-packages\lpips\weights\v0.1\alex.pth
+matched retraining: blur1.0
+[blur1_0] epoch 1/20 loss=0.077390 120s
+[blur1_0] epoch 2/20 loss=0.072365 117s
+[blur1_0] epoch 3/20 loss=0.069483 117s
+[blur1_0] epoch 4/20 loss=0.068542 174s
+[blur1_0] epoch 5/20 loss=0.067863 269s
+[blur1_0] epoch 6/20 loss=0.067375 274s
+[blur1_0] epoch 7/20 loss=0.066943 263s
+[blur1_0] epoch 8/20 loss=0.066617 264s
+[blur1_0] epoch 9/20 loss=0.066273 254s
+[blur1_0] epoch 10/20 loss=0.066022 271s
+[blur1_0] epoch 11/20 loss=0.065811 268s
+[blur1_0] epoch 12/20 loss=0.065574 271s
+[blur1_0] epoch 13/20 loss=0.065398 258s
+[blur1_0] epoch 14/20 loss=0.065230 274s
+[blur1_0] epoch 15/20 loss=0.065049 264s
+[blur1_0] epoch 16/20 loss=0.064911 258s
+[blur1_0] epoch 17/20 loss=0.064775 260s
+[blur1_0] epoch 18/20 loss=0.064630 233s
+[blur1_0] epoch 19/20 loss=0.064530 261s
+[blur1_0] epoch 20/20 loss=0.064408 275s
+matched retraining: noise0.10
+[noise0_10] epoch 1/20 loss=0.078668 245s
+[noise0_10] epoch 2/20 loss=0.071225 284s
+[noise0_10] epoch 3/20 loss=0.072270 243s
+[noise0_10] epoch 4/20 loss=0.069318 277s
+[noise0_10] epoch 5/20 loss=0.068605 253s
+[noise0_10] epoch 6/20 loss=0.068133 271s
+[noise0_10] epoch 7/20 loss=0.067687 270s
+[noise0_10] epoch 8/20 loss=0.067350 264s
+[noise0_10] epoch 9/20 loss=0.067018 267s
+[noise0_10] epoch 10/20 loss=0.066751 279s
+[noise0_10] epoch 11/20 loss=0.066521 236s
+[noise0_10] epoch 12/20 loss=0.066301 274s
+[noise0_10] epoch 13/20 loss=0.066092 233s
+[noise0_10] epoch 14/20 loss=0.065902 262s
+[noise0_10] epoch 15/20 loss=0.065744 253s
+[noise0_10] epoch 16/20 loss=0.065570 238s
+[noise0_10] epoch 17/20 loss=0.065437 221s
+[noise0_10] epoch 18/20 loss=0.065293 137s
+[noise0_10] epoch 19/20 loss=0.065182 121s
+[noise0_10] epoch 20/20 loss=0.065061 118s
+matched retraining: shift4
+[shift4] epoch 1/20 loss=0.087442 115s
+[shift4] epoch 2/20 loss=0.075357 115s
+[shift4] epoch 3/20 loss=0.073552 115s
+[shift4] epoch 4/20 loss=0.070535 116s
+[shift4] epoch 5/20 loss=0.070659 117s
+[shift4] epoch 6/20 loss=0.069191 120s
+[shift4] epoch 7/20 loss=0.069444 123s
+[shift4] epoch 8/20 loss=0.068208 122s
+[shift4] epoch 9/20 loss=0.068374 121s
+[shift4] epoch 10/20 loss=0.067518 122s
+[shift4] epoch 11/20 loss=0.067366 120s
+[shift4] epoch 12/20 loss=0.066969 123s
+[shift4] epoch 13/20 loss=0.066859 180s
+[shift4] epoch 14/20 loss=0.066607 267s
+[shift4] epoch 15/20 loss=0.066713 304s
+[shift4] epoch 16/20 loss=0.066220 305s
+[shift4] epoch 17/20 loss=0.066164 305s
+[shift4] epoch 18/20 loss=0.066020 302s
+[shift4] epoch 19/20 loss=0.065831 298s
+[shift4] epoch 20/20 loss=0.065714 284s
+{
+  "blur1.0": {
+    "ssim": {
+      "mean": 0.8341956374564878,
+      "sd": 0.04935012598745652
+    },
+    "psnr": {
+      "mean": 20.03829664903859,
+      "sd": 1.4915939503690574
+    },
+    "mae": {
+      "mean": 0.09190835444699905,
+      "sd": 0.02161907913682039
+    },
+    "lpips": {
+      "mean": 0.10648349195971389,
+      "sd": 0.019566872994467157
+    }
+  },
+  "noise0.10": {
+    "ssim": {
+      "mean": 0.8356997964432252,
+      "sd": 0.04904246351851486
+    },
+    "psnr": {
+      "mean": 20.013837457641536,
+      "sd": 1.494209840356437
+    },
+    "mae": {
+      "mean": 0.09200148738555329,
+      "sd": 0.021789289211743237
+    },
+    "lpips": {
+      "mean": 0.10838054333450213,
+      "sd": 0.01933154318548886
+    }
+  },
+  "shift4": {
+    "ssim": {
+      "mean": 0.8331636117281888,
+      "sd": 0.049514815919626746
+    },
+    "psnr": {
+      "mean": 19.936704549522556,
+      "sd": 1.4773920686584794
+    },
+    "mae": {
+      "mean": 0.09293527906281138,
+      "sd": 0.021627303596008878
+    },
+    "lpips": {
+      "mean": 0.10925320568881307,
+      "sd": 0.018589768198135546
+    }
+  }
+}
